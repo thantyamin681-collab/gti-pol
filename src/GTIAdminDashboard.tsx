@@ -17,8 +17,8 @@ interface GTIAdminDashboardProps {
 export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHome }) => {
   const [activeTab, setActiveTab] = useState<'news' | 'results' | 'activities'>('news');
   const [successMsg, setSuccessMsg] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // ---------------- State Management ----------------
   // 1. News State
   const [newsList, setNewsList] = useState([
     { id: 1, title: '2026 Academic Year Admission Open', date: '2026-07-15', category: 'Admission' }
@@ -26,6 +26,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
   const [newsTitle, setNewsTitle] = useState('');
   const [newsCategory, setNewsCategory] = useState('General');
   const [newsContent, setNewsContent] = useState('');
+  const [newsImage, setNewsImage] = useState<File | null>(null);
 
   // 2. Exam Results State
   const [resultsList, setResultsList] = useState([
@@ -43,26 +44,66 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
   const [actDate, setActDate] = useState('');
   const [actDesc, setActDesc] = useState('');
 
-  // Helper for notification
   const showNotification = (msg: string) => {
     setSuccessMsg(msg);
     setTimeout(() => setSuccessMsg(''), 3000);
   };
 
-  // ---------------- Handlers ----------------
-  const handleAddNews = (e: React.FormEvent) => {
+  // Helper Function: Convert Image File to Base64 String
+  const convertBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  // Cloudflare D1 သို့ News & Image Post လုပ်သည့် Handler
+  const handleAddNews = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsTitle || !newsContent) return;
-    const newItem = {
-      id: Date.now(),
-      title: newsTitle,
-      date: new Date().toISOString().split('T')[0],
-      category: newsCategory,
-    };
-    setNewsList([newItem, ...newsList]);
-    setNewsTitle('');
-    setNewsContent('');
-    showNotification('News updated successfully!');
+
+    setIsSubmitting(true);
+    let imageUrlBase64 = '';
+
+    try {
+      if (newsImage) {
+        imageUrlBase64 = await convertBase64(newsImage);
+      }
+
+      const res = await fetch('/api/news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: newsTitle,
+          category: newsCategory,
+          content: newsContent,
+          image_url: imageUrlBase64
+        })
+      });
+
+      if (res.ok) {
+        const newItem = {
+          id: Date.now(),
+          title: newsTitle,
+          date: new Date().toISOString().split('T')[0],
+          category: newsCategory,
+        };
+        setNewsList([newItem, ...newsList]);
+        setNewsTitle('');
+        setNewsContent('');
+        setNewsImage(null);
+        showNotification('News & Image updated successfully to D1!');
+      } else {
+        alert('Database သို့ တင်ရာတွင် အဆင်မပြေပါခင်ဗျာ။');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Upload Error ဖြစ်ပွားခဲ့ပါသည်။');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleUploadResult = (e: React.FormEvent) => {
@@ -99,7 +140,6 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
 
   return (
     <div className="min-h-screen bg-[#0a192f] text-slate-100 font-sans">
-      {/* Top Bar */}
       <header className="bg-[#071325] border-b border-slate-800 px-6 py-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           {onBackToHome && (
@@ -119,7 +159,6 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
       </header>
 
       <div className="max-w-7xl mx-auto p-6">
-        {/* Notification Alert */}
         {successMsg && (
           <div className="mb-6 bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 p-4 rounded-lg flex items-center space-x-2">
             <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
@@ -127,7 +166,6 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           </div>
         )}
 
-        {/* Navigation Tabs */}
         <div className="flex space-x-2 border-b border-slate-800 mb-8 overflow-x-auto">
           <button
             onClick={() => setActiveTab('news')}
@@ -166,10 +204,8 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           </button>
         </div>
 
-        {/* ================= TAB 1: LATEST NEWS ================= */}
         {activeTab === 'news' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Form */}
             <div className="lg:col-span-1 bg-[#112240] p-6 rounded-xl border border-slate-800 h-fit">
               <h2 className="text-lg font-semibold text-white mb-4 flex items-center space-x-2">
                 <Plus className="w-5 h-5 text-[#64ffda]" />
@@ -201,6 +237,15 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
                   </select>
                 </div>
                 <div>
+                  <label className="block text-sm text-slate-300 mb-1">Upload Photo (Image)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setNewsImage(e.target.files ? e.target.files[0] : null)}
+                    className="w-full bg-[#0a192f] border border-slate-700 rounded-lg p-2 text-sm text-slate-300 focus:outline-none"
+                  />
+                </div>
+                <div>
                   <label className="block text-sm text-slate-300 mb-1">Description / Content</label>
                   <textarea
                     rows={4}
@@ -213,14 +258,14 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-[#64ffda] text-[#0a192f] font-bold py-2.5 rounded-lg hover:bg-[#64ffda]/80 transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#64ffda] text-[#0a192f] font-bold py-2.5 rounded-lg hover:bg-[#64ffda]/80 transition-colors disabled:opacity-50"
                 >
-                  Publish News
+                  {isSubmitting ? 'Uploading...' : 'Publish News'}
                 </button>
               </form>
             </div>
 
-            {/* Existing News List */}
             <div className="lg:col-span-2 bg-[#112240] p-6 rounded-xl border border-slate-800">
               <h2 className="text-lg font-semibold text-white mb-4">Posted Announcements</h2>
               <div className="space-y-3">
@@ -247,7 +292,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           </div>
         )}
 
-        {/* ================= TAB 2: UPLOAD RESULTS ================= */}
+        {/* TAB 2 & TAB 3 - Unchanged */}
         {activeTab === 'results' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 bg-[#112240] p-6 rounded-xl border border-slate-800 h-fit">
@@ -326,7 +371,6 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           </div>
         )}
 
-        {/* ================= TAB 3: COLLEGE ACTIVITIES ================= */}
         {activeTab === 'activities' && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1 bg-[#112240] p-6 rounded-xl border border-slate-800 h-fit">

@@ -15,17 +15,28 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   try {
     const { request, env } = context;
     const body: NewsPayload = await request.json();
-    const { title, category, content, image_url } = body;
+    
+    // Required fields မပါရင် Error ပြန်ခေါ်မည်
+    if (!body.title || !body.category || !body.content) {
+      return new Response(JSON.stringify({ success: false, error: "Title, Category and Content are required!" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
+    }
 
-    // wrangler.toml ထဲက binding name "gti_db" ကို သုံးထားပါသည်
+    const title = body.title || "";
+    const category = body.category || "";
+    const content = body.content || "";
+    const image_url = body.image_url || "";
+
+    // created_at ကို Database ရဲ့ CURRENT_TIMESTAMP သို့မဟုတ် SQLite Date Function အတိုင်း အလိုအလျောက် ထည့်စေပါမည်
     await env.gti_db.prepare(
-      `INSERT INTO news (title, category, content, image_url, created_at) VALUES (?, ?, ?, ?, ?)`
+      `INSERT INTO news (title, category, content, image_url) VALUES (?, ?, ?, ?)`
     ).bind(
       title, 
       category, 
       content, 
-      image_url || '', 
-      new Date().toISOString().split('T')[0]
+      image_url
     ).run();
 
     return new Response(JSON.stringify({ success: true, message: "Published successfully!" }), {

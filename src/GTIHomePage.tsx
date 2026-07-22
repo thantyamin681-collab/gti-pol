@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
-  HelpCircle, 
+  // HelpCircle, 
   Menu, 
   X, 
   Building2, 
@@ -26,8 +26,44 @@ interface NewsItem {
   category: string;
 }
 
-const GTIHomePage: React.FC = () => {
+interface GTIHomePageProps {
+  onNavigate: (view: 'home' | 'news' | 'schoolinfo') => void;
+}
+
+const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  // Centralized navigation handler
+  const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+
+    if (href === '/') {
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/');
+        onNavigate('home');
+      }
+      return;
+    }
+
+    if (href === '/latest-news') {
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/latest-news');
+        onNavigate('news');
+      }
+      return;
+    }
+
+    if (href === '/school-info') {
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', '/school-info');
+        onNavigate('schoolinfo');
+      }
+      return;
+    }
+
+    // Fallback for other routes
+    if (typeof window !== 'undefined') window.location.href = href;
+  };
 
   // Navigation Links Data
   const navLinks: NavLink[] = [
@@ -57,13 +93,13 @@ const GTIHomePage: React.FC = () => {
     <div className="flex items-center justify-between h-20">
       
       {/* Left Side: Logo and Name Side-by-Side */}
-      <div className="flex items-center space-x-3 cursor-pointer">
+      <div className="flex items-center space-x-3 cursor-pointer" onClick={() => handleNavClick('/') }>
         
         <img 
-           src={logoImg} 
-           alt="GTI Logo" 
-           className="w-12 h-12 object-contain"
-/>
+          src={logoImg} 
+          alt="GTI Logo" 
+          className="w-12 h-12 object-contain"
+        />
         <div className="flex flex-col">
           <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
             GTI (Pyin Oo Lwin)
@@ -76,16 +112,20 @@ const GTIHomePage: React.FC = () => {
 
       {/* Right Side: Desktop Nav Links */}
       <div className="hidden md:flex items-center space-x-8">
-        {navLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.href}
-            /* Font Size ကို text-sm (14px) မှ text-base (16px) သို့မဟုတ် text-lg (18px) သို့ တိုးမြှင့်ထားပါသည် */
-            className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
-          >
-            {link.name}
-          </a>
-        ))}
+        {navLinks.map((link) => {
+          const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/'
+          const isActive = currentPath === link.href
+          return (
+            <button
+              key={link.name}
+              type="button"
+              onClick={() => handleNavClick(link.href)}
+              className={`text-base font-semibold transition-colors duration-200 ${isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'}`}
+            >
+              {link.name}
+            </button>
+          )
+        })}
       </div>
 
       {/* Mobile Menu Toggle Button */}
@@ -105,13 +145,14 @@ const GTIHomePage: React.FC = () => {
   {isMobileMenuOpen && (
     <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
       {navLinks.map((link) => (
-        <a
+        <button
           key={link.name}
-          href={link.href}
-          className="block px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+          type="button"
+          onClick={() => handleNavClick(link.href)}
+          className="w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
         >
           {link.name}
-        </a>
+        </button>
       ))}
     </div>
   )}
@@ -182,12 +223,16 @@ const GTIHomePage: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href="/latest-news"
+            <button
+              type="button"
+              onClick={() => {
+                window.history.pushState({}, '', '/latest-news')
+                onNavigate('news')
+              }}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
-            </a>
+            </button>
           </section>
 
           {/* 5. Other Section (Links to Other Pages - Takes 3 cols out of 12) */}
@@ -234,14 +279,14 @@ const GTIHomePage: React.FC = () => {
         </div>
       </main>
 
-      {/* 6. Floating Action Button (FAQ Section Link) */}
+      {/* 6. Floating Action Button (FAQ Section Link)
       <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
         <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a>
+      </a> */}
 
       {/* 7. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">

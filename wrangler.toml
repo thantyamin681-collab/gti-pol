@@ -6,3 +6,5 @@ pages_build_output_dir = "./dist"
 binding = "gti_db"
 database_name = "gti-db"
 database_id = "74054620-296b-4aef-a7a7-c7063b1c257e"
+[assets]
+directory = "./dist"

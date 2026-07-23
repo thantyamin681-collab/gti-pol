@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from 'react';
 import logoImg from './assets/logo.jpg';
-import { HelpCircle, Menu, X } from 'lucide-react';
+import {  Menu, X } from 'lucide-react';
 
 interface NavLink {
   name: string;

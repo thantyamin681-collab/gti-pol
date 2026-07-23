@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
-  // HelpCircle, 
   Menu, 
   X, 
   Building2, 
@@ -15,6 +14,7 @@ import {
 interface NavLink {
   name: string;
   href: string;
+  view: NavigationViews;
 }
 
 // News Item Interface
@@ -26,56 +26,43 @@ interface NewsItem {
   category: string;
 }
 
+// Define allowed view types
+export type NavigationViews = 
+  | 'home' 
+  | 'news' 
+  | 'schoolinfo' 
+  | 'department' 
+  | 'result' 
+  | 'activities';
+
 interface GTIHomePageProps {
-  onNavigate: (view: 'home' | 'news' | 'schoolinfo') => void;
+  onNavigate: (view: NavigationViews) => void;
 }
 
 const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Centralized navigation handler
-  const handleNavClick = (href: string) => {
+  // Centralized navigation handler mapping paths to view states
+  const handleNavClick = (href: string, view: NavigationViews) => {
     setIsMobileMenuOpen(false);
 
-    if (href === '/') {
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', '/');
-        onNavigate('home');
-      }
-      return;
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', href);
+      onNavigate(view);
     }
-
-    if (href === '/latest-news') {
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', '/latest-news');
-        onNavigate('news');
-      }
-      return;
-    }
-
-    if (href === '/school-info') {
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', '/school-info');
-        onNavigate('schoolinfo');
-      }
-      return;
-    }
-
-    // Fallback for other routes
-    if (typeof window !== 'undefined') window.location.href = href;
   };
 
-  // Navigation Links Data
+  // Navigation Links Data mapped to view parameters
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/' },
-    { name: 'Department', href: '/department' },
-    { name: 'Result', href: '/result' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Latest News', href: '/latest-news' },
-    { name: 'School Info', href: '/school-info' },
+    { name: 'Home', href: '/', view: 'home' },
+    { name: 'Department', href: '/department', view: 'department' },
+    { name: 'Result', href: '/result', view: 'result' },
+    { name: 'Activities', href: '/activities', view: 'activities' },
+    { name: 'Latest News', href: '/latest-news', view: 'news' },
+    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
   ];
 
-  // Most Recent News Data (Single latest item displayed)
+  // Most Recent News Data
   const latestNews: NewsItem = {
     id: 'news-2026-001',
     title: 'Academic Year 2026-2027 Registration & Course Schedules',
@@ -88,75 +75,79 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
       
       {/* 1. Navigation Bar */}
-<nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex items-center justify-between h-20">
-      
-      {/* Left Side: Logo and Name Side-by-Side */}
-      <div className="flex items-center space-x-3 cursor-pointer" onClick={() => handleNavClick('/') }>
-        
-        <img 
-          src={logoImg} 
-          alt="GTI Logo" 
-          className="w-12 h-12 object-contain"
-        />
-        <div className="flex flex-col">
-          <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
-            GTI (Pyin Oo Lwin)
-          </span>
-          <span className="text-xs sm:text-sm text-slate-300 font-light">
-            Government Technical Institute
-          </span>
-        </div>
-      </div>
-
-      {/* Right Side: Desktop Nav Links */}
-      <div className="hidden md:flex items-center space-x-8">
-        {navLinks.map((link) => {
-          const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/'
-          const isActive = currentPath === link.href
-          return (
-            <button
-              key={link.name}
-              type="button"
-              onClick={() => handleNavClick(link.href)}
-              className={`text-base font-semibold transition-colors duration-200 ${isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'}`}
+      <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Left Side: Logo and Name Side-by-Side */}
+            <div 
+              className="flex items-center space-x-3 cursor-pointer" 
+              onClick={() => handleNavClick('/', 'home')}
             >
-              {link.name}
-            </button>
-          )
-        })}
-      </div>
+              <img 
+                src={logoImg} 
+                alt="GTI Logo" 
+                className="w-12 h-12 object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
+                  GTI (Pyin Oo Lwin)
+                </span>
+                <span className="text-xs sm:text-sm text-slate-300 font-light">
+                  Government Technical Institute
+                </span>
+              </div>
+            </div>
 
-      {/* Mobile Menu Toggle Button */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-        </button>
-      </div>
-    </div>
-  </div>
+            {/* Right Side: Desktop Nav Links */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => {
+                const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
+                const isActive = currentPath === link.href;
+                return (
+                  <button
+                    key={link.name}
+                    type="button"
+                    onClick={() => handleNavClick(link.href, link.view)}
+                    className={`text-base font-semibold transition-colors duration-200 ${
+                      isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                );
+              })}
+            </div>
 
-  {/* Mobile Nav Menu (Font Size ပြင်ဆင်ထားမှု) */}
-  {isMobileMenuOpen && (
-    <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
-      {navLinks.map((link) => (
-        <button
-          key={link.name}
-          type="button"
-          onClick={() => handleNavClick(link.href)}
-          className="w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
-        >
-          {link.name}
-        </button>
-      ))}
-    </div>
-  )}
-</nav>
+            {/* Mobile Menu Toggle Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Nav Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                type="button"
+                onClick={() => handleNavClick(link.href, link.view)}
+                className="w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
 
       {/* 2. Banner Image Section */}
       <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
@@ -175,16 +166,15 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Main Content Layout: Side-by-Side Sections Grid */}
+      {/* Main Content Layout */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* 3. College Background Section (Takes 6 cols out of 12) */}
+          {/* 3. College Background Section */}
           <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 h-full">
             <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
               College Background
             </h2>
-            {/* Image and Text Side-by-Side inside Background Section */}
             <div className="flex flex-col sm:flex-row gap-6 items-center">
               <img
                 src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
@@ -199,7 +189,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </div>
           </section>
 
-          {/* 4. Latest Update News Section (Takes 3 cols out of 12) */}
+          {/* 4. Latest Update News Section */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
@@ -225,73 +215,64 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
             <button
               type="button"
-              onClick={() => {
-                window.history.pushState({}, '', '/latest-news')
-                onNavigate('news')
-              }}
+              onClick={() => handleNavClick('/latest-news', 'news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
             </button>
           </section>
 
-          {/* 5. Other Section (Links to Other Pages - Takes 3 cols out of 12) */}
+          {/* 5. Quick Links Section */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full">
             <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
               Quick Links
             </h2>
             <div className="space-y-3 mt-2">
-              <a
-                href="/department"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/department', 'department')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Departments</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/result"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/result', 'result')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Exam Results</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/activities"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/activities', 'activities')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Campus Activities</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
             </div>
           </section>
 
         </div>
       </main>
 
-      {/* 6. Floating Action Button (FAQ Section Link)
-      <a
-        href="/faq"
-        aria-label="Frequently Asked Questions"
-        className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
-      >
-        <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a> */}
-
-      {/* 7. Footer */}
+      {/* 6. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} Government Techical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
         </div>
       </footer>
 

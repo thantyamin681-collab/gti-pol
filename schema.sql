@@ -3,5 +3,6 @@ CREATE TABLE IF NOT EXISTS news (
   title TEXT NOT NULL,
   category TEXT NOT NULL,
   content TEXT NOT NULL,
+  image_url TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );

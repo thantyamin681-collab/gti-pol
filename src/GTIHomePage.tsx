@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
   Menu, 
@@ -10,49 +10,66 @@ import {
   Newspaper 
 } from 'lucide-react';
 
-// Navigation Link Interface
 interface NavLink {
   name: string;
   href: string;
-  view: NavigationViews;
+ view: 'home' | 'department' | 'result' | 'activities' | 'news' | 'schoolinfo';
 }
 
-// News Item Interface
 interface NewsItem {
-  id: string;
+  id: string | number;
   title: string;
-  date: string;
-  summary: string;
+  date?: string;
+  created_at?: string;
+  summary?: string;
+  content?: string;
   category: string;
+  image_url?: string;
 }
 
-// Define allowed view types
-export type NavigationViews = 
-  | 'home' 
-  | 'news' 
-  | 'schoolinfo' 
-  | 'department' 
-  | 'result' 
-  | 'activities';
-
-interface GTIHomePageProps {
-  onNavigate: (view: NavigationViews) => void;
-}
-
-const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
+const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-
+  
   // Centralized navigation handler mapping paths to view states
-  const handleNavClick = (href: string, view: NavigationViews) => {
+  const handleNavClick = (href: string, view: string) => {
     setIsMobileMenuOpen(false);
 
     if (typeof window !== 'undefined') {
       window.history.pushState({}, '', href);
-      onNavigate(view);
+      if (onNavigate) {
+        onNavigate(view);
+      }
     }
   };
+  // D1 Database မှ တိုက်ရိုက် ရရှိလာမည့် Latest News State
+  const [latestNews, setLatestNews] = useState<NewsItem>({
+    id: 'news-2026-001',
+    title: 'Academic Year 2026-2027 Registration & Course Schedules',
+    date: 'July 20, 2026',
+    summary: 'Official course registration and timetable details for Civil, Electrical, and Mechanical departments are now available.',
+    category: 'Academic Announcement'
+  });
 
-  // Navigation Links Data mapped to view parameters
+  // D1 Database ထဲမှ Data ကို Auto ခေါ်ယူခြင်း
+  useEffect(() => {
+    fetch('/api/news')
+      .then((res) => res.json())
+      .then((data: any) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const item = data[0]; // အသစ်ဆုံး သတင်းကို ရွေးထုတ်ခြင်း
+          setLatestNews({
+            id: item.id,
+            title: item.title,
+            date: item.created_at || 'Recently',
+            summary: item.content,
+            category: item.category,
+            image_url: item.image_url
+          });
+        }
+      })
+      .catch((err) => console.log("Using default fallback news data",err));
+  }, []);
+
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/', view: 'home' },
     { name: 'Department', href: '/department', view: 'department' },
@@ -62,28 +79,12 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
   ];
 
-  // Most Recent News Data
-  const latestNews: NewsItem = {
-    id: 'news-2026-001',
-    title: 'Academic Year 2026-2027 Registration & Course Schedules',
-    date: 'July 20, 2026',
-    summary: 'Official course registration and timetable details for Civil, Electrical, and Mechanical departments are now available.',
-    category: 'Academic Announcement'
-  };
-
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
-      
-      {/* 1. Navigation Bar */}
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
-            {/* Left Side: Logo and Name Side-by-Side */}
-            <div 
-              className="flex items-center space-x-3 cursor-pointer" 
-              onClick={() => handleNavClick('/', 'home')}
-            >
+            <div className="flex items-center space-x-3 cursor-pointer">
               <img 
                 src={logoImg} 
                 alt="GTI Logo" 
@@ -99,27 +100,18 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Right Side: Desktop Nav Links */}
             <div className="hidden md:flex items-center space-x-8">
-              {navLinks.map((link) => {
-                const currentPath = typeof window !== 'undefined' ? window.location.pathname : '/';
-                const isActive = currentPath === link.href;
-                return (
-                  <button
-                    key={link.name}
-                    type="button"
-                    onClick={() => handleNavClick(link.href, link.view)}
-                    className={`text-base font-semibold transition-colors duration-200 ${
-                      isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'
-                    }`}
-                  >
-                    {link.name}
-                  </button>
-                );
-              })}
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
 
-            {/* Mobile Menu Toggle Button */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -132,24 +124,21 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Mobile Nav Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.name}
-                type="button"
-                onClick={() => handleNavClick(link.href, link.view)}
-                className="w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+                href={link.href}
+                className="block px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
               >
                 {link.name}
-              </button>
+              </a>
             ))}
           </div>
         )}
       </nav>
 
-      {/* 2. Banner Image Section */}
       <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
@@ -166,11 +155,9 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Main Content Layout */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* 3. College Background Section */}
           <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 h-full">
             <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
               College Background
@@ -189,7 +176,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </div>
           </section>
 
-          {/* 4. Latest Update News Section */}
+          {/* Dynamic News Section (D1) */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
@@ -198,8 +185,15 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
               
               <div className="bg-slate-50 p-4 rounded-lg border-l-4 border-[#0a192f]">
+                {latestNews.image_url && (
+                  <img 
+                    src={latestNews.image_url} 
+                    alt={latestNews.title} 
+                    className="w-full h-32 object-cover rounded mb-3"
+                  />
+                )}
                 <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-                  {latestNews.date}
+                  {latestNews.date || latestNews.created_at}
                 </span>
                 <span className="inline-block bg-blue-100 text-blue-800 text-[10px] font-semibold px-2 py-0.5 rounded mb-2">
                   {latestNews.category}
@@ -222,7 +216,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </button>
           </section>
 
-          {/* 5. Quick Links Section */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full">
             <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
               Quick Links
@@ -269,7 +262,14 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </main>
 
-      {/* 6. Footer */}
+      {/* <a
+        href="/faq"
+        aria-label="Frequently Asked Questions"
+        className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
+      >
+        <HelpCircle className="w-7 h-7 text-[#64ffda]" />
+      </a> */}
+
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>

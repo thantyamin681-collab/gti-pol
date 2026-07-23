@@ -43,7 +43,7 @@ function App() {
       {/* 1. Home View */}
       {view === 'home' && (
         <div>
-          <GTIHomePage onNavigate={(target) => handleNavigate(target as any)} />
+          <GTIHomePage onNavigate={(target:any) => handleNavigate(target as any)} />
          
           {/* Admin Portal Floating Button */}
           <div className="fixed bottom-4 right-4 z-50">

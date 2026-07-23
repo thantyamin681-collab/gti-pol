@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
-  HelpCircle, 
   Menu, 
   X, 
   Building2, 
@@ -14,6 +13,7 @@ import {
 interface NavLink {
   name: string;
   href: string;
+ view: 'home' | 'department' | 'result' | 'activities' | 'news' | 'schoolinfo';
 }
 
 interface NewsItem {
@@ -27,9 +27,20 @@ interface NewsItem {
   image_url?: string;
 }
 
-const GTIHomePage: React.FC = () => {
+const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   
+  // Centralized navigation handler mapping paths to view states
+  const handleNavClick = (href: string, view: string) => {
+    setIsMobileMenuOpen(false);
+
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', href);
+      if (onNavigate) {
+        onNavigate(view);
+      }
+    }
+  };
   // D1 Database မှ တိုက်ရိုက် ရရှိလာမည့် Latest News State
   const [latestNews, setLatestNews] = useState<NewsItem>({
     id: 'news-2026-001',
@@ -60,12 +71,12 @@ const GTIHomePage: React.FC = () => {
   }, []);
 
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/' },
-    { name: 'Department', href: '/department' },
-    { name: 'Result', href: '/result' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Latest News', href: '/latest-news' },
-    { name: 'School Info', href: '/school-info' },
+    { name: 'Home', href: '/', view: 'home' },
+    { name: 'Department', href: '/department', view: 'department' },
+    { name: 'Result', href: '/result', view: 'result' },
+    { name: 'Activities', href: '/activities', view: 'activities' },
+    { name: 'Latest News', href: '/latest-news', view: 'news' },
+    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
   ];
 
   return (
@@ -196,12 +207,13 @@ const GTIHomePage: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href="/latest-news"
+            <button
+              type="button"
+              onClick={() => handleNavClick('/latest-news', 'news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
-            </a>
+            </button>
           </section>
 
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full">
@@ -209,51 +221,54 @@ const GTIHomePage: React.FC = () => {
               Quick Links
             </h2>
             <div className="space-y-3 mt-2">
-              <a
-                href="/department"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/department', 'department')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Departments</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/result"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/result', 'result')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Exam Results</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/activities"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => handleNavClick('/activities', 'activities')}
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
               >
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Campus Activities</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
             </div>
           </section>
 
         </div>
       </main>
 
-      <a
+      {/* <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
         <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a>
+      </a> */}
 
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">

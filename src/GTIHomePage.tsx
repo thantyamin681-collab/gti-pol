@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
-  HelpCircle, 
+  // HelpCircle, 
   Menu, 
   X, 
   Building2, 
@@ -11,10 +11,15 @@ import {
   Newspaper 
 } from 'lucide-react';
 
-// Navigation Link Interface
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity';
+
 interface NavLink {
   name: string;
-  href: string;
+  target: NavTarget;
+}
+
+interface GTIHomePageProps {
+  onNavigate?: (view: NavTarget) => void;
 }
 
 // News Item Interface
@@ -26,17 +31,17 @@ interface NewsItem {
   category: string;
 }
 
-const GTIHomePage: React.FC = () => {
+const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
   // Navigation Links Data
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/' },
-    { name: 'Department', href: '/department' },
-    { name: 'Result', href: '/result' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Latest News', href: '/latest-news' },
-    { name: 'School Info', href: '/school-info' },
+    { name: 'Home', target: 'home' },
+    { name: 'Department', target: 'home' },
+    { name: 'Result', target: 'result' },
+    { name: 'Activities', target: 'activity' },
+    { name: 'Latest News', target: 'home' },
+    { name: 'School Info', target: 'home' },
   ];
 
   // Most Recent News Data (Single latest item displayed)
@@ -77,14 +82,14 @@ const GTIHomePage: React.FC = () => {
       {/* Right Side: Desktop Nav Links */}
       <div className="hidden md:flex items-center space-x-8">
         {navLinks.map((link) => (
-          <a
+          <button
             key={link.name}
-            href={link.href}
-            /* Font Size ကို text-sm (14px) မှ text-base (16px) သို့မဟုတ် text-lg (18px) သို့ တိုးမြှင့်ထားပါသည် */
+            type="button"
+            onClick={() => onNavigate?.(link.target)}
             className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
           >
             {link.name}
-          </a>
+          </button>
         ))}
       </div>
 
@@ -105,13 +110,14 @@ const GTIHomePage: React.FC = () => {
   {isMobileMenuOpen && (
     <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
       {navLinks.map((link) => (
-        <a
+        <button
           key={link.name}
-          href={link.href}
-          className="block px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+          type="button"
+          onClick={() => onNavigate?.(link.target)}
+          className="block w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
         >
           {link.name}
-        </a>
+        </button>
       ))}
     </div>
   )}
@@ -196,52 +202,55 @@ const GTIHomePage: React.FC = () => {
               Quick Links
             </h2>
             <div className="space-y-3 mt-2">
-              <a
-                href="/department"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => onNavigate?.('home')}
+                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
               >
                 <div className="flex items-center space-x-3">
                   <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Departments</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/result"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => onNavigate?.('result')}
+                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
               >
                 <div className="flex items-center space-x-3">
                   <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Exam Results</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
 
-              <a
-                href="/activities"
-                className="flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
+              <button
+                type="button"
+                onClick={() => onNavigate?.('home')}
+                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
               >
                 <div className="flex items-center space-x-3">
                   <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
                   <span>Campus Activities</span>
                 </div>
                 <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </a>
+              </button>
             </div>
           </section>
 
         </div>
       </main>
 
-      {/* 6. Floating Action Button (FAQ Section Link) */}
+      {/* 6. Floating Action Button (FAQ Section Link)
       <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
         <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a>
+      </a> */}
 
       {/* 7. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">

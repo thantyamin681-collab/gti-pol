@@ -4,6 +4,7 @@ import { Lock, User, KeyRound, ArrowLeft } from 'lucide-react';
 interface GTILoginProps {
   onLoginSuccess: () => void;
   onBackToHome: () => void;
+  onNavigate?: (view: 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info') => void;
 }
 
 export const GTILogin: React.FC<GTILoginProps> = ({ onLoginSuccess, onBackToHome }) => {

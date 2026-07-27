@@ -1,129 +1,179 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
 import { 
-  // HelpCircle, 
   Menu, 
   X, 
   Building2, 
   GraduationCap, 
   Calendar, 
   ChevronRight, 
-  Newspaper 
+  Newspaper,
+  HelpCircle
 } from 'lucide-react';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity';
+// Complete Navigation View Targets
+export type NavTarget = 
+  | 'home' 
+  | 'department' 
+  | 'result' 
+  | 'activities' 
+  | 'activity' 
+  | 'news' 
+  | 'schoolinfo' 
+  | 'login' 
+  | 'admin';
 
-interface NavLink {
+export interface NavLink {
   name: string;
-  target: NavTarget;
+  href: string;
+  view: NavTarget;
+  target?: NavTarget;
 }
 
-interface GTIHomePageProps {
+export interface GTIHomePageProps {
   onNavigate?: (view: NavTarget) => void;
+  href?: string;
+  view?: NavTarget;
 }
 
-// News Item Interface
-interface NewsItem {
-  id: string;
+export interface NewsItem {
+  id: string | number;
   title: string;
-  date: string;
-  summary: string;
+  date?: string;
+  created_at?: string;
+  summary?: string;
+  content?: string;
   category: string;
+  image_url?: string;
 }
 
 const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Navigation Links Data
+  // Consolidated Navigation Links Data
   const navLinks: NavLink[] = [
-    { name: 'Home', target: 'home' },
-    { name: 'Department', target: 'home' },
-    { name: 'Result', target: 'result' },
-    { name: 'Activities', target: 'activity' },
-    { name: 'Latest News', target: 'home' },
-    { name: 'School Info', target: 'home' },
+    { name: 'Home', href: '/', view: 'home', target: 'home' },
+    { name: 'Department', href: '/department', view: 'department', target: 'department' },
+    { name: 'Result', href: '/result', view: 'result', target: 'result' },
+    { name: 'Activities', href: '/activity', view: 'activities', target: 'activities' },
+    { name: 'Latest News', href: '/latest-news', view: 'news', target: 'news' },
+    { name: 'School Info', href: '/school-info', view: 'schoolinfo', target: 'schoolinfo' },
   ];
 
-  // Most Recent News Data (Single latest item displayed)
-  const latestNews: NewsItem = {
+  // Latest News State with Default Fallback Data
+  const [latestNews, setLatestNews] = useState<NewsItem>({
     id: 'news-2026-001',
     title: 'Academic Year 2026-2027 Registration & Course Schedules',
     date: 'July 20, 2026',
     summary: 'Official course registration and timetable details for Civil, Electrical, and Mechanical departments are now available.',
     category: 'Academic Announcement'
+  });
+
+  // Centralized Navigation Handler (Updates URL history + triggers onNavigate view switch)
+  const handleNavClick = (href: string, view: NavTarget) => {
+    setIsMobileMenuOpen(false);
+
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', href);
+    }
+    if (onNavigate) {
+      onNavigate(view);
+    }
   };
+
+  // D1 Database Auto-fetch for News
+  useEffect(() => {
+    fetch('/api/news')
+      .then((res) => res.json())
+      .then((data: any) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const item = data[0];
+          setLatestNews({
+            id: item.id,
+            title: item.title,
+            date: item.created_at || item.date || 'Recently',
+            summary: item.content || item.summary,
+            category: item.category || 'News',
+            image_url: item.image_url
+          });
+        }
+      })
+      .catch((err) => console.log("Using default fallback news data:", err));
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
       
-      {/* 1. Navigation Bar */}
-<nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="flex items-center justify-between h-20">
-      
-      {/* Left Side: Logo and Name Side-by-Side */}
-      <div className="flex items-center space-x-3 cursor-pointer">
-        
-        <img 
-           src={logoImg} 
-           alt="GTI Logo" 
-           className="w-12 h-12 object-contain"
-/>
-        <div className="flex flex-col">
-          <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
-            GTI (Pyin Oo Lwin)
-          </span>
-          <span className="text-xs sm:text-sm text-slate-300 font-light">
-            Government Technical Institute
-          </span>
+      {/* 1. Navigation Bar (Responsive Sticky Header) */}
+      <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Logo & Branding */}
+            <div 
+              onClick={() => handleNavClick('/', 'home')}
+              className="flex items-center space-x-3 cursor-pointer"
+            >
+              <img 
+                src={logoImg} 
+                alt="GTI Logo" 
+                className="w-12 h-12 object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
+                  GTI (Pyin Oo Lwin)
+                </span>
+                <span className="text-xs sm:text-sm text-slate-300 font-light">
+                  Government Technical Institute
+                </span>
+              </div>
+            </div>
+
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => (
+                <button
+                  key={link.name}
+                  type="button"
+                  onClick={() => handleNavClick(link.href, link.view)}
+                  className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
+                >
+                  {link.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Toggle Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Right Side: Desktop Nav Links */}
-      <div className="hidden md:flex items-center space-x-8">
-        {navLinks.map((link) => (
-          <button
-            key={link.name}
-            type="button"
-            onClick={() => onNavigate?.(link.target)}
-            className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
-          >
-            {link.name}
-          </button>
-        ))}
-      </div>
+        {/* Mobile Navigation Menu Drawer */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                type="button"
+                onClick={() => handleNavClick(link.href, link.view)}
+                className="block w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800 transition-colors"
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </nav>
 
-      {/* Mobile Menu Toggle Button */}
-      <div className="md:hidden flex items-center">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 rounded-md text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-        </button>
-      </div>
-    </div>
-  </div>
-
-  {/* Mobile Nav Menu (Font Size ပြင်ဆင်ထားမှု) */}
-  {isMobileMenuOpen && (
-    <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
-      {navLinks.map((link) => (
-        <button
-          key={link.name}
-          type="button"
-          onClick={() => onNavigate?.(link.target)}
-          className="block w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
-        >
-          {link.name}
-        </button>
-      ))}
-    </div>
-  )}
-</nav>
-
-      {/* 2. Banner Image Section */}
+      {/* 2. Hero / Banner Image Section */}
       <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
@@ -140,32 +190,33 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Main Content Layout: Side-by-Side Sections Grid */}
+      {/* 3. Main Content Layout: Multi-Column Grid */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* 3. College Background Section (Takes 6 cols out of 12) */}
-          <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 h-full">
-            <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
-              College Background
-            </h2>
-            {/* Image and Text Side-by-Side inside Background Section */}
-            <div className="flex flex-col sm:flex-row gap-6 items-center">
-              <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
-                alt="GTI Campus Building"
-                className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
-              />
-              <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
-                <p>
-                  Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
-                </p>
+          {/* College Background Section (6 cols out of 12) */}
+          <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
+            <div>
+              <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
+                College Background
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
+                <img
+                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
+                  alt="GTI Campus Building"
+                  className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
+                />
+                <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  <p>
+                    Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* 4. Latest Update News Section (Takes 3 cols out of 12) */}
-          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full flex flex-col justify-between">
+          {/* Dynamic Latest News Section (3 cols out of 12) */}
+          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
                 <h2 className="text-xl font-bold text-[#0a192f]">Latest News</h2>
@@ -173,8 +224,15 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
               
               <div className="bg-slate-50 p-4 rounded-lg border-l-4 border-[#0a192f]">
+                {latestNews.image_url && (
+                  <img 
+                    src={latestNews.image_url} 
+                    alt={latestNews.title} 
+                    className="w-full h-32 object-cover rounded mb-3"
+                  />
+                )}
                 <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-                  {latestNews.date}
+                  {latestNews.date || latestNews.created_at}
                 </span>
                 <span className="inline-block bg-blue-100 text-blue-800 text-[10px] font-semibold px-2 py-0.5 rounded mb-2">
                   {latestNews.category}
@@ -188,74 +246,77 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <a
-              href="/latest-news"
+            <button
+              type="button"
+              onClick={() => handleNavClick('/latest-news', 'news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
-            </a>
+            </button>
           </section>
 
-          {/* 5. Other Section (Links to Other Pages - Takes 3 cols out of 12) */}
-          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full">
-            <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
-              Quick Links
-            </h2>
-            <div className="space-y-3 mt-2">
-              <button
-                type="button"
-                onClick={() => onNavigate?.('home')}
-                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
-              >
-                <div className="flex items-center space-x-3">
-                  <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Departments</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+          {/* Quick Links Section (3 cols out of 12) */}
+          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
+            <div>
+              <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
+                Quick Links
+              </h2>
+              <div className="space-y-3 mt-2">
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/department', 'department')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Departments</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
 
-              <button
-                type="button"
-                onClick={() => onNavigate?.('result')}
-                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
-              >
-                <div className="flex items-center space-x-3">
-                  <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Exam Results</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/result', 'result')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Exam Results</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
 
-              <button
-                type="button"
-                onClick={() => onNavigate?.('home')}
-                className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
-              >
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Campus Activities</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/activity', 'activities')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Campus Activities</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
+              </div>
             </div>
           </section>
 
         </div>
       </main>
 
-      {/* 6. Floating Action Button (FAQ Section Link)
+      {/* Floating FAQ Action Button */}
       <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
         <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a> */}
+      </a>
 
-      {/* 7. Footer */}
+      {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} Government Techical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
         </div>
       </footer>
 

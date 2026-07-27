@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import logoImg from '../assets/logo.jpg';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
 
 interface NavLink {
   name: string;

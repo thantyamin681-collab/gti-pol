@@ -26,7 +26,7 @@ import { AtmPage } from './deptsx/atmres';
 import { CivilPage } from './deptsx/civilres';
 import { MechPage } from './deptsx/mechres';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
 
 interface NavLink {
   name: string;

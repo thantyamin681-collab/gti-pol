@@ -9,7 +9,7 @@ import { coursesData } from './data/courseData';
 export default function App() {
   const [selectedDept, setSelectedDept] = useState<number | null>(null);
 
-  // Lightbox state (unchanged)
+  // Lightbox state
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
   const [lightboxAlt, setLightboxAlt] = useState<string | undefined>(undefined);
 
@@ -63,8 +63,10 @@ export default function App() {
     }
   }
 
-  // Render courses view first so it can be opened from the department detail page
+  // Render courses view first
   if (coursesView) {
+    const currentCourses = selectedDept !== null ? coursesData[selectedDept] : [];
+
     return (
       <div className="min-h-screen bg-white p-6">
         <header className="mb-8">
@@ -89,7 +91,7 @@ export default function App() {
               <p className="mb-6 text-gray-700">Choose a Year</p>
 
               <div className="flex gap-6 justify-center">
-                {coursesData[selectedDept]?.map((y) => (
+                {currentCourses?.map((y: any) => (
                   <button
                     key={y.yearNumber}
                     onClick={() => openCoursesSemesters(y.yearNumber)}
@@ -109,13 +111,14 @@ export default function App() {
           {coursesView.page === 'semesters' && (
             <>
               <h1 className="text-2xl font-extrabold text-blue-900 mb-4">
-             {coursesData[selectedDept]?.find((d) => d.yearNumber === coursesView.yearNumber)?.yearLabel}
+                {currentCourses?.find((d: any) => d.yearNumber === coursesView.yearNumber)?.yearLabel}
               </h1>
               <p className="mb-6 text-gray-700">Choose a Semester</p>
 
               <div className="flex gap-6 justify-center">
-                {coursesData[selectedDept]?.find((d) => d.yearNumber === coursesView.yearNumber)
-                  ?.semesters.map((s) => (
+                {currentCourses
+                  ?.find((d: any) => d.yearNumber === coursesView.yearNumber)
+                  ?.semesters?.map((s: any) => (
                     <button
                       key={s.id}
                       onClick={() => openCoursesSemesterDetail(coursesView.yearNumber, s.id)}
@@ -135,12 +138,17 @@ export default function App() {
           {coursesView.page === 'semesterDetail' && (
             <>
               {(() => {
-                const year = coursesData[selectedDept]?.find((d) => d.yearNumber === coursesView.yearNumber);
-                const sem = year.semesters.find((s) => s.id === coursesView.semesterId)!;
+                const year = currentCourses?.find((d: any) => d.yearNumber === coursesView.yearNumber);
+                const sem = year?.semesters?.find((s: any) => s.id === coursesView.semesterId);
+
+                if (!sem) {
+                  return <div className="text-gray-600">Semester details not found.</div>;
+                }
+
                 return (
                   <>
                     <h1 className="text-2xl font-extrabold text-blue-900 mb-4">
-                      {year.yearLabel} — {sem.label}
+                      {year?.yearLabel} — {sem.label}
                     </h1>
 
                     {sem.content ? (
@@ -148,7 +156,7 @@ export default function App() {
                         <section>
                           <h2 className="text-xl font-semibold text-gray-800 mb-3">Majors</h2>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {sem.content.majors.map((mj, idx) => (
+                            {sem.content.majors?.map((mj: any, idx: number) => (
                               <div key={idx} className="border rounded-lg p-4 bg-white shadow-sm">
                                 <div className="text-lg font-semibold">{mj.title}</div>
                                 {mj.subtitle && <div className="text-sm text-gray-600 mb-2">{mj.subtitle}</div>}
@@ -161,7 +169,7 @@ export default function App() {
                         <section>
                           <h2 className="text-xl font-semibold text-gray-800 mb-3">Minors</h2>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {sem.content.minors.map((m, idx) => (
+                            {sem.content.minors?.map((m: any, idx: number) => (
                               <div key={idx} className="border rounded-lg p-4 bg-white shadow-sm">
                                 <div className="text-md font-semibold">{m.title}</div>
                                 {m.subtitle && <div className="text-sm text-gray-600 mb-1">{m.subtitle}</div>}
@@ -203,7 +211,7 @@ export default function App() {
           <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4">{dept.name}</h1>
 
           <div className="space-y-6">
-            {dept.content.map((block, i) => {
+            {dept.content.map((block: any, i: number) => {
               if (block.type === 'text') {
                 return (
                   <div key={i} className="text-base md:text-lg text-gray-800 leading-relaxed">
@@ -219,7 +227,7 @@ export default function App() {
                   return (
                     <figure key={i} className="mx-auto text-center">
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {sources.map((s, idx) => (
+                        {sources.map((s: any, idx: number) => (
                           <img
                             key={idx}
                             src={s}
@@ -258,12 +266,12 @@ export default function App() {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      p: ({ node, ...props }) => <p className="text-base md:text-lg text-gray-800 leading-relaxed" {...props} />,
-                      h1: ({ ...props }) => <h1 className="text-2xl font-bold text-blue-900" {...props} />,
-                      h2: ({ ...props }) => <h2 className="text-xl font-semibold text-blue-800" {...props} />,
-                      ul: ({ ...props }) => <ul className="list-disc ml-6 space-y-1" {...props} />,
-                      li: ({ ...props }) => <li className="text-base md:text-lg text-gray-800" {...props} />,
-                      strong: ({ ...props }) => <strong className="font-semibold" {...props} />,
+                      p: ({ node, ...props }: any) => <p className="text-base md:text-lg text-gray-800 leading-relaxed" {...props} />,
+                      h1: ({ node, ...props }: any) => <h1 className="text-2xl font-bold text-blue-900" {...props} />,
+                      h2: ({ node, ...props }: any) => <h2 className="text-xl font-semibold text-blue-800" {...props} />,
+                      ul: ({ node, ...props }: any) => <ul className="list-disc ml-6 space-y-1" {...props} />,
+                      li: ({ node, ...props }: any) => <li className="text-base md:text-lg text-gray-800" {...props} />,
+                      strong: ({ node, ...props }: any) => <strong className="font-semibold" {...props} />,
                       img: ({ node, ...props }: any) => (
                         <img
                           {...props}
@@ -282,7 +290,7 @@ export default function App() {
               );
             })}
 
-            {/* Courses button: only show when selectedDept is not null and < 7 */}
+            {/* Courses button */}
             {selectedDept !== null && selectedDept < 7 && (
               <div>
                 <button
@@ -339,7 +347,7 @@ export default function App() {
     );
   }
 
-  // Home grid (Courses button removed so it only appears in the department detail page)
+  // Home grid
   return (
     <div className="min-h-screen bg-white p-6">
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-blue-900">Departments</h1>
@@ -347,7 +355,7 @@ export default function App() {
       <div className="max-w-6xl mx-auto mb-8"></div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
-        {departments.map((dept, index) => (
+        {departments.map((dept: any, index: number) => (
           <button
             key={index}
             onClick={() => setSelectedDept(index)}

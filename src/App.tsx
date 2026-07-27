@@ -4,28 +4,27 @@ import { GTIAdminDashboard } from './GTIAdminDashboard';
 import { GTILogin } from './GTILogin';
 import SchoolNews from './SchoolNews';
 import SchoolInfo from './SchoolInfo';
+import DepartmentApp from './dept';
 
 function App() {
-  // 'home', 'login', 'admin', 'news', 'schoolinfo' naviation states
-  const [view, setView] = useState<'home' | 'login' | 'admin' | 'news' | 'schoolinfo'>('home');
+  const [view, setView] = useState<'home' | 'login' | 'admin' | 'news' | 'schoolinfo' | 'department'>('home');
 
   useEffect(() => {
     const handlePopState = () => {
       const p = window.location.pathname;
       if (p === '/latest-news') setView('news');
       else if (p === '/school-info') setView('schoolinfo');
+      else if (p === '/department') setView('department');
       else setView('home');
     };
 
-
     handlePopState();
-
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const handleNavigate = (target: 'home' | 'login' | 'admin' | 'news' | 'schoolinfo') => {
+  const handleNavigate = (target: 'home' | 'login' | 'admin' | 'news' | 'schoolinfo' | 'department') => {
     setView(target);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -33,6 +32,8 @@ function App() {
       window.history.pushState({}, '', '/latest-news');
     } else if (target === 'schoolinfo') {
       window.history.pushState({}, '', '/school-info');
+    } else if (target === 'department') {
+      window.history.pushState({}, '', '/department');
     } else if (target === 'home') {
       window.history.pushState({}, '', '/');
     }
@@ -40,12 +41,10 @@ function App() {
 
   return (
     <div>
-      {/* 1. Home View */}
       {view === 'home' && (
         <div>
-          <GTIHomePage onNavigate={(target:any) => handleNavigate(target as any)} />
+          <GTIHomePage onNavigate={(target: any) => handleNavigate(target as any)} />
          
-          {/* Admin Portal Floating Button */}
           <div className="fixed bottom-4 right-4 z-50">
             <button
               onClick={() => handleNavigate('login')}
@@ -57,7 +56,6 @@ function App() {
         </div>
       )}
 
-      {/* 2. Login View */}
       {view === 'login' && (
         <GTILogin 
           onLoginSuccess={() => handleNavigate('admin')} 
@@ -65,19 +63,20 @@ function App() {
         />
       )}
 
-      {/* 3. Admin Dashboard View */}
       {view === 'admin' && (
         <GTIAdminDashboard onBackToHome={() => handleNavigate('home')} />
       )}
 
-      {/* 4. Latest News View */}
       {view === 'news' && (
         <SchoolNews onBack={() => handleNavigate('home')} />
       )}
 
-      {/* 5. School Info View */}
       {view === 'schoolinfo' && (
-       <SchoolInfo onNavigate={(target)=> handleNavigate(target)}/>
+       <SchoolInfo onNavigate={(target) => handleNavigate(target as any)} />
+      )}
+
+      {view === 'department' && (
+        <DepartmentApp onNavigate={(target: any) => handleNavigate(target)} />
       )}
     </div>
   );

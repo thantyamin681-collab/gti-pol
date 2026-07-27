@@ -1,0 +1,108 @@
+body{
+    overflow: hidden;margin: 1rem;padding: 1rem;
+}
+
+      a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+  header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+  }
+  header .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+  
+  
+  .nav.search input{font-size: 20px;
+    border-radius: 50px;
+    border: 2px solid black;
+    padding-left: 10px;
+    right: 100;
+    
+    background: transparent;
+    color: rgb(48, 35, 3);
+  }
+  nav a {
+    margin-right: 2rem;
+  }
+  nav a:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+  h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .hero {
+    position: relative;
+    text-align: center;
+    margin-top: 1rem;
+    border-color: rgb(249, 204, 145);
+  }
+  .hero img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display:flex;
+  }
+  .hero-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 900px;color: brown;
+  }
+  .hero-text p {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  .hero-text h1 {
+    margin: 0.25rem 0;
+    font-weight: 300;
+    font-size: 3.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .hero-text .small {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .hero-text .arrow {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(10px) translateX(-50%); }
+  }
+
+  .two h1{
+    color: rgb(3, 3, 36);
+  }
+  .two{
+    background-color: rgb(255, 179, 0);
+  }
+  

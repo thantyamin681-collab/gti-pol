@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Treasure
+  </title>
+  <link rel="stylesheet"href="">
+<style>
+   body{
+     overflow-x: hidden;margin: 1rem;padding:0;
+}
+
+      a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+  header {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;background-color: rgb(171, 121, 103);
+  }
+  
+  
+  
+  .nav.search input{font-size: 20px;
+    border-radius: 50px;
+    border: 2px solid black;
+    padding-left: 10px;
+    right: 100;
+    
+    background: transparent;
+    color: rgb(48, 35, 3);
+  }
+  nav a {
+    margin-right: 2rem;
+  }
+  nav a:focus {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+  }
+  h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .hero {
+    position: relative;
+    text-align: center;
+    margin-top: 1rem;
+    border-color: rgb(249, 204, 145);
+  }
+  .hero img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    display:flex;
+  }
+  .hero-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 900px;color: brown;
+  }
+  .hero-text p {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+  .hero-text h1 {
+    margin: 0.25rem 0;
+    font-weight: 300;
+    font-size: 3.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .hero-text .small {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .hero-text .arrow {
+    margin-top: 1.5rem;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(10px) translateX(-50%); }
+  }
+
+  .two h1{
+    color: rgb(94, 12, 12);
+  }
+  .two{
+    background-color: whitesmoke;
+  }
+  .two img{
+    border-radius: 10px;border-spacing: 1rem;
+  }
+  .three p{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;text-align: right;margin-right: 2rem;
+  font-size: 50px;
+  color: brown;
+
+  }
+  .three video{
+    border-radius: 20px;margin-top: 1rem;box-shadow: inset;
+  }
+.three{
+  background-color: whitesmoke;align-items: center;display: flex;margin-top: 1rem;
+  gap: 20px;
+}
+    
+  .four h1{font-size: large;font-weight: 100;
+
+  }
+  .four{background-color: brown;
+    text-align: end;font-size: large;
+
+  }
+  .back{
+    background-image: url("photo.jpg");width: 50%;height: 50%;margin-top: 1rem;
+    margin-left: 30rem;background-position: center;background-size: cover;background-repeat: no-repeat;
+  }
+  
+  </style>
+ </head>
+ <body>
+  <header>
+   <div class="logo">
+    
+    
+   </div>
+   <nav>
+    <a href="#" tabindex="0">
+     Home
+    </a>
+    <a href="#" tabindex="0">
+     History
+    </a>
+    <a href="#" tabindex="0">
+     About
+    </a>
+    <a htef="#" tabindex="0">Reviews</a>
+    <a htef="#" tabindex="0">Destonations</a>
+    <input type="text"placeholder="Search.....">
+   </nav>
+  </header>
+  <section aria-label="Kachin" class="hero">
+<img src="./css/img1.jpg" height="500" width="900"> 
+   <div class="hero-text">
+    <p>
+     Beautiful place of Myanmar
+    </p>
+    <h1>
+     Kachin
+    </h1>
+    
+    
+   </div>
+  </section>
+
+ <section class="two">
+  <h1>highlight</h1>
+  <div class="hightlight">
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\Downloads\Hkakabo Razi - Birmanie - 5881 m.jfif"width='140'/>
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\Downloads\Kachin Manaw Festival.jfif"width='140'/>
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\OneDrive\Pictures\photo_2025-05-18_06-39-19.jpg"width='140'/>
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\Downloads\Indawgyi Lake, Kachin, Myanmar.jfif"width='140'/>
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\Downloads\Indawgyi Lake, Kachin, Myanmar.jfif"width='140'/>
+    <img class="w-[140px] h-[180px] object-cover"height='180'src="c:\Users\hp\Downloads\Indawgyi Lake, Kachin, Myanmar.jfif"width='140'/>
+  </div>
+ </section>
+<section class="three">
+  <video src="css/vd1.mp4"   controls autoplay muted loop></video>
+  <p clss="text">The<br>
+     best <br>
+     place <br>
+     of <br>
+     Kachin</p>
+</section>
+<section class="four">
+  
+  <div class="back">
+  </div>
+</section>
+</body>
+</html>

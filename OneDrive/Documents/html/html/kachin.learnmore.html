@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kachin State</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+      font-size: 18px; /* Bigger base font size */
+      color: #333;
+      background-color: #fff;
+    }
+
+    /* Fullscreen sections */
+    section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 3rem 5rem; /* More padding on desktop */
+      
+      margin: 0 auto;
+    }
+
+    /* Home section with blurred background */
+    .home {
+      color: #333;
+      position: relative;
+      overflow: hidden;
+    }
+    .home::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("c:\Users\hp\Downloads\Kachin Manaw Festival in Myanmar.jfif") no-repeat center center/cover;
+      filter: blur(8px);
+      transform: scale(1.05);
+      z-index: 0;background-color: #900c76;
+    }
+    .home .text {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      padding: 3rem 4rem;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.25);
+    }
+    .home .text p {
+      margin: 0;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      font-size: 3.5rem;
+      text-transform: uppercase;
+    }
+    .home .text h1 {
+      font-weight: 700;
+      font-size: 6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: brown;
+      margin: 1.2rem 0;
+    }
+    .home .text .small {
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* Next section with normal image */
+    .next-page {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 3rem;
+      background-color: #ceefd0;
+      padding: 4rem 5rem;
+      
+      margin: 0 auto;
+    }
+
+    .next-page img {
+      max-width: 100%;width: 40%;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      object-fit: cover;
+    }
+
+    .right-text {
+      max-width: 55%;
+      color: #333;
+      text-align: left;
+    }
+    .right-text h2 {
+      font-size: 4.5rem;
+      margin-bottom: 1.2rem;
+      color: brown;
+    }
+    .right-text p {
+      font-size: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* Third Page Section */
+    .third-page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4rem;
+      background-color: rgb(202, 246, 217);
+      padding: 4rem 5rem;
+      
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    .left-content {
+      flex: 1;
+      max-width: 45%;
+      text-align: left;
+    }
+
+    .left-content h2 {
+      font-size: 4.5rem;
+      color: brown;
+      margin-bottom: 1.2rem;
+    }
+
+    .left-content p {
+      font-size: 2.5rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .right-images {
+      position: relative;
+      flex: 1;
+      height: 100%;
+      min-height: 500px;
+    }
+
+    .right-images img {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 3rem;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+    .img1 {
+      top: 40%;
+      right: 40%;
+      z-index: 3;
+    }
+    .img2 {
+      top: 70%;
+      right: 5%;
+      z-index: 2;
+    }
+    .img3 {
+      
+      right: 10%;
+      z-index: 1;
+    }
+    .right-images:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Fourth Page */
+    .fourth-page {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+      padding: 5rem 2rem;
+      background-color: rgb(204, 241, 201);
+      flex-wrap: wrap;
+      
+      margin: 0 auto;
+    }
+
+    .postcard {
+      width: 45%;
+      background: rgb(128, 22, 22);
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      text-align: center;
+      transition: transform 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .postcard:hover {
+      transform: translateY(-10px);
+    }
+
+    .postcard-text {
+      padding: 5rem 4rem;
+      background-color: #fbf9f9;
+      flex-grow: 1;
+    }
+
+    .postcard-text h3 {
+      font-size: 3.5rem;
+      color: brown;
+      margin-bottom: 1rem;
+    }
+
+    .postcard-text p {
+      font-size: 2rem;
+      color: #444;
+      line-height: 2;
+    }
+
+    .postcard img {
+      width: 100%;
+      height: 1000px;
+      object-fit: cover;
+      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+    }
+
+    /* Fifth Page */
+    .fifth-page {
+      padding: 5rem 2rem;
+      background-color: rgb(180, 241, 190);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      
+      margin: 0 auto 5rem;
+    }
+
+    .circle-images {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 4rem;
+      width: 100%;
+    }
+
+    .circle-images img {
+      width: 25%;
+      height: 30%;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .circle-images img:hover {
+      transform: scale(1.1);
+    }
+
+    .shared-content h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: #8b0000;
+    }
+
+    .shared-content p {
+      font-size: 2rem;
+      line-height: 1.8;
+      color: #444;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Responsive for smaller screens - adjust only if needed */
+    @media (max-width: 1024px) {
+      section, .next-page, .third-page, .fourth-page, .fifth-page {
+        padding: 2rem 3rem;
+        max-width: 100%;
+      }
+
+      .next-page {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .next-page img,
+      .right-text {
+        max-width: 90%;
+      }
+
+      .third-page {
+        flex-direction: column;
+        padding: 2rem 3rem;
+        min-height: auto;
+      }
+
+      .left-content, .right-images {
+        max-width: 100%;
+        flex: none;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .right-images {
+        height: 400px;
+        position: relative;
+      }
+
+      .right-images img {
+        position: absolute;
+        width: 180px;
+        height: 280px;
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .img1, .img2, .img3 {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .img1 {
+        top: 10%;
+      }
+
+      .img2 {
+        top: 60%;
+      }
+
+      .img3 {
+        top: 20%;
+      }
+
+      .fourth-page {
+        flex-direction: column;
+        padding: 2rem 3rem;
+      }
+
+      .postcard {
+        width: 90%;
+        margin-bottom: 2rem;
+      }
+
+      .fifth-page {
+        padding: 3rem 1rem;
+      }
+
+      .circle-images {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .circle-images img {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+      .sixth-page {
+      min-height: 100vh;
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;background-color: #ceefd0;
+    }
+
+    .sixth-page h1 {
+      margin-bottom: 80px;
+      font-size:5rem ;
+      color: #420f0f;
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      
+      gap: 80px;
+    }
+
+    .img-card {
+      position: relative;
+      width: 40%;
+      height: 50%;
+      background: rgb(165, 31, 31);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .img-card:hover {
+      transform: scale(1.02);
+    }
+
+    .img-card img {
+      width: 80%;
+      height: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hover-content {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      transition: bottom 0.4s ease;
+      border-top: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .img-card:hover .hover-content {
+      bottom: 0;
+    }
+
+    .hover-content h3 {
+      margin: 0 0 15px;
+      font-size: 28px;
+      color: #111;
+    }
+
+    .hover-content p {
+      margin: 0;
+      font-size: 18px;
+      color: #444;
+    }
+
+    @media (max-width: 1200px) {
+      .image-container {
+        flex-direction: column;
+        gap: 60px;
+      }
+
+      .img-card {
+        width: 90%;
+        height: auto;
+      }
+
+      .img-card img {
+        height: auto;
+      }
+    }
+ .seventh-page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 60px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .content-left {
+      max-width: 45%;
+    }
+
+    .content-left h1 {
+      font-size: 40px;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .content-left p {
+      font-size: 18px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .image-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;margin-right: 20%;
+    }
+
+    .image-strip img {
+      width: 100%;
+      height: 50%;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-strip img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 900px) {
+      .seventh-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+      }
+
+      .content-left {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .image-strip {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .image-strip img {
+        width: 50%;
+        height: 50%;
+      }
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Home Page Section with blurred background -->
+  <section class="home">
+    <div class="text">
+      <p>The northernmost state of Myanmar</p>
+      <h1>Kachin</h1>
+      <p class="small">Let's go >>></p>
+    </div>
+  </section>
+
+  <!-- Next Page Section with normal image -->
+  <section class="next-page">
+    <img src="c:/Users/hp/Pictures/photo_2025-05-17_22-14-45.jpg" alt="Kachin State" />
+
+    <div class="right-text">
+      <h2>About Kachin</h2>
+      <p>Some info about Kachin state goes here.</p>
+    </div>
+  </section>
+
+  <!-- Third Page Section with 3 right-side images -->
+  <section class="third-page">
+    <div class="left-content">
+      <h2>River</h2>
+      <p>Explore the rich traditions, stunning landscapes, and vibrant life in Kachin. From majestic mountains to colorful festivals — there's beauty in every corner.</p>
+    </div>
+    <div class="right-images">
+      <img src="c:/Users/hp/Downloads/Irrawaddy River, seen weaving through Kachin State in northern Myanmar.jfif" class="img1" alt="Irrawaddy River" />
+      <img src="c:/Users/hp/Pictures/photo_2025-05-18_06-39-19.jpg" class="img2" alt="Kachin Landscape" />
+      <img src="c:/Users/hp/Pictures/Irra1.jpg" class="img3" alt="Kachin River" />
+    </div>
+  </section>
+
+  <!-- Fourth Page -->
+  <section class="fourth-page">
+    <div class="postcard">
+      <div class="postcard-text">
+        <h3>Mountain Life</h3>
+        <p>Experience the peaceful lifestyle of the Kachin highlands with a touch of tradition and nature.</p>
+      </div>
+      <img src="c:/Users/hp/Downloads/download (5).jfif" alt="Mountain Life" />
+    </div>
+
+    <div class="postcard">
+      <div class="postcard-text">
+        <h3>Local Culture</h3>
+        <p>From traditional clothes to rituals, every part of Kachin culture tells a story.</p>
+      </div>
+      <img src="c:/Users/hp/Downloads/download (10).jfif" alt="Local Culture" />
+    </div>
+  </section>
+
+  <!-- Fifth Page -->
+  <section class="fifth-page">
+    <div class="circle-images">
+      <img src="c:/Users/hp/Downloads/Manau Park (1).jfif" alt="Manau Park" />
+      <img src="c:/Users/hp/Downloads/Kachin Manaw Festival.jfif" alt="Kachin Manaw Festival" />
+      <img src="c:/Users/hp/Downloads/Kachin Manaw fastivel.jfif" alt="Kachin Manaw Festival" />
+    </div>
+
+    <div class="shared-content">
+      <h2>Festival of Kachin</h2>
+      <p>Manaw</p>
+    </div>
+  </section>
+<section class="sixth-page">
+    <h1>Putao</h1>
+
+    <div class="image-container">
+      <!-- First Image Card -->
+      <div class="img-card">
+        <img src="c:\Users\hp\Downloads\Paradise-of-Putao-Valley.jpg" alt="Step 1">
+        <div class="hover-content">
+          <h3>Step 1: Discovery</h3>
+          <p>Understand user needs and define problems clearly. This is the foundation of great UX.</p>
+        </div>
+      </div>
+
+      <!-- Second Image Card -->
+      <div class="img-card">
+        <img src="c:\Users\hp\Downloads\stonedragon.jfif" alt="Step 2">
+        <div class="hover-content">
+          <h3>Step 2: Design</h3>
+          <p>Create wireframes, prototypes, and visually communicate solutions that meet the users’ needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="seventh-page">
+    <!-- Left side content -->
+    <div class="content-left">
+      <h1>Explore the Story</h1>
+      <p>
+        Dive into our journey with a series of moments captured in film. Each image reflects a step in the process,
+        from inspiration to realization.
+      </p>
+    </div>
+
+    <!-- Right side vertical images -->
+    <div class="image-strip">
+      <img src="c:\Users\hp\Downloads\Myanmar Junta-Allied Border Battalion Falls in Kachin Rare Earth Hub.jfif" alt="Scene 1">
+      <img src="c:\Users\hp\Downloads\Panwar town near Chibway in Kachin state northern Myanmar_.jfif" alt="Scene 2">
+      <img src="c:\Users\hp\Downloads\Pan Wah, Kachin State_.jfif" alt="Scene 3">
+    </div>
+  </section>
+
+</body>
+</html>

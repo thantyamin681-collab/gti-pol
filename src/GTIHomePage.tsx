@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
+import campusImg from './assets/campus.jpg';
 import { 
   Menu, 
   X, 
@@ -141,7 +142,7 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
 
       <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+          src={campusImg}
           alt="GTI Campus"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
@@ -168,9 +169,9 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
                 alt="GTI Campus Building"
                 className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
               />
-              <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
+              <div className="sm:w-1/2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <p>
-                  Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
+                  Government Technical Institute (Pyin Oo Lwin), established in 1998 in Pyin Oo Lwin, Mandalay Region, operates under the Department of Technical and Vocational Education and Training (DTVET), Ministry of Education. We are dedicated to cultivating skilled and high-caliber technicians who drive the development of the nation's industrial and technological sectors.
                 </p>
               </div>
             </div>

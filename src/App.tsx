@@ -68,7 +68,7 @@ function App() {
       )}
 
       {view === 'news' && (
-        <SchoolNews onBack={() => handleNavigate('home')} />
+        <SchoolNews onNavigate={(target) => handleNavigate(target as any)} />
       )}
 
       {view === 'schoolinfo' && (

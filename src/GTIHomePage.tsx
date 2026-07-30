@@ -139,7 +139,7 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
         )}
       </nav>
 
-      <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
+      <section className="relative h-80 sm:h-96 md:h-112.5 bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
           alt="GTI Campus"

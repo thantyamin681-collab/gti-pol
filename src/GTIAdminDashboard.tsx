@@ -161,7 +161,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
       <div className="max-w-7xl mx-auto p-6">
         {successMsg && (
           <div className="mb-6 bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 p-4 rounded-lg flex items-center space-x-2">
-            <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+            <CheckCircle className="w-5 h-5 text-emerald-400 shrink-0" />
             <span>{successMsg}</span>
           </div>
         )}

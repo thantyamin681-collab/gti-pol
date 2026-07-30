@@ -58,10 +58,10 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
       `SELECT * FROM news ORDER BY id DESC`
     ).all();
 
-    return new Response(JSON.stringify(results), {
+    return new Response(JSON.stringify(results || []), {
       headers: { "Content-Type": "application/json" }
     });
   } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return new Response(JSON.stringify({ error: error.message || "Failed to fetch news"}), { status: 500, headers:{"Content-Type":"application/json"},});
   }
 };

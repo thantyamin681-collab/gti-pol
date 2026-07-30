@@ -378,7 +378,7 @@ export default function App({ onNavigate }: { onNavigate?: (view: any) => void }
                     <img
                       src={dept.logo}
                       alt={dept.name}
-                      className="rounded-full w-12 h-12 object-cover shadow-sm flex-shrink-0"
+                      className="rounded-full w-12 h-12 object-cover shadow-sm shrink-0"
                       draggable={false}
                       onDragStart={(e) => e.preventDefault()}
                       onMouseDown={(e) => e.preventDefault()}

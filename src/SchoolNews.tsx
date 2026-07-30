@@ -1,52 +1,35 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import logoImg from './assets/logo.jpg';
+import { Menu, X } from 'lucide-react';
 
 interface NewsItem {
-  id: number
-  title: string
-  description: string
-  imageUrl: string
-  date: string
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  date: string;
+  category?: string;
 }
 
-const initialNews: NewsItem[] = [
-  {
-    id: 1,
-    title: 'Science Fair Winners Announced',
-    description:
-      'Students from grades 6 to 10 impressed judges with inventive projects focused on sustainability and community impact.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=900&q=80',
-    date: 'July 18, 2026',
-  },
-  {
-    id: 2,
-    title: 'New Library Reading Lounge Opens',
-    description:
-      'The renovated reading lounge offers quiet spaces, digital resources, and collaborative study zones for all students.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80',
-    date: 'July 12, 2026',
-  },
-  {
-    id: 3,
-    title: 'Sports Day Registration Now Open',
-    description:
-      'Families can now sign up for track, basketball, and team events ahead of the upcoming school sports festival.A fresh update is being prepared for students and parents with details about the next exciting campus activity.A fresh update is being prepared for students and parents with details about the next exciting campus activity.A fresh update is being prepared for students and parents with details about the next exciting campus activity.A fresh update is being prepared for students and parents with details about the next exciting campus activity.A fresh update is being prepared for students and parents with details about the next exciting campus activity.',
-    imageUrl:
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80',
-    date: 'July 9, 2026',
-  },
-]
+interface NavLink {
+  name: string;
+  href: string;
+  view?: 'home' | 'news' | 'schoolinfo';
+}
+
+interface SchoolNewsProps {
+  onNavigate?: (view: 'home' | 'news' | 'schoolinfo') => void;
+}
 
 interface DescriptionWithSeeMoreProps {
-  text: string
+  text: string;
 }
 
 function DescriptionWithSeeMore({ text }: DescriptionWithSeeMoreProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  if (text.length <= 150) {
-    return <p className="text-sm leading-7 text-slate-600 sm:text-base">{text}</p>
+  if (!text || text.length <= 150) {
+    return <p className="text-sm leading-7 text-slate-600 sm:text-base">{text}</p>;
   }
 
   return (
@@ -57,84 +40,193 @@ function DescriptionWithSeeMore({ text }: DescriptionWithSeeMoreProps) {
       <button
         type="button"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="mt-2 cursor-pointer text-sm font-semibold text-indigo-600 transition hover:text-indigo-700 hover:underline"
+        className="mt-2 cursor-pointer text-sm font-semibold text-emerald-600 transition hover:text-emerald-700 hover:underline"
       >
         {isExpanded ? 'See less' : 'See more'}
       </button>
     </div>
-  )
+  );
 }
 
-interface SchoolNewsProps {
-  onBack: () => void;
-}
+export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeRoute, setActiveRoute] = useState<string>('/latest-news');
 
-function SchoolNews({ onBack }: SchoolNewsProps) {
-  const [newsItems, setNewsItems] = useState<NewsItem[]>(initialNews)
-
-  const handleLoadMore = () => {
-    const nextItem: NewsItem = {
-      id: Date.now(),
-      title: 'Upcoming Campus Event',
-      description:
-        'A fresh update is being prepared for students and parents with details about the next exciting campus activity.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=900&q=80',
-      date: 'Just added',
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setActiveRoute(window.location.pathname);
     }
+  }, []);
 
-    setNewsItems((prev) => [...prev, nextItem])
-  }
+  // Fetch News Data from D1 API
+  useEffect(() => {
+    fetch('/api/news')
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch news");
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setNewsItems(data);
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching news from D1:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  // SchoolInfo.tsx နှင့် ပုံစံတူ Navigation Array
+  const navLinks: NavLink[] = [
+    { name: 'Home', href: '/', view: 'home' },
+    { name: 'Department', href: '/department' },
+    { name: 'Result', href: '/result' },
+    { name: 'Activities', href: '/activities' },
+    { name: 'Latest News', href: '/latest-news', view: 'news' },
+    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
+  ];
+
+  // SchoolInfo.tsx နှင့် ပုံစံတူ Navigation Handler
+  const handleNavigation = (link: NavLink) => {
+    setIsMobileMenuOpen(false);
+
+    if (link.view && onNavigate) {
+      if (typeof window !== 'undefined') {
+        window.history.pushState({}, '', link.href);
+      }
+      onNavigate(link.view);
+    } else {
+      window.location.href = link.href;
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-slate-100 px-4 py-6 text-slate-800 sm:px-6 lg:px-8">
-      <header className="mx-auto mb-6 flex max-w-5xl items-center justify-center px-2 sm:px-4">
-        <button
-          type="button"
-          onClick={onBack}
-          className="absolute left-4 rounded-full border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 sm:left-6"
-        >
-          Back
-        </button>
-        <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
-          School News
-        </h1>
-      </header>
-
-      <main className="mx-auto flex max-w-5xl flex-col gap-4">
-        {newsItems.map((item) => (
-          <article
-            key={item.id}
-            className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md md:flex-row"
-          >
-            <div className="h-48 w-full overflow-hidden md:h-auto md:w-2/5">
-              <img
-                src={item.imageUrl}
-                alt={item.title}
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-              <div>
-                <p className="mb-3 text-sm font-medium text-indigo-600">{item.date}</p>
-                <h2 className="mb-2 text-xl font-semibold text-slate-900">{item.title}</h2>
-                <DescriptionWithSeeMore text={item.description} />
+    <div className="min-h-screen bg-[#f0f4f8] text-slate-800 font-sans flex flex-col">
+      {/* 1. Navigation Bar (SchoolInfo.tsx နဲ့ ပုံစံတူ) */}
+      <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            
+            {/* Logo and Name */}
+            <div 
+              className="flex items-center space-x-3 cursor-pointer"
+              onClick={() => handleNavigation(navLinks[0])}
+            >
+              <img src={logoImg} alt="GTI Logo" className="w-12 h-12 object-contain" />
+              <div className="flex flex-col">
+                <span className="font-bold text-xl sm:text-2xl tracking-wide leading-tight text-white">
+                  GTI (Pyin Oo Lwin)
+                </span>
+                <span className="text-xs sm:text-sm text-slate-300 font-light">
+                  Government Technical Institute
+                </span>
               </div>
             </div>
-          </article>
-        ))}
-      </main>
 
-      <button
-        type="button"
-        onClick={handleLoadMore}
-        className="fixed bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 text-3xl font-semibold text-white shadow-lg transition hover:bg-indigo-700"
-        aria-label="Load more news"
-      >
-        +
-      </button>
+            {/* Desktop Navigation Links */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navLinks.map((link) => {
+                const isActive = activeRoute === link.href || link.href === '/latest-news';
+                return (
+                  <button
+                    key={link.name}
+                    type="button"
+                    onClick={() => handleNavigation(link)}
+                    className={`text-base font-semibold transition-colors duration-200 ${
+                      isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'
+                    }`}
+                  >
+                    {link.name}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Mobile Menu Toggle Button */}
+            <div className="md:hidden flex items-center">
+              <button
+                type="button"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-slate-200 hover:text-white focus:outline-none"
+              >
+                {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-[#0a192f] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
+            {navLinks.map((link) => {
+              const isActive = activeRoute === link.href || link.href === '/latest-news';
+              return (
+                <button
+                  key={link.name}
+                  type="button"
+                  onClick={() => handleNavigation(link)}
+                  className={`block w-full text-left py-2 px-3 rounded-md text-base font-medium ${
+                    isActive ? 'bg-slate-800 text-[#64ffda]' : 'text-slate-200 hover:bg-slate-800'
+                  }`}
+                >
+                  {link.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </nav>
+
+      {/* 2. Main Content Area (Latest News) */}
+      <div className="px-4 py-8 sm:px-6 lg:px-8 flex-1">
+        <header className="mx-auto mb-8 text-center max-w-5xl">
+          <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">
+            School News
+          </h1>
+        </header>
+
+        <main className="mx-auto flex max-w-5xl flex-col gap-5">
+          {loading ? (
+            <div className="p-12 text-center text-slate-500">Loading latest announcements...</div>
+          ) : newsItems.length === 0 ? (
+            <div className="p-12 text-center text-slate-500">No news announcements available yet.</div>
+          ) : (
+            newsItems.map((item) => (
+              <article
+                key={item.id}
+                className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md md:flex-row"
+              >
+                <div className="h-48 w-full overflow-hidden md:h-auto md:w-2/5">
+                  <img
+                    src={item.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'}
+                    alt={item.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                  <div>
+                    <div className="mb-2 flex items-center justify-between">
+                      <p className="text-sm font-medium text-emerald-600">{item.date}</p>
+                      {item.category && (
+                        <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+                          {item.category}
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="mb-2 text-xl font-bold text-slate-900">{item.title}</h2>
+                    <DescriptionWithSeeMore text={item.description} />
+                  </div>
+                </div>
+              </article>
+            ))
+          )}
+        </main>
+      </div>
     </div>
-  )
+  );
 }
-
-export default SchoolNews

@@ -23,7 +23,7 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
     }
   }, []);
 
-  // GTIHomePage နှင့် Navigation Links များ တူညီစေရန် စီစဉ်ထားပါသည်
+  
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/', view: 'home' },
     { name: 'Department', href: '/department' },
@@ -136,9 +136,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
 
           {/* English Block */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
+            {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
               English
-            </span>
+            </span> */}
             <p className="text-slate-700 font-medium text-sm md:text-base">
               Our school operates with <strong>2 semesters</strong> in each academic year:
             </p>
@@ -151,9 +151,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
 
           {/* Myanmar Block */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
+            {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
               မြန်မာ
-            </span>
+            </span> */}
             <p className="text-slate-700 font-medium text-sm md:text-base">
               မိမိတို့ကျောင်း၏ ပညာသင်နှစ်တစ်ခုတွင် <strong>စာသင်နှစ်ဝက် (၂) ခု</strong> ခွဲခြားထားပါသည် -
             </p>
@@ -204,9 +204,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             <div className="space-y-4">
               {/* English Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
+                {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
                   English
-                </span>
+                </span> */}
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm">Admission Requirements:</h4>
                   <ul className="list-disc list-inside text-xs md:text-sm text-slate-600 space-y-1 mt-1 pl-2">
@@ -230,9 +230,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
 
               {/* Myanmar Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
+                {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
                   မြန်မာ
-                </span>
+                </span> */}
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm">ဝင်ခွင့်လျှောက်ထားသူများ လိုက်နာရမည့် သတ်မှတ်ချက်များ:</h4>
                   <ul className="list-disc list-inside text-xs md:text-sm text-slate-600 space-y-1 mt-1 pl-2">
@@ -261,9 +261,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             <div className="space-y-4">
               {/* English Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
+                {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
                   English
-                </span>
+                </span> */}
                 <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                   Students admitted to GTI (Pyin Oo Lwin) must strictly adhere to the following rules to become qualified future engineers:
                 </p>
@@ -277,9 +277,9 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
 
               {/* Myanmar Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
+                {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
                   မြန်မာ
-                </span>
+                </span> */}
                 <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                   အစိုးရစက်မှုလက်မှုသိပ္ပံ (ပြင်ဦးလွင်) သို့ တက်ရောက်ခွင့်ရရှိသော ကျောင်းသား/သူများသည် အင်ဂျင်နီယာကောင်းများဖြစ်စေရေးအတွက် အောက်ပါစည်းကမ်းချက်များကို လိုက်နာရမည် -
                 </p>
@@ -295,89 +295,138 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
         </section>
 
         {/* ==========================================
-            SECTION 3: EVENT CALENDAR
-        ========================================== */}
-        <section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
-          <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-3">
-            <h2 className="text-xl font-bold text-indigo-900">
-              3. Academic Event Calendar
-            </h2>
-            <span className="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium border border-indigo-100">
-              Annual Overview
-            </span>
+    SECTION 3: EVENT CALENDAR
+========================================== */}
+<section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6 my-6">
+  <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-3">
+    <h2 className="text-xl font-bold text-indigo-900">
+      3. Academic Event Calendar
+    </h2>
+    <span className="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium border border-indigo-100">
+      Annual Overview
+    </span>
+  </div>
+
+  {/* Modern Academic Timeline (English Version with Dimmed Vacations & Exam Focus) */}
+  <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 my-4">
+    
+    {/* 1. First Semester Coursework */}
+    <div className="relative">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
+      <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+            DEC - FEB
           </div>
-
-          {/* English Block Event Calendar */}
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
-              English
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-3">
-                <div className="bg-indigo-600 text-white p-2 rounded-lg text-center min-w-[60px]">
-                  <span className="block text-xs uppercase font-bold">Nov</span>
-                  <span className="block text-lg font-bold">15</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-800 text-sm">Admission & Registration</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">School affairs enrollment processing for new intake.</p>
-                </div>
-              </div>
-
-              <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-3">
-                <div className="bg-emerald-600 text-white p-2 rounded-lg text-center min-w-[60px]">
-                  <span className="block text-xs uppercase font-bold">Mar</span>
-                  <span className="block text-lg font-bold">20</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-800 text-sm">1st Semester Final Exam</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">End of semester assessment and project evaluation.</p>
-                </div>
-              </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">First Semester Coursework</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
             </div>
+            <p className="text-xs sm:text-sm text-slate-600">Lecture classes, lab practicals, and continuous assessments.</p>
           </div>
+        </div>
+      </div>
+    </div>
 
-          {/* Myanmar Block Event Calendar */}
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
-              မြန်မာ
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-3">
-                <div className="bg-indigo-600 text-white p-2 rounded-lg text-center min-w-[60px]">
-                  <span className="block text-xs uppercase font-bold">နိုဝင်ဘာ</span>
-                  <span className="block text-lg font-bold">၁၅</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-800 text-sm">ကျောင်းဝင်ခွင့် လျှောက်ထားခြင်း</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">ကျောင်းရေးရာဌာနတွင် လျှောက်လွှာထုတ်ယူခြင်းနှင့် စာရင်းသွင်းခြင်း။</p>
-                </div>
-              </div>
-
-              <div className="p-3 bg-white rounded-lg border border-slate-200 flex items-start gap-3">
-                <div className="bg-emerald-600 text-white p-2 rounded-lg text-center min-w-[60px]">
-                  <span className="block text-xs uppercase font-bold">မတ်လ</span>
-                  <span className="block text-lg font-bold">၂၀</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-slate-800 text-sm">ပထမနှစ်ဝက် အပြီးသတ် စာမေးပွဲ</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">စာမေးပွဲများ စစ်ဆေးခြင်းနှင့် Practical Project များ စစ်ဆေးခြင်း။</p>
-                </div>
-              </div>
+    {/* 2. First Semester Final Exam */}
+    <div className="relative">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
+      <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+            LATE MAR
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">1st Semester Final Examinations</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
             </div>
+            <p className="text-xs sm:text-sm text-slate-600">Final evaluation week covering up to 8 departmental subjects.</p>
           </div>
-        </section>
+        </div>
+      </div>
+    </div>
+
+    {/* 3. Semester Break & Vacation (Dimmed) */}
+    <div className="relative opacity-60 hover:opacity-100 transition-opacity">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
+      <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
+            APR - MAY
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">Semester Break & Vacation</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600">Inter-semester holiday break and enrollment preparation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* 4. Second Semester Coursework */}
+    <div className="relative">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
+      <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+            JUN - AUG
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">Second Semester Coursework</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600">Resumes advanced engineering modules and practical workshops.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* 5. Second Semester Final Exam */}
+    <div className="relative">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
+      <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+            LATE SEP
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">2nd Semester Final Examinations</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600">End-of-year final assessment covering up to 8 subjects.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* 6. Academic Year Break (Dimmed) */}
+    <div className="relative opacity-60 hover:opacity-100 transition-opacity">
+      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
+      <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-4">
+          <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
+            OCT - NOV
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">Academic Year Break</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-600">End of academic year vacation and results announcement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
       </main>
-
-      {/* 3. Floating FAQ Action Button
-      <a
-        href="/faq"
-        aria-label="Frequently Asked Questions"
-        className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
-      >
-        <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a> */}
-
       {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">

@@ -59,7 +59,7 @@ import monsonImg6 from '../assets/monson6.jpg';
 //bridge
 import bridge from '../assets/other.jpg';
 import bridge1 from '../assets/other1.jpg';
-import bridge2 from '../assets/other2.mp4';
+// import bridge2 from '../assets/other2.mp4';
 
 //homage ceremony images
 import homageImg1 from '../assets/homage1.jpg';
@@ -178,7 +178,7 @@ const activitiesList: ActivityItem[] = [
     images: [
       bridge,
       bridge1,
-      bridge2
+      // bridge2
     ]
   },
   {

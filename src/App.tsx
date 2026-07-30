@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logoImg from './assets/logo.jpg';
 import {
   Menu,
@@ -13,10 +13,11 @@ import { Result } from './Result/result';
 import { Activity } from './Activity/activity';
 import SchoolNews from './SchoolNews';
 import SchoolInfo from './SchoolInfo';
+import DepartmentApp from './dept';
 import { GTILogin } from './GTILogin';
 import { GTIAdminDashboard } from './GTIAdminDashboard';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info' | 'department' | 'news' | 'schoolinfo';
 
 interface NavLink {
   name: string;
@@ -40,7 +41,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
   const navLinks: NavLink[] = [
     { name: 'Home', target: 'home' },
-    { name: 'Department', target: 'home' },
+    { name: 'Department', target: 'department' },
     { name: 'Result', target: 'result' },
     { name: 'Activities', target: 'activity' },
     { name: 'Latest News', target: 'latest-news' },
@@ -182,12 +183,13 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <a
-              href="/latest-news"
+            <button
+              type="button"
+              onClick={() => handleNavClick('latest-news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
-            </a>
+            </button>
           </section>
 
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between">
@@ -198,7 +200,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               <div className="space-y-3 mt-2">
                 <button
                   type="button"
-                  onClick={() => handleNavClick('home')}
+                  onClick={() => handleNavClick('department')}
                   className="flex w-full items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group"
                 >
                   <div className="flex items-center space-x-3">
@@ -238,40 +240,84 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
       </main>
 
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 text-center">
+        <div className="max-w-7xl mx-auto px-4 text-center flex flex-col sm:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+          <button
+            onClick={() => onNavigate?.('login')}
+            className="text-xs text-slate-500 hover:text-[#64ffda] transition-colors"
+          >
+            Admin Portal
+          </button>
         </div>
       </footer>
     </div>
   );
 };
 
-const App: React.FC = () => {
+export default function App() {
   const [currentView, setCurrentView] = useState<NavTarget>('home');
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const pathname = window.location.pathname;
+      if (pathname === '/latest-news') {
+        setCurrentView('latest-news');
+      } else if (pathname === '/school-info' || pathname === '/schoolinfo') {
+        setCurrentView('school-info');
+      } else if (pathname === '/department') {
+        setCurrentView('department');
+      } else if (pathname === '/result') {
+        setCurrentView('result');
+      } else if (pathname === '/activity') {
+        setCurrentView('activity');
+      } else if (pathname === '/login') {
+        setCurrentView('login');
+      } else if (pathname === '/admin') {
+        setCurrentView('admin');
+      } else {
+        setCurrentView('home');
+      }
+    };
+
+    handlePopState();
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (target: NavTarget) => {
+    setCurrentView(target);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    let route = '/';
+    if (target === 'latest-news') route = '/latest-news';
+    else if (target === 'school-info' || target === 'schoolinfo') route = '/school-info';
+    else if (target === 'department') route = '/department';
+    else if (target === 'result') route = '/result';
+    else if (target === 'activity') route = '/activity';
+    else if (target === 'login') route = '/login';
+    else if (target === 'admin') route = '/admin';
+
+    window.history.pushState({}, '', route);
+  };
 
   switch (currentView) {
     case 'result':
-      return <Result onBackToHome={() => setCurrentView('home')} onNavigate={(view) => setCurrentView(view)} />;
+      return <Result onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
     case 'activity':
-      return <Activity onBackToHome={() => setCurrentView('home')} onNavigate={(view) => setCurrentView(view)} />;
+      return <Activity onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
     case 'latest-news':
-      return <SchoolNews onBack={() => setCurrentView('home')} onNavigate={(view) => setCurrentView(view)} />;
+      return <SchoolNews onBack={() => handleNavigate('home')} />;
     case 'school-info':
-      return <SchoolInfo onNavigate={(view) => setCurrentView(view as NavTarget)} />;
+    case 'schoolinfo':
+      return <SchoolInfo onNavigate={handleNavigate} />;
+    case 'department':
+      return <DepartmentApp onNavigate={handleNavigate} />;
     case 'login':
-      return (
-        <GTILogin
-          onLoginSuccess={() => setCurrentView('admin')}
-          onBackToHome={() => setCurrentView('home')}
-          onNavigate={(view) => setCurrentView(view)}
-        />
-      );
+      return <GTILogin onLoginSuccess={() => handleNavigate('admin')} onBackToHome={() => handleNavigate('home')} />;
     case 'admin':
-      return <GTIAdminDashboard onBackToHome={() => setCurrentView('home')} onNavigate={(view) => setCurrentView(view)} />;
+      return <GTIAdminDashboard onBackToHome={() => handleNavigate('home')} />;
     default:
-      return <GTIHomePage onNavigate={(view) => setCurrentView(view)} />;
+      return <GTIHomePage onNavigate={handleNavigate} />;
   }
-};
-
-export { GTIHomePage };
-export default App;
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../result.css';
 
 interface ItYear1Props {
@@ -11,6 +11,8 @@ interface StudentResult {
   name: string;
   marks: number[];
 }
+
+const STORAGE_KEY = 'gti_it_year1_students';
 
 const initialStudentResults: StudentResult[] = [
   { no: 1, rollNo: 'IT-01', name: 'Mg Mg', marks: [85, 78, 90, 88, 76, 82, 89, 91] },
@@ -44,7 +46,41 @@ const calculateResult = (marks: number[]): { status: string; incCount: number } 
 
 export function ItYear1({ onBack }: ItYear1Props) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [students] = useState<StudentResult[]>(initialStudentResults);
+  
+  // Initialize state from localStorage or fallback to default initial results
+  const [students, setStudents] = useState<StudentResult[]>(() => {
+    const savedData = localStorage.getItem(STORAGE_KEY);
+    if (savedData) {
+      try {
+        return JSON.parse(savedData);
+      } catch (err) {
+        console.error('Failed to parse student results from localStorage:', err);
+      }
+    }
+    return initialStudentResults;
+  });
+
+  // Sync state if localStorage changes (e.g. updated from admin dashboard)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        try {
+          setStudents(JSON.parse(savedData));
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('adminDataUpdated', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('adminDataUpdated', handleStorageChange);
+    };
+  }, []);
 
   const filteredStudents = students.filter((student) => 
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -125,7 +161,7 @@ export function ItYear1({ onBack }: ItYear1Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <h3 style={{ color: '#1e293b', margin: 0 }}>Comprehensive Student Marksheet & Grades</h3>
             <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: '600' }}>
-              👁️ Client View
+              👁️ Client View (Synced with Admin Portal)
             </span>
           </div>
           
@@ -135,14 +171,14 @@ export function ItYear1({ onBack }: ItYear1Props) {
                 <th style={{ padding: '12px' }}>No</th>
                 <th style={{ padding: '12px' }}>Roll No</th>
                 <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                <th style={{ padding: '12px' }}>Sub 1</th>
-                <th style={{ padding: '12px' }}>Sub 2</th>
-                <th style={{ padding: '12px' }}>Sub 3</th>
-                <th style={{ padding: '12px' }}>Sub 4</th>
-                <th style={{ padding: '12px' }}>Sub 5</th>
-                <th style={{ padding: '12px' }}>Sub 6</th>
-                <th style={{ padding: '12px' }}>Sub 7</th>
-                <th style={{ padding: '12px' }}>Sub 8</th>
+                <th style={{ padding: '12px' }}>MM-CP 1101 - Myanmar</th>
+                <th style={{ padding: '12px' }}>EN-CP 1101 - English for Communication I</th>
+                <th style={{ padding: '12px' }}>GE-CP 1111 - Life Skills</th>
+                <th style={{ padding: '12px' }}>AM-CM 1101 - Applied Mathematics I</th>
+                <th style={{ padding: '12px' }}>APh-CM 1101 - Applied Physics</th>
+                <th style={{ padding: '12px' }}>ME-DP 1501 - Engineering Mechanics</th>
+                <th style={{ padding: '12px' }}>ME-DP 1101 - Basic Technical Drawing</th>
+                <th style={{ padding: '12px' }}>IT-DP 1301 - Computer Hardware and System Administration I</th>
                 <th style={{ padding: '12px' }}>Result</th>
               </tr>
             </thead>
@@ -198,7 +234,29 @@ export function ItYear1({ onBack }: ItYear1Props) {
           </table>
         </div>
       </div>
-
+{/* PDF Download Button with Cloudflare URL */}
+<a 
+  href="https://gti-pol.pages.dev/results/it1st.pdf" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  style={{
+    padding: '0.6rem 1.2rem',
+    backgroundColor: '#2563eb',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '8px',
+    cursor: 'pointer',
+    fontWeight: '600',
+    textDecoration: 'none',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+    fontSize: '0.9rem'
+  }}
+>
+  📄 Download Official PDF Result
+</a>
       <footer className="results-footer">
         <p>© 2026 Departmental Results Portal. All rights reserved.</p>
       </footer>

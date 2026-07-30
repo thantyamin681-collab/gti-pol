@@ -11,6 +11,62 @@ import {
 } from 'lucide-react';
 import logoImg from '../assets/logo.jpg';
 
+//welcome
+import welcome2 from '../assets/welcome2.jpg';
+import welcome3 from '../assets/welcome3.jpg';
+import welcome4 from '../assets/welcome4.jpg';
+import welcome5 from '../assets/welcome5.jpg';
+import welcome6 from '../assets/welcome6.jpg';
+import welcome7 from '../assets/welcome7.jpg';
+
+//htamane festival images
+import htamaneImg1 from '../assets/htamane1.jpg';
+import htamaneImg3 from '../assets/htamane3.jpg';
+import htamaneImg4 from '../assets/htamane4.jpg';
+import htamaneImg5 from '../assets/htamane5.jpg';
+import htamaneImg2 from '../assets/htamane2.jpg';
+
+//fusal
+import fusal from '../assets/fusal.jpg'
+import fusal1 from '../assets/fusal1.jpg'
+
+
+//thingyan
+import thingyan from '../assets/thingyan.jpg';
+import thingyan1 from '../assets/thingyan1.jpg';
+import thingyan2 from '../assets/thingyan2.jpg';
+
+//major inductory 
+import induct2 from '../assets/induct2.jpg';
+import induct3 from '../assets/induct3.jpg';
+import induct4 from '../assets/induct4.jpg';
+import induct5 from '../assets/induct5.jpg';
+import induct6 from '../assets/induct6.jpg';
+import induct7 from '../assets/induct7.jpg';
+import induct8 from '../assets/induct8.jpg';
+import induct9 from '../assets/induct9.jpg';
+import induct10 from '../assets/induct10.jpg';
+import induct11 from '../assets/induct11.jpg';
+
+//monson competition images
+import monsonImg1 from '../assets/monson1.jpg';
+import monsonImg2 from '../assets/monson2.jpg';
+import monsonImg3 from '../assets/monson3.jpg';
+import monsonImg4 from '../assets/monson4.jpg';
+import monsonImg5 from '../assets/monson5.jpg';
+import monsonImg6 from '../assets/monson6.jpg';
+
+//bridge
+import bridge from '../assets/other.jpg';
+import bridge1 from '../assets/other1.jpg';
+import bridge2 from '../assets/other2.mp4';
+
+//homage ceremony images
+import homageImg1 from '../assets/homage1.jpg';
+import homageImg2 from '../assets/homage2.jpg';
+import homageImg3 from '../assets/homage3.jpg';
+import homageImg4 from '../assets/homage4.jpg';
+
 type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
 
 interface NavLink {
@@ -39,9 +95,12 @@ const activitiesList: ActivityItem[] = [
     description: 'Showcasing innovative student projects across Civil, Electrical, Mechanical, and IT departments with guest industry speakers, panel discussions, and project exhibitions.',
     category: 'Welcome Event',
     images: [
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80'
+     welcome2,
+     welcome3,
+     welcome4,
+     welcome5,
+     welcome6,
+     welcome7,
     ]
   },
   {
@@ -53,9 +112,11 @@ const activitiesList: ActivityItem[] = [
     description: 'Traditional Myanmar sticky rice making festival bringing together students and teachers across departments for team-building, cooking, and cultural unity.',
     category: 'Festival',
     images: [
-      'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80'
+      htamaneImg1,
+      htamaneImg2,
+      htamaneImg3,
+      htamaneImg4,
+      htamaneImg5,
     ]
   },
   {
@@ -67,9 +128,8 @@ const activitiesList: ActivityItem[] = [
     description: 'Competitive and friendly sports competition between Civil, Electrical, Mechanical, and IT engineering departments promoting sportsmanship and health.',
     category: 'Friendly Futsal Tournament',
     images: [
-      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
+      fusal,
+     fusal1,
     ]
   },
   {
@@ -81,9 +141,16 @@ const activitiesList: ActivityItem[] = [
     description: 'Orientation session for incoming students providing detailed roadmaps, curriculum overview, and career paths for Civil, Electrical, Mechanical, and IT majors.',
     category: 'Majors Introductory',
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80'
+      induct2,
+      induct3,
+      induct4,
+      induct5,
+      induct6,
+      induct7,
+      induct8,
+      induct9,
+      induct10,
+      induct11,
     ]
   },
   {
@@ -95,12 +162,11 @@ const activitiesList: ActivityItem[] = [
     description: 'Hands-on training session focusing on microcontrollers, IoT automation workflows, and modern web software development practices for aspiring engineers.',
     category: 'Thingyan Festival',
     images: [
-      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
+     thingyan,
+     thingyan1,
+     thingyan2,
     ]
   },
-
   {
     id: '6',
     title: 'Other Community & Environmental Awareness Program',
@@ -110,12 +176,12 @@ const activitiesList: ActivityItem[] = [
     description: 'Community service initiative led by the student union to promote environmental sustainability, green campus goals, and ecological awareness.',
     category: 'Bridge programs',
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80'
+      bridge,
+      bridge1,
+      bridge2
     ]
   },
-{
+  {
     id: '7',
     title: 'Annual Monsoon Competition ',
     date: 'highlight of the 2nd semester of the academic year',
@@ -124,9 +190,12 @@ const activitiesList: ActivityItem[] = [
     description: 'Hands-on training session focusing on microcontrollers, IoT automation workflows, and modern web software development practices for aspiring engineers.',
     category: 'Monsoon Competition',
     images: [
-      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
+      monsonImg1,
+      monsonImg2,   
+      monsonImg3,
+      monsonImg4,
+      monsonImg5,
+      monsonImg6,
     ]
   },
   {
@@ -138,9 +207,10 @@ const activitiesList: ActivityItem[] = [
     description: 'Community service initiative led by the student union to promote environmental sustainability, green campus goals, and ecological awareness.',
     category: `Teacher's Homage Ceremony`,
     images: [
-      'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80'
+      homageImg1,
+      homageImg2,
+      homageImg3,
+      homageImg4,
     ]
   },
 ];
@@ -224,7 +294,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                 </button>
               ))}
             </div>
-
+            
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -275,13 +345,23 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
 
             <div className="bg-[#0a192f] text-white p-6 sm:p-10 rounded-2xl border border-slate-800 shadow-xl w-full box-border">
               
-              {/* Featured Image Viewer */}
+              {/* Featured Image / Video Viewer */}
               <div className="relative w-full h-[260px] sm:h-[400px] rounded-xl overflow-hidden mb-6 shadow-2xl">
-                <img 
-                  src={selectedActivity.images[activeImageIndex] || selectedActivity.images[0]} 
-                  alt={selectedActivity.title} 
-                  className="w-full h-full object-cover transition-all duration-500"
-                />
+                {selectedActivity.images[activeImageIndex]?.endsWith('.mp4') ? (
+                  <video 
+                    src={selectedActivity.images[activeImageIndex]} 
+                    className="w-full h-full object-cover transition-all duration-500"
+                    controls
+                    playsInline
+                    muted
+                  />
+                ) : (
+                  <img 
+                    src={selectedActivity.images[activeImageIndex] || selectedActivity.images[0]} 
+                    alt={selectedActivity.title} 
+                    className="w-full h-full object-cover transition-all duration-500"
+                  />
+                )}
               </div>
 
               {/* Category tag & Header */}
@@ -311,7 +391,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                 {selectedActivity.description}
               </p>
 
-              {/* 📸 GALLERY SECTION: Show all photos here */}
+              {/* 📸 GALLERY SECTION: Show all photos/videos here */}
               <div className="mt-8 pt-6 border-t border-slate-800">
                 <div className="flex items-center gap-2 mb-4">
                   <ImageIcon className="w-5 h-5 text-[#64ffda]" />
@@ -329,12 +409,21 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                         activeImageIndex === index ? 'border-[#64ffda] ring-2 ring-[#64ffda]/40' : 'border-slate-800 hover:border-slate-500'
                       }`}
                     >
-                      <img 
-                        src={imgUrl} 
-                        alt={`${selectedActivity.title} photo ${index + 1}`} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+                      {imgUrl.endsWith('.mp4') ? (
+                        <video 
+                          src={imgUrl} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <img 
+                          src={imgUrl} 
+                          alt={`${selectedActivity.title} photo ${index + 1}`} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
                     </div>
                   ))}
                 </div>
@@ -389,30 +478,30 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                       onClick={() => setSelectedActivityId(activity.id)}
                       className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} bg-[#0a192f] border border-slate-800 rounded-2xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden md:overflow-visible my-2 w-full`}
                     >
-                      {/* Responsive Image Collage */}
+                      {/* Responsive Image/Video Collage */}
                       <div className="w-full md:w-[220px] shrink-0 relative p-4 md:p-0 min-h-[200px] md:min-h-auto flex justify-center items-center">
                         <div className={`relative md:absolute md:top-1/2 md:-translate-y-1/2 ${isEven ? 'md:-left-4' : 'md:-right-4'} w-full max-w-[280px] md:w-[175px] h-[160px] md:h-[130px] rounded-xl overflow-hidden shadow-2xl bg-[#0a192f] border-2 sm:border-3 border-white z-20 group-hover:scale-105 transition-transform duration-300`}>
-                          <img 
-                            src={activity.images[0]} 
-                            alt={activity.title} 
-                            className="w-full h-full object-cover" 
-                          />
+                          {activity.images[0]?.endsWith('.mp4') ? (
+                            <video src={activity.images[0]} className="w-full h-full object-cover" muted playsInline />
+                          ) : (
+                            <img src={activity.images[0]} alt={activity.title} className="w-full h-full object-cover" />
+                          )}
                         </div>
 
                         <div className={`hidden lg:block absolute top-[12%] ${isEven ? 'left-[65px]' : '-right-[55px]'} w-[110px] h-[80px] rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-10 transition-all duration-400 group-hover:-translate-y-3 group-hover:scale-110 group-hover:-rotate-6`}>
-                          <img 
-                            src={activity.images[1]} 
-                            alt="Activity preview" 
-                            className="w-full h-full object-cover" 
-                          />
+                          {activity.images[1]?.endsWith('.mp4') ? (
+                            <video src={activity.images[1]} className="w-full h-full object-cover" muted playsInline />
+                          ) : (
+                            <img src={activity.images[1]} alt="Activity preview" className="w-full h-full object-cover" />
+                          )}
                         </div>
 
                         <div className={`hidden lg:block absolute bottom-[8%] ${isEven ? 'left-[55px]' : '-right-[45px]'} w-[100px] h-[75px] rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-30 transition-all duration-400 group-hover:translate-y-3 group-hover:scale-110 group-hover:rotate-6`}>
-                          <img 
-                            src={activity.images[2]} 
-                            alt="Activity preview" 
-                            className="w-full h-full object-cover" 
-                          />
+                          {activity.images[2]?.endsWith('.mp4') ? (
+                            <video src={activity.images[2]} className="w-full h-full object-cover" muted playsInline />
+                          ) : (
+                            <img src={activity.images[2]} alt="Activity preview" className="w-full h-full object-cover" />
+                          )}
                         </div>
                       </div>
 

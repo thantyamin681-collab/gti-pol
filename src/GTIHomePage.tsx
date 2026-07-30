@@ -11,14 +11,14 @@ import {
   HelpCircle
 } from 'lucide-react';
 
-// Complete Navigation View Targets
+// Complete Navigation View Targets including admin support
 export type NavTarget = 
   | 'home' 
   | 'department' 
   | 'result' 
   | 'activities' 
   | 'activity' 
-  | 'news' 
+  | 'latest-news' 
   | 'schoolinfo' 
   | 'login' 
   | 'admin';
@@ -56,7 +56,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     { name: 'Department', href: '/department', view: 'department', target: 'department' },
     { name: 'Result', href: '/result', view: 'result', target: 'result' },
     { name: 'Activities', href: '/activity', view: 'activities', target: 'activities' },
-    { name: 'Latest News', href: '/latest-news', view: 'news', target: 'news' },
+    { name: 'Latest News', href: '/latest-news', view: 'latest-news', target: 'latest-news' },
     { name: 'School Info', href: '/school-info', view: 'schoolinfo', target: 'schoolinfo' },
   ];
 
@@ -248,7 +248,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
             <button
               type="button"
-              onClick={() => handleNavClick('/latest-news', 'news')}
+              onClick={() => handleNavClick('/latest-news', 'latest-news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
@@ -315,11 +315,17 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
       {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
-        </div>
-      </footer>
-
+  <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
+    <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+    <button
+      type="button"
+      onClick={() => handleNavClick('/admin', 'admin')}
+      className="text-xs text-slate-500 hover:text-[#64ffda] mt-2 sm:mt-0 transition-colors"
+    >
+      Admin Portal
+    </button>
+  </div>
+</footer>
     </div>
   );
 };

@@ -446,3 +446,5 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
     </div>
   );
 };
+
+export default GTIAdminDashboard;

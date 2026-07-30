@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
 import { Menu, X } from 'lucide-react';
 
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
+
 interface NewsItem {
   id: number;
   title: string;
@@ -13,12 +15,13 @@ interface NewsItem {
 
 interface NavLink {
   name: string;
-  href: string;
-  view?: 'home' | 'news' | 'schoolinfo';
+  target: NavTarget;
 }
 
 interface SchoolNewsProps {
-  onNavigate?: (view: 'home' | 'news' | 'schoolinfo') => void;
+  onBackToHome?: () => void;
+  onNavigate?: (view: NavTarget) => void;
+  currentView?: NavTarget;
 }
 
 interface DescriptionWithSeeMoreProps {
@@ -48,19 +51,11 @@ function DescriptionWithSeeMore({ text }: DescriptionWithSeeMoreProps) {
   );
 }
 
-export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
+export default function SchoolNews({ onBackToHome, onNavigate }: SchoolNewsProps) {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeRoute, setActiveRoute] = useState<string>('/latest-news');
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setActiveRoute(window.location.pathname);
-    }
-  }, []);
-
-  // Fetch News Data from D1 API
   useEffect(() => {
     fetch('/api/news')
       .then((res) => {
@@ -80,41 +75,38 @@ export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
       });
   }, []);
 
-  // SchoolInfo.tsx နှင့် ပုံစံတူ Navigation Array
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/', view: 'home' },
-    { name: 'Department', href: '/department' },
-    { name: 'Result', href: '/result' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Latest News', href: '/latest-news', view: 'news' },
-    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
+    { name: 'Home', target: 'home' },
+    { name: 'Department', target: 'home' },
+    { name: 'Result', target: 'result' },
+    { name: 'Activities', target: 'activity' },
+    { name: 'Latest News', target: 'latest-news' },
+    { name: 'School Info', target: 'school-info' },
   ];
 
-  // SchoolInfo.tsx နှင့် ပုံစံတူ Navigation Handler
-  const handleNavigation = (link: NavLink) => {
+  const handleNavClick = (target: NavTarget) => {
     setIsMobileMenuOpen(false);
-
-    if (link.view && onNavigate) {
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', link.href);
+    if (target === 'home') {
+      if (onBackToHome) {
+        onBackToHome();
+      } else {
+        onNavigate?.('home');
       }
-      onNavigate(link.view);
     } else {
-      window.location.href = link.href;
+      onNavigate?.(target);
     }
   };
 
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 font-sans flex flex-col">
-      {/* 1. Navigation Bar (SchoolInfo.tsx နဲ့ ပုံစံတူ) */}
+      {/* 1. Navigation Bar */}
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
             {/* Logo and Name */}
             <div 
               className="flex items-center space-x-3 cursor-pointer"
-              onClick={() => handleNavigation(navLinks[0])}
+              onClick={() => handleNavClick('home')}
             >
               <img src={logoImg} alt="GTI Logo" className="w-12 h-12 object-contain" />
               <div className="flex flex-col">
@@ -130,13 +122,13 @@ export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => {
-                const isActive = activeRoute === link.href || link.href === '/latest-news';
+                const isActive = link.target === 'latest-news';
                 return (
                   <button
                     key={link.name}
                     type="button"
-                    onClick={() => handleNavigation(link)}
-                    className={`text-base font-semibold transition-colors duration-200 ${
+                    onClick={() => handleNavClick(link.target)}
+                    className={`text-base font-semibold transition-colors duration-200 bg-transparent border-none cursor-pointer ${
                       isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'
                     }`}
                   >
@@ -156,21 +148,20 @@ export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
-
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Dropdown Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#0a192f] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
             {navLinks.map((link) => {
-              const isActive = activeRoute === link.href || link.href === '/latest-news';
+              const isActive = link.target === 'latest-news';
               return (
                 <button
                   key={link.name}
                   type="button"
-                  onClick={() => handleNavigation(link)}
-                  className={`block w-full text-left py-2 px-3 rounded-md text-base font-medium ${
+                  onClick={() => handleNavClick(link.target)}
+                  className={`block w-full text-left py-2 px-3 rounded-md text-base font-medium bg-transparent border-none cursor-pointer ${
                     isActive ? 'bg-slate-800 text-[#64ffda]' : 'text-slate-200 hover:bg-slate-800'
                   }`}
                 >
@@ -182,7 +173,7 @@ export default function SchoolNews({ onNavigate }: SchoolNewsProps) {
         )}
       </nav>
 
-      {/* 2. Main Content Area (Latest News) */}
+      {/* 2. Main Content Container */}
       <div className="px-4 py-8 sm:px-6 lg:px-8 flex-1">
         <header className="mx-auto mb-8 text-center max-w-5xl">
           <h1 className="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">

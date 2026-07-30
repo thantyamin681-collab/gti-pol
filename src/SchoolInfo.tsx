@@ -1,61 +1,56 @@
-﻿import { useEffect, useState } from 'react';
+﻿import {  useState } from 'react';
 import logoImg from './assets/logo.jpg';
-import {  Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
 
 interface NavLink {
   name: string;
-  href: string;
-  view?: 'home' | 'news' | 'schoolinfo';
+  target: NavTarget;
 }
 
 interface SchoolInfoProps {
-  onNavigate?: (view: 'home' | 'news' | 'schoolinfo') => void;
+  onBackToHome?: () => void;
+  onNavigate?: (view: NavTarget) => void;
+  currentView?: NavTarget;
 }
 
-export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
+export default function SchoolInfo({ onBackToHome, onNavigate }: SchoolInfoProps) {
   const [activeTab, setActiveTab] = useState<'admission' | 'rules'>('admission');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeRoute, setActiveRoute] = useState<string>('/school-info');
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setActiveRoute(window.location.pathname);
-    }
-  }, []);
-
-  
   const navLinks: NavLink[] = [
-    { name: 'Home', href: '/', view: 'home' },
-    { name: 'Department', href: '/department' },
-    { name: 'Result', href: '/result' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Latest News', href: '/latest-news', view: 'news' },
-    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
+    { name: 'Home', target: 'home' },
+    { name: 'Department', target: 'home' },
+    { name: 'Result', target: 'result' },
+    { name: 'Activities', target: 'activity' },
+    { name: 'Latest News', target: 'latest-news' },
+    { name: 'School Info', target: 'school-info' },
   ];
 
-  const handleNavigation = (link: NavLink) => {
+  const handleNavClick = (target: NavTarget) => {
     setIsMobileMenuOpen(false);
-
-    if (link.view && onNavigate) {
-      if (typeof window !== 'undefined') {
-        window.history.pushState({}, '', link.href);
+    if (target === 'home') {
+      if (onBackToHome) {
+        onBackToHome();
+      } else {
+        onNavigate?.('home');
       }
-      onNavigate(link.view);
     } else {
-      window.location.href = link.href;
+      onNavigate?.(target);
     }
   };
 
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
       {/* 1. Navigation Bar */}
-      <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+      <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md w-full">
+        <div className="w-full px-4 sm:px-8">
+          <div className="flex items-center justify-between h-20 w-full">
             {/* Logo and Name */}
             <div 
               className="flex items-center space-x-3 cursor-pointer" 
-              onClick={() => handleNavigation(navLinks[0])}
+              onClick={() => handleNavClick('home')}
             >
               <img src={logoImg} alt="GTI Logo" className="w-12 h-12 object-contain" />
               <div className="flex flex-col">
@@ -69,15 +64,15 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             </div>
 
             {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
               {navLinks.map((link) => {
-                const isActive = activeRoute === link.href;
+                const isActive = link.target === 'school-info';
                 return (
                   <button
                     key={link.name}
                     type="button"
-                    onClick={() => handleNavigation(link)}
-                    className={`text-base font-semibold transition-colors duration-200 ${
+                    onClick={() => handleNavClick(link.target)}
+                    className={`text-base font-semibold transition-colors duration-200 bg-transparent border-none cursor-pointer ${
                       isActive ? 'text-[#64ffda]' : 'text-slate-200 hover:text-[#64ffda]'
                     }`}
                   >
@@ -102,13 +97,13 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
 
         {/* Mobile Navigation Dropdown Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
+          <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2 w-full">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 type="button"
-                onClick={() => handleNavigation(link)}
-                className="w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+                onClick={() => handleNavClick(link.target)}
+                className="block w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800 bg-transparent border-none cursor-pointer"
               >
                 {link.name}
               </button>
@@ -126,19 +121,13 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
           </h1>
         </div>
 
-        {/* ==========================================
-            SECTION 1: SCHOOL INTAKE
-        ========================================== */}
+        {/* SECTION 1: SCHOOL INTAKE */}
         <section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
           <h2 className="text-xl font-bold text-indigo-900 border-l-4 border-indigo-600 pl-3">
             1. School Intake & Academic Calendar
           </h2>
 
-          {/* English Block */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-            {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
-              English
-            </span> */}
             <p className="text-slate-700 font-medium text-sm md:text-base">
               Our school operates with <strong>2 semesters</strong> in each academic year:
             </p>
@@ -149,11 +138,7 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             </ul>
           </div>
 
-          {/* Myanmar Block */}
           <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-            {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
-              မြန်မာ
-            </span> */}
             <p className="text-slate-700 font-medium text-sm md:text-base">
               မိမိတို့ကျောင်း၏ ပညာသင်နှစ်တစ်ခုတွင် <strong>စာသင်နှစ်ဝက် (၂) ခု</strong> ခွဲခြားထားပါသည် -
             </p>
@@ -165,9 +150,7 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
           </div>
         </section>
 
-        {/* ==========================================
-            SECTION 2: ADMISSION CRITERIA & RULES
-        ========================================== */}
+        {/* SECTION 2: ADMISSION CRITERIA & RULES */}
         <section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
           <h2 className="text-xl font-bold text-indigo-900 border-l-4 border-indigo-600 pl-3">
             2. Admission & Student Regulations
@@ -199,14 +182,10 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             </button>
           </div>
 
-          {/* TAB 1: ဝင်ခွင့်သတ်မှတ်ချက်များ */}
+          {/* TAB 1 */}
           {activeTab === 'admission' && (
             <div className="space-y-4">
-              {/* English Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
-                  English
-                </span> */}
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm">Admission Requirements:</h4>
                   <ul className="list-disc list-inside text-xs md:text-sm text-slate-600 space-y-1 mt-1 pl-2">
@@ -228,11 +207,7 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
                 </div>
               </div>
 
-              {/* Myanmar Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3">
-                {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
-                  မြန်မာ
-                </span> */}
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm">ဝင်ခွင့်လျှောက်ထားသူများ လိုက်နာရမည့် သတ်မှတ်ချက်များ:</h4>
                   <ul className="list-disc list-inside text-xs md:text-sm text-slate-600 space-y-1 mt-1 pl-2">
@@ -256,14 +231,10 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
             </div>
           )}
 
-          {/* TAB 2: လိုက်နာရန် စည်းကမ်းချက်များ */}
+          {/* TAB 2 */}
           {activeTab === 'rules' && (
             <div className="space-y-4">
-              {/* English Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                {/* <span className="text-xs font-semibold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md border border-indigo-100">
-                  English
-                </span> */}
                 <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                   Students admitted to GTI (Pyin Oo Lwin) must strictly adhere to the following rules to become qualified future engineers:
                 </p>
@@ -275,11 +246,7 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
                 </ol>
               </div>
 
-              {/* Myanmar Block */}
               <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                {/* <span className="text-xs font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
-                  မြန်မာ
-                </span> */}
                 <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                   အစိုးရစက်မှုလက်မှုသိပ္ပံ (ပြင်ဦးလွင်) သို့ တက်ရောက်ခွင့်ရရှိသော ကျောင်းသား/သူများသည် အင်ဂျင်နီယာကောင်းများဖြစ်စေရေးအတွက် အောက်ပါစည်းကမ်းချက်များကို လိုက်နာရမည် -
                 </p>
@@ -294,139 +261,136 @@ export default function SchoolInfo({ onNavigate }: SchoolInfoProps) {
           )}
         </section>
 
-        {/* ==========================================
-    SECTION 3: EVENT CALENDAR
-========================================== */}
-<section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6 my-6">
-  <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-3">
-    <h2 className="text-xl font-bold text-indigo-900">
-      3. Academic Event Calendar
-    </h2>
-    <span className="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium border border-indigo-100">
-      Annual Overview
-    </span>
-  </div>
-
-  {/* Modern Academic Timeline (English Version with Dimmed Vacations & Exam Focus) */}
-  <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 my-4">
-    
-    {/* 1. First Semester Coursework */}
-    <div className="relative">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
-      <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
-            DEC - FEB
+        {/* SECTION 3: EVENT CALENDAR */}
+        <section className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6 my-6">
+          <div className="flex justify-between items-center border-l-4 border-indigo-600 pl-3">
+            <h2 className="text-xl font-bold text-indigo-900">
+              3. Academic Event Calendar
+            </h2>
+            <span className="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full font-medium border border-indigo-100">
+              Annual Overview
+            </span>
           </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">First Semester Coursework</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
+
+          <div className="relative pl-6 sm:pl-8 border-l-2 border-slate-200 space-y-6 my-4">
+            {/* 1. First Semester Coursework */}
+            <div className="relative">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
+              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+                    DEC - FEB
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">First Semester Coursework</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">Lecture classes, lab practicals, and continuous assessments.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">Lecture classes, lab practicals, and continuous assessments.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    {/* 2. First Semester Final Exam */}
-    <div className="relative">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
-      <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
-            LATE MAR
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">1st Semester Final Examinations</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
+            {/* 2. First Semester Final Exam */}
+            <div className="relative">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
+              <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+                    LATE MAR
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">1st Semester Final Examinations</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">Final evaluation week covering up to 8 departmental subjects.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">Final evaluation week covering up to 8 departmental subjects.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    {/* 3. Semester Break & Vacation (Dimmed) */}
-    <div className="relative opacity-60 hover:opacity-100 transition-opacity">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
-      <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
-            APR - MAY
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">Semester Break & Vacation</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+            {/* 3. Semester Break */}
+            <div className="relative opacity-60 hover:opacity-100 transition-opacity">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
+              <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
+                    APR - MAY
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">Semester Break & Vacation</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">Inter-semester holiday break and enrollment preparation.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">Inter-semester holiday break and enrollment preparation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    {/* 4. Second Semester Coursework */}
-    <div className="relative">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
-      <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
-            JUN - AUG
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">Second Semester Coursework</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
+            {/* 4. Second Semester Coursework */}
+            <div className="relative">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-sm" />
+              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 hover:border-emerald-200 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-[#0a192f] text-[#64ffda] rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+                    JUN - AUG
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">Second Semester Coursework</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 uppercase">Academic Period</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">Resumes advanced engineering modules and practical workshops.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">Resumes advanced engineering modules and practical workshops.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    {/* 5. Second Semester Final Exam */}
-    <div className="relative">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
-      <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
-            LATE SEP
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">2nd Semester Final Examinations</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
+            {/* 5. Second Semester Final Exam */}
+            <div className="relative">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow-sm ring-2 ring-rose-200" />
+              <div className="bg-rose-50/40 rounded-2xl p-4 border border-rose-200 hover:bg-rose-50 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-rose-600 text-white rounded-xl text-center shrink-0 font-extrabold text-xs uppercase">
+                    LATE SEP
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">2nd Semester Final Examinations</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 uppercase">At most 8 Subjects</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">End-of-year final assessment covering up to 8 subjects.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">End-of-year final assessment covering up to 8 subjects.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    {/* 6. Academic Year Break (Dimmed) */}
-    <div className="relative opacity-60 hover:opacity-100 transition-opacity">
-      <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
-      <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-4">
-          <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
-            OCT - NOV
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">Academic Year Break</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+            {/* 6. Academic Year Break */}
+            <div className="relative opacity-60 hover:opacity-100 transition-opacity">
+              <div className="absolute -left-7.75 sm:-left-9.75 top-2 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow-sm" />
+              <div className="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/60 border-dashed flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="px-3 py-2 bg-slate-200 text-slate-600 rounded-xl text-center shrink-0 font-bold text-xs uppercase">
+                    OCT - NOV
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-base font-bold text-slate-900">Academic Year Break</h3>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-600 uppercase">School Vacation</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600">End of academic year vacation and results announcement.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p className="text-xs sm:text-sm text-slate-600">End of academic year vacation and results announcement.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-  </div>
-</section>
+          </div>
+        </section>
       </main>
+
       {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
+import campusImg from './assets/campus.jpg';
 import { 
   Menu, 
   X, 
@@ -7,16 +8,36 @@ import {
   GraduationCap, 
   Calendar, 
   ChevronRight, 
-  Newspaper 
+  Newspaper,
+  // HelpCircle
 } from 'lucide-react';
 
-interface NavLink {
+// Complete Navigation View Targets including admin support
+export type NavTarget = 
+  | 'home' 
+  | 'department' 
+  | 'result' 
+  | 'activities' 
+  | 'activity' 
+  | 'latest-news' 
+  | 'schoolinfo' 
+  | 'login' 
+  | 'admin';
+
+export interface NavLink {
   name: string;
   href: string;
- view: 'home' | 'department' | 'result' | 'activities' | 'news' | 'schoolinfo';
+  view: NavTarget;
+  target?: NavTarget;
 }
 
-interface NewsItem {
+export interface GTIHomePageProps {
+  onNavigate?: (view: NavTarget) => void;
+  href?: string;
+  view?: NavTarget;
+}
+
+export interface NewsItem {
   id: string | number;
   title: string;
   date?: string;
@@ -27,21 +48,20 @@ interface NewsItem {
   image_url?: string;
 }
 
-const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
+const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  
-  // Centralized navigation handler mapping paths to view states
-  const handleNavClick = (href: string, view: string) => {
-    setIsMobileMenuOpen(false);
 
-    if (typeof window !== 'undefined') {
-      window.history.pushState({}, '', href);
-      if (onNavigate) {
-        onNavigate(view);
-      }
-    }
-  };
-  // D1 Database မှ တိုက်ရိုက် ရရှိလာမည့် Latest News State
+  // Consolidated Navigation Links Data
+  const navLinks: NavLink[] = [
+    { name: 'Home', href: '/', view: 'home', target: 'home' },
+    { name: 'Department', href: '/department', view: 'department', target: 'department' },
+    { name: 'Result', href: '/result', view: 'result', target: 'result' },
+    { name: 'Activities', href: '/activity', view: 'activities', target: 'activities' },
+    { name: 'Latest News', href: '/latest-news', view: 'latest-news', target: 'latest-news' },
+    { name: 'School Info', href: '/school-info', view: 'schoolinfo', target: 'schoolinfo' },
+  ];
+
+  // Latest News State with Default Fallback Data
   const [latestNews, setLatestNews] = useState<NewsItem>({
     id: 'news-2026-001',
     title: 'Academic Year 2026-2027 Registration & Course Schedules',
@@ -50,41 +70,51 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
     category: 'Academic Announcement'
   });
 
-  // D1 Database ထဲမှ Data ကို Auto ခေါ်ယူခြင်း
+  // Centralized Navigation Handler (Updates URL history + triggers onNavigate view switch)
+  const handleNavClick = (href: string, view: NavTarget) => {
+    setIsMobileMenuOpen(false);
+
+    if (typeof window !== 'undefined') {
+      window.history.pushState({}, '', href);
+    }
+    if (onNavigate) {
+      onNavigate(view);
+    }
+  };
+
+  // D1 Database Auto-fetch for News
   useEffect(() => {
     fetch('/api/news')
       .then((res) => res.json())
       .then((data: any) => {
         if (Array.isArray(data) && data.length > 0) {
-          const item = data[0]; // အသစ်ဆုံး သတင်းကို ရွေးထုတ်ခြင်း
+          const item = data[0];
           setLatestNews({
             id: item.id,
             title: item.title,
-            date: item.created_at || 'Recently',
-            summary: item.content,
-            category: item.category,
+            date: item.created_at || item.date || 'Recently',
+            summary: item.content || item.summary,
+            category: item.category || 'News',
             image_url: item.image_url
           });
         }
       })
-      .catch((err) => console.log("Using default fallback news data",err));
+      .catch((err) => console.log("Using default fallback news data:", err));
   }, []);
-
-  const navLinks: NavLink[] = [
-    { name: 'Home', href: '/', view: 'home' },
-    { name: 'Department', href: '/department', view: 'department' },
-    { name: 'Result', href: '/result', view: 'result' },
-    { name: 'Activities', href: '/activities', view: 'activities' },
-    { name: 'Latest News', href: '/latest-news', view: 'news' },
-    { name: 'School Info', href: '/school-info', view: 'schoolinfo' },
-  ];
 
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
+      
+      {/* 1. Navigation Bar (Responsive Sticky Header) */}
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-3 cursor-pointer">
+            
+            {/* Logo & Branding */}
+            <div 
+              onClick={() => handleNavClick('/', 'home')}
+              className="flex items-center space-x-3 cursor-pointer"
+            >
               <img 
                 src={logoImg} 
                 alt="GTI Logo" 
@@ -100,18 +130,21 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
               </div>
             </div>
 
+            {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a
+                <button
                   key={link.name}
-                  href={link.href}
+                  type="button"
+                  onClick={() => handleNavClick(link.href, link.view)}
                   className="text-base font-semibold text-slate-200 hover:text-[#64ffda] transition-colors duration-200"
                 >
                   {link.name}
-                </a>
+                </button>
               ))}
             </div>
 
+            {/* Mobile Menu Toggle Button */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -124,16 +157,18 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
           </div>
         </div>
 
+        {/* Mobile Navigation Menu Drawer */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className="block px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800"
+                type="button"
+                onClick={() => handleNavClick(link.href, link.view)}
+                className="block w-full text-left px-3 py-2 rounded-md text-lg font-medium text-slate-200 hover:text-[#64ffda] hover:bg-slate-800 transition-colors"
               >
                 {link.name}
-              </a>
+              </button>
             ))}
           </div>
         )}
@@ -141,7 +176,7 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
 
       <section className="relative h-80 sm:h-96 md:h-112.5 bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+          src={campusImg}
           alt="GTI Campus"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
@@ -155,29 +190,33 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
         </div>
       </section>
 
+      {/* 3. Main Content Layout: Multi-Column Grid */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 h-full">
-            <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
-              College Background
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-6 items-center">
-              <img
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
-                alt="GTI Campus Building"
-                className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
-              />
-              <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
-                <p>
-                  Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
-                </p>
+          {/* College Background Section (6 cols out of 12) */}
+          <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
+            <div>
+              <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
+                College Background
+              </h2>
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
+                <img
+                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
+                  alt="GTI Campus Building"
+                  className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
+                />
+                <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
+                  <p>
+                    Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
-          {/* Dynamic News Section (D1) */}
-          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full flex flex-col justify-between">
+          {/* Dynamic Latest News Section (3 cols out of 12) */}
+          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
                 <h2 className="text-xl font-bold text-[#0a192f]">Latest News</h2>
@@ -209,73 +248,84 @@ const GTIHomePage: React.FC<any> = ({ onNavigate }: any) => {
 
             <button
               type="button"
-              onClick={() => handleNavClick('/latest-news', 'news')}
+              onClick={() => handleNavClick('/latest-news', 'latest-news')}
               className="mt-4 inline-flex items-center justify-center text-xs font-semibold text-[#0a192f] hover:text-blue-700 transition-colors"
             >
               View All News <ChevronRight className="w-4 h-4 ml-1" />
             </button>
           </section>
 
-          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 h-full">
-            <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
-              Quick Links
-            </h2>
-            <div className="space-y-3 mt-2">
-              <button
-                type="button"
-                onClick={() => handleNavClick('/department', 'department')}
-                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
-              >
-                <div className="flex items-center space-x-3">
-                  <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Departments</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+          {/* Quick Links Section (3 cols out of 12) */}
+          <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
+            <div>
+              <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
+                Quick Links
+              </h2>
+              <div className="space-y-3 mt-2">
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/department', 'department')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Building2 className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Departments</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
 
-              <button
-                type="button"
-                onClick={() => handleNavClick('/result', 'result')}
-                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
-              >
-                <div className="flex items-center space-x-3">
-                  <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Exam Results</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/result', 'result')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <GraduationCap className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Exam Results</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
 
-              <button
-                type="button"
-                onClick={() => handleNavClick('/activities', 'activities')}
-                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
-              >
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
-                  <span>Campus Activities</span>
-                </div>
-                <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => handleNavClick('/activity', 'activities')}
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-[#0a192f] hover:text-white border border-slate-200 text-slate-700 text-sm font-medium transition-all group text-left"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Calendar className="w-4 h-4 text-blue-600 group-hover:text-cyan-400" />
+                    <span>Campus Activities</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
+                </button>
+              </div>
             </div>
           </section>
 
         </div>
       </main>
 
+      {/* Floating FAQ Action Button*/}
       {/* <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
-        <HelpCircle className="w-7 h-7 text-[#64ffda]" />
+        <HelpCircle className="w-7 h-7 text-[#64ffda]" /> 
       </a> */}
 
+      {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
-        </div>
-      </footer>
-
+  <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
+    <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+    <button
+      type="button"
+      onClick={() => handleNavClick('/admin', 'admin')}
+      className="text-xs text-slate-500 hover:text-[#64ffda] mt-2 sm:mt-0 transition-colors"
+    >
+      Admin Portal
+    </button>
+  </div>
+</footer>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
 
 interface GTIAdminDashboardProps {
   onBackToHome?: () => void;
+  onNavigate?: (view: 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info') => void;
 }
 
 export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHome }) => {
@@ -445,3 +446,5 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
     </div>
   );
 };
+
+export default GTIAdminDashboard;

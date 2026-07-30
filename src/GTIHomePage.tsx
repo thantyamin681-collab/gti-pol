@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
+import campusImg from './assets/campus.jpg';
 import { 
   Menu, 
   X, 
@@ -8,7 +9,7 @@ import {
   Calendar, 
   ChevronRight, 
   Newspaper,
-  HelpCircle
+  // HelpCircle
 } from 'lucide-react';
 
 // Complete Navigation View Targets including admin support
@@ -176,7 +177,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
       {/* 2. Hero / Banner Image Section */}
       <section className="relative h-80 sm:h-96 md:h-[450px] bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+          src={campusImg}
           alt="GTI Campus"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />
@@ -304,14 +305,14 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </main>
 
-      {/* Floating FAQ Action Button */}
-      <a
+      {/* Floating FAQ Action Button*/}
+      {/* <a
         href="/faq"
         aria-label="Frequently Asked Questions"
         className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
       >
-        <HelpCircle className="w-7 h-7 text-[#64ffda]" />
-      </a>
+        <HelpCircle className="w-7 h-7 text-[#64ffda]" /> 
+      </a> */}
 
       {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">

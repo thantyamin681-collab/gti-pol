@@ -5,11 +5,14 @@ import { Menu, X } from 'lucide-react';
 type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
 
 interface NewsItem {
-  id: number;
+  id: number | string;
   title: string;
-  description: string;
-  imageUrl: string;
-  date: string;
+  content?: string;
+  description?: string;
+  image_url?: string;
+  imageUrl?: string;
+  created_at?: string;
+  date?: string;
   category?: string;
 }
 
@@ -187,34 +190,42 @@ export default function SchoolNews({ onBackToHome, onNavigate }: SchoolNewsProps
           ) : newsItems.length === 0 ? (
             <div className="p-12 text-center text-slate-500">No news announcements available yet.</div>
           ) : (
-            newsItems.map((item) => (
-              <article
-                key={item.id}
-                className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md md:flex-row"
-              >
-                <div className="h-48 w-full overflow-hidden md:h-auto md:w-2/5">
-                  <img
-                    src={item.imageUrl || 'https://via.placeholder.com/400x300?text=No+Image'}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-                  <div>
-                    <div className="mb-2 flex items-center justify-between">
-                      <p className="text-sm font-medium text-emerald-600">{item.date}</p>
-                      {item.category && (
-                        <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
-                          {item.category}
-                        </span>
-                      )}
+            newsItems.map((item) => {
+              const imageUrl = item.image_url || item.imageUrl;
+              const newsContent = item.content || item.description || '';
+              const newsDate = item.created_at || item.date || 'Recent';
+
+              return (
+                <article
+                  key={item.id}
+                  className="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md md:flex-row"
+                >
+                  {imageUrl && (
+                    <div className="h-48 w-full overflow-hidden md:h-auto md:w-2/5">
+                      <img
+                        src={imageUrl}
+                        alt={item.title}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                    <h2 className="mb-2 text-xl font-bold text-slate-900">{item.title}</h2>
-                    <DescriptionWithSeeMore text={item.description} />
+                  )}
+                  <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                    <div>
+                      <div className="mb-2 flex items-center justify-between">
+                        <p className="text-sm font-medium text-emerald-600">{newsDate}</p>
+                        {item.category && (
+                          <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-medium text-emerald-700">
+                            {item.category}
+                          </span>
+                        )}
+                      </div>
+                      <h2 className="mb-2 text-xl font-bold text-slate-900">{item.title}</h2>
+                      <DescriptionWithSeeMore text={newsContent} />
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))
+                </article>
+              );
+            })
           )}
         </main>
       </div>

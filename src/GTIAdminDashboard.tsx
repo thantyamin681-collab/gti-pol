@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Newspaper, 
-  FileSpreadsheet, 
-  Activity, 
   Plus, 
-  Trash2, 
-  Upload, 
   CheckCircle, 
   ArrowLeft 
 } from 'lucide-react';
@@ -27,13 +23,15 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
   const [newsContent, setNewsContent] = useState('');
   const [newsImage, setNewsImage] = useState<File | null>(null);
 
-  // Database ထဲမှ News များ ဆွဲယူခြင်း
+  // Database ထဲမှ News များ ဆွဲယူခြင်း (History Persistent ဖြစ်စေရန်)
   const fetchNewsList = useCallback(async () => {
     try {
       const res = await fetch('/api/news');
       if (res.ok) {
-        const data:any = await res.json();
-        setNewsList(data);
+        const data: any = await res.json();
+        if (Array.isArray(data)) {
+          setNewsList(data);
+        }
       }
     } catch (err) {
       console.error('Failed to fetch news list:', err);
@@ -60,7 +58,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
 
   // Cloudflare D1 သို့ News တင်ခြင်း
   const handleAddNews = async (e: React.FormEvent) => {
-    e.preventDefault(); // Page auto-refresh ဖြစ်ခြင်းကို တားဆီးရန်
+    e.preventDefault();
     if (!newsTitle || !newsContent) return;
 
     setIsSubmitting(true);
@@ -78,7 +76,9 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           title: newsTitle,
           category: newsCategory,
           content: newsContent,
-          image_url: imageUrlBase64
+          description: newsContent, // Field name တူညီစေရန် နှစ်မျိုးလုံး ပို့ပေးခြင်း
+          image_url: imageUrlBase64,
+          imageUrl: imageUrlBase64
         })
       });
 
@@ -87,10 +87,10 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
         setNewsContent('');
         setNewsImage(null);
 
-        // ၁။ Database မှ Data သစ်များ ပြန်ဆွဲယူမည်
+        // ၁။ Database မှ Data သစ်များကို ပြန်ဆွဲယူမည် (History Update ဖြစ်စေရန်)
         await fetchNewsList();
 
-        // ၂။ Homepage သိရှိစေရန် Event Trigger ပေးမည်
+        // ၂။ Homepage / တခြား Component များ သိရှိစေရန် Event Trigger ပေးမည်
         window.dispatchEvent(new Event('newsUpdated'));
 
         showNotification('News posted and synced successfully!');
@@ -210,19 +210,21 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
             </div>
 
             <div className="lg:col-span-2 bg-[#112240] p-6 rounded-xl border border-slate-800">
-              <h2 className="text-lg font-semibold text-white mb-4">Posted Announcements</h2>
+              <h2 className="text-lg font-semibold text-white mb-4">Posted Announcements History</h2>
               <div className="space-y-3">
                 {newsList.length === 0 ? (
                   <p className="text-slate-400 text-sm">No news posted yet.</p>
                 ) : (
-                  newsList.map((item) => (
-                    <div key={item.id} className="bg-[#0a192f] p-4 rounded-lg flex justify-between items-center border border-slate-800">
+                  newsList.map((item, index) => (
+                    <div key={item.id || index} className="bg-[#0a192f] p-4 rounded-lg flex justify-between items-center border border-slate-800">
                       <div>
                         <span className="text-xs bg-slate-800 text-[#64ffda] px-2 py-0.5 rounded font-mono">
                           {item.category || 'General'}
                         </span>
                         <h3 className="font-semibold text-white mt-1">{item.title}</h3>
-                        <p className="text-xs text-slate-400 mt-1">Date: {item.created_at || item.date}</p>
+                        <p className="text-xs text-slate-400 mt-1">
+                          Date: {item.created_at || item.date || 'N/A'}
+                        </p>
                       </div>
                     </div>
                   ))

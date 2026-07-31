@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import logoImg from './assets/logo.jpg';
 import {
   Menu,
@@ -29,15 +29,20 @@ interface GTIHomePageProps {
 }
 
 interface NewsItem {
-  id: string;
+  id: string | number;
   title: string;
   date: string;
   summary: string;
   category: string;
+  imageUrl?: string;
 }
 
 const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  
+  // Dynamic News States
+  const [latestNews, setLatestNews] = useState<NewsItem | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const navLinks: NavLink[] = [
     { name: 'Home', target: 'home' },
@@ -48,13 +53,44 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     { name: 'School Info', target: 'school-info' },
   ];
 
-  const latestNews: NewsItem = {
-    id: 'news-2026-001',
-    title: 'Academic Year 2026-2027 Registration & Course Schedules',
-    date: 'July 20, 2026',
-    summary: 'Official course registration and timetable details for Civil, Electrical, and Mechanical departments are now available.',
-    category: 'Academic Announcement',
-  };
+  // Database ထဲမှ နောက်ဆုံး Post ကို ဆွဲယူမည့် Function
+  const fetchLatestNews = useCallback(async () => {
+    try {
+      setLoading(true);
+      const res = await fetch('/api/news');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          // DATABASE မှ နောက်ဆုံး တင်ထားသော POST (Index 0) ကို ယူမည်
+          const firstNews = data[0];
+          setLatestNews({
+            id: firstNews.id,
+            title: firstNews.title,
+            date: firstNews.created_at || firstNews.date || new Date().toLocaleDateString(),
+            summary: firstNews.content || firstNews.summary || firstNews.description || '',
+            category: firstNews.category || 'General',
+            imageUrl: firstNews.image_url || firstNews.imageUrl
+          });
+        }
+      }
+    } catch (err) {
+      console.error('Failed to fetch latest news:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchLatestNews();
+
+    // Admin Dashboard က Post တင်လိုက်တိုင်း Auto Live Update ဖြစ်စေရန် Listener
+    const handleNewsUpdate = () => fetchLatestNews();
+    window.addEventListener('newsUpdated', handleNewsUpdate);
+
+    return () => {
+      window.removeEventListener('newsUpdated', handleNewsUpdate);
+    };
+  }, [fetchLatestNews]);
 
   const handleNavClick = (target: NavTarget) => {
     onNavigate?.(target);
@@ -160,6 +196,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </div>
           </section>
 
+          {/* DYNAMIC LATEST NEWS SECTION */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
@@ -167,20 +204,33 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
                 <Newspaper className="w-5 h-5 text-slate-500" />
               </div>
 
-              <div className="bg-slate-50 p-4 rounded-lg border-l-4 border-[#0a192f]">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-                  {latestNews.date}
-                </span>
-                <span className="inline-block bg-blue-100 text-blue-800 text-[10px] font-semibold px-2 py-0.5 rounded mb-2">
-                  {latestNews.category}
-                </span>
-                <h3 className="font-semibold text-slate-800 text-base mb-2 leading-snug">
-                  {latestNews.title}
-                </h3>
-                <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                  {latestNews.summary}
-                </p>
-              </div>
+              {loading ? (
+                <div className="text-sm text-slate-400 py-4 text-center">Loading latest news...</div>
+              ) : latestNews ? (
+                <div className="bg-slate-50 p-4 rounded-lg border-l-4 border-[#0a192f]">
+                  {latestNews.imageUrl && (
+                    <img 
+                      src={latestNews.imageUrl} 
+                      alt={latestNews.title} 
+                      className="w-full h-28 object-cover rounded mb-3"
+                    />
+                  )}
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+                    {latestNews.date}
+                  </span>
+                  <span className="inline-block bg-blue-100 text-blue-800 text-[10px] font-semibold px-2 py-0.5 rounded mb-2">
+                    {latestNews.category}
+                  </span>
+                  <h3 className="font-semibold text-slate-800 text-base mb-2 leading-snug">
+                    {latestNews.title}
+                  </h3>
+                  <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                    {latestNews.summary}
+                  </p>
+                </div>
+              ) : (
+                <div className="text-sm text-slate-400 py-4 text-center">No news available.</div>
+              )}
             </div>
 
             <button

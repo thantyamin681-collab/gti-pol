@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import logoImg from './assets/logo.jpg';
 import campusImg from './assets/campus.jpg';
 import { 
@@ -9,10 +9,8 @@ import {
   Calendar, 
   ChevronRight, 
   Newspaper,
-  // HelpCircle
 } from 'lucide-react';
 
-// Complete Navigation View Targets including admin support
 export type NavTarget = 
   | 'home' 
   | 'department' 
@@ -51,7 +49,6 @@ export interface NewsItem {
 const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Consolidated Navigation Links Data
   const navLinks: NavLink[] = [
     { name: 'Home', href: '/', view: 'home', target: 'home' },
     { name: 'Department', href: '/department', view: 'department', target: 'department' },
@@ -61,7 +58,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     { name: 'School Info', href: '/school-info', view: 'schoolinfo', target: 'schoolinfo' },
   ];
 
-  // Latest News State with Default Fallback Data
   const [latestNews, setLatestNews] = useState<NewsItem>({
     id: 'news-2026-001',
     title: 'Academic Year 2026-2027 Registration & Course Schedules',
@@ -70,7 +66,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     category: 'Academic Announcement'
   });
 
-  // Centralized Navigation Handler (Updates URL history + triggers onNavigate view switch)
   const handleNavClick = (href: string, view: NavTarget) => {
     setIsMobileMenuOpen(false);
 
@@ -82,8 +77,8 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
     }
   };
 
-  // D1 Database Auto-fetch for News
-  useEffect(() => {
+  // API မှ Data ရယူသည့် Function
+  const fetchLatestNews = useCallback(() => {
     fetch('/api/news')
       .then((res) => res.json())
       .then((data: any) => {
@@ -102,15 +97,21 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
       .catch((err) => console.log("Using default fallback news data:", err));
   }, []);
 
+  // Component Mount ဖြစ်ချိန်နှင့် Admin ဘက်မှ Post တင်လိုက်ချိန်တွင် Auto Refetch လုပ်ရန်
+  useEffect(() => {
+    fetchLatestNews();
+
+    window.addEventListener('newsUpdated', fetchLatestNews);
+    return () => {
+      window.removeEventListener('newsUpdated', fetchLatestNews);
+    };
+  }, [fetchLatestNews]);
+
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
-      
-      {/* 1. Navigation Bar (Responsive Sticky Header) */}
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            
-            {/* Logo & Branding */}
             <div 
               onClick={() => handleNavClick('/', 'home')}
               className="flex items-center space-x-3 cursor-pointer"
@@ -130,7 +131,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <button
@@ -144,7 +144,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               ))}
             </div>
 
-            {/* Mobile Menu Toggle Button */}
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -157,7 +156,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu Drawer */}
         {isMobileMenuOpen && (
           <div className="md:hidden bg-[#071325] border-t border-slate-800 px-4 pt-2 pb-4 space-y-2">
             {navLinks.map((link) => (
@@ -190,11 +188,9 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* 3. Main Content Layout: Multi-Column Grid */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* College Background Section (6 cols out of 12) */}
           <section className="lg:col-span-6 bg-white p-6 sm:p-8 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-6 inline-block">
@@ -215,7 +211,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </div>
           </section>
 
-          {/* Dynamic Latest News Section (3 cols out of 12) */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between border-b-2 border-[#0a192f] pb-2 mb-4">
@@ -255,7 +250,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
             </button>
           </section>
 
-          {/* Quick Links Section (3 cols out of 12) */}
           <section className="lg:col-span-3 bg-white p-6 rounded-xl shadow-sm border border-slate-200/80 flex flex-col justify-between h-full">
             <div>
               <h2 className="text-xl font-bold text-[#0a192f] border-b-2 border-[#0a192f] pb-2 mb-4 inline-block">
@@ -304,28 +298,18 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         </div>
       </main>
 
-      {/* Floating FAQ Action Button*/}
-      {/* <a
-        href="/faq"
-        aria-label="Frequently Asked Questions"
-        className="fixed bottom-20 right-6 z-50 bg-[#0a192f] hover:bg-slate-800 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center border border-white/20"
-      >
-        <HelpCircle className="w-7 h-7 text-[#64ffda]" /> 
-      </a> */}
-
-      {/* 4. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
-  <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
-    <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
-    <button
-      type="button"
-      onClick={() => handleNavClick('/admin', 'admin')}
-      className="text-xs text-slate-500 hover:text-[#64ffda] mt-2 sm:mt-0 transition-colors"
-    >
-      Admin Portal
-    </button>
-  </div>
-</footer>
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between">
+          <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>
+          <button
+            type="button"
+            onClick={() => handleNavClick('/admin', 'admin')}
+            className="text-xs text-slate-500 hover:text-[#64ffda] mt-2 sm:mt-0 transition-colors"
+          >
+            Admin Portal
+          </button>
+        </div>
+      </footer>
     </div>
   );
 };

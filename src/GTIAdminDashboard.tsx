@@ -95,6 +95,10 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
         setNewsTitle('');
         setNewsContent('');
         setNewsImage(null);
+
+        // Global Event ထုတ်ပေးခြင်းဖြင့် Homepage တွင် ရလဒ် ချက်ချင်း Update ဖြစ်စေမည်
+        window.dispatchEvent(new Event('newsUpdated'));
+
         showNotification('News & Image updated successfully to D1!');
       } else {
         alert('Database သို့ တင်ရာတွင် အဆင်မပြေပါခင်ဗျာ။');

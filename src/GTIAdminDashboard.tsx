@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { 
   Newspaper, 
   Plus, 
+  Trash2,
   CheckCircle, 
   ArrowLeft 
 } from 'lucide-react';
@@ -23,7 +24,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
   const [newsContent, setNewsContent] = useState('');
   const [newsImage, setNewsImage] = useState<File | null>(null);
 
-  // Database ထဲမှ News များ ဆွဲယူခြင်း (History Persistent ဖြစ်စေရန်)
+  // Database ထဲမှ News များ ဆွဲယူခြင်း
   const fetchNewsList = useCallback(async () => {
     try {
       const res = await fetch('/api/news');
@@ -76,7 +77,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
           title: newsTitle,
           category: newsCategory,
           content: newsContent,
-          description: newsContent, // Field name တူညီစေရန် နှစ်မျိုးလုံး ပို့ပေးခြင်း
+          description: newsContent,
           image_url: imageUrlBase64,
           imageUrl: imageUrlBase64
         })
@@ -87,12 +88,8 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
         setNewsContent('');
         setNewsImage(null);
 
-        // ၁။ Database မှ Data သစ်များကို ပြန်ဆွဲယူမည် (History Update ဖြစ်စေရန်)
         await fetchNewsList();
-
-        // ၂။ Homepage / တခြား Component များ သိရှိစေရန် Event Trigger ပေးမည်
         window.dispatchEvent(new Event('newsUpdated'));
-
         showNotification('News posted and synced successfully!');
       } else {
         alert('Database သို့ တင်ရာတွင် အဆင်မပြေပါခင်ဗျာ။');
@@ -102,6 +99,28 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
       alert('Upload Error ဖြစ်ပွားခဲ့ပါသည်။');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // POST ဖျက်ရန် FUNCTION
+  const handleDeleteNews = async (id: number | string) => {
+    if (!window.confirm("ဒီ Post ကို ဖျက်ရန် သေချာပါသလား?")) return;
+
+    try {
+      const res = await fetch(`/api/news?id=${id}`, {
+        method: 'DELETE',
+      });
+
+      if (res.ok) {
+        await fetchNewsList();
+        window.dispatchEvent(new Event('newsUpdated'));
+        showNotification('News deleted successfully!');
+      } else {
+        alert('Post ဖျက်ရာတွင် အဆင်မပြေပါခင်ဗျာ။');
+      }
+    } catch (err) {
+      console.error('Failed to delete news:', err);
+      alert('Error occurred while deleting news.');
     }
   };
 
@@ -202,7 +221,7 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-[#64ffda] text-[#0a192f] font-bold py-2.5 rounded-lg hover:bg-[#64ffda]/80 transition-colors disabled:opacity-50"
+                  className="w-full bg-[#64ffda] text-[#0a192f] font-bold py-2.5 rounded-lg hover:bg-[#64ffda]/80 transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   {isSubmitting ? 'Publishing...' : 'Publish News'}
                 </button>
@@ -226,6 +245,15 @@ export const GTIAdminDashboard: React.FC<GTIAdminDashboardProps> = ({ onBackToHo
                           Date: {item.created_at || item.date || 'N/A'}
                         </p>
                       </div>
+
+                      {/* DELETE BUTTON */}
+                      <button
+                        onClick={() => handleDeleteNews(item.id)}
+                        className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors cursor-pointer ml-4"
+                        title="Delete Post"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
                     </div>
                   ))
                 )}

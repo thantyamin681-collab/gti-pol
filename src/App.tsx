@@ -17,6 +17,7 @@ import SchoolInfo from './SchoolInfo';
 import DepartmentApp from './dept';
 import { GTILogin } from './GTILogin';
 import { GTIAdminDashboard } from './GTIAdminDashboard';
+import { BubbleChat } from 'flowise-embed-react';
 
 type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info' | 'department'  | 'schoolinfo';
 
@@ -99,7 +100,6 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   };
 
   return (
-    
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -353,22 +353,34 @@ export default function App() {
     window.history.pushState({}, '', route);
   };
 
-  switch (currentView) {
-    case 'result':
-      return <Result onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
-    case 'activity':
-      return <Activity onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
-    case 'latest-news':
-      return <SchoolNews onNavigate={handleNavigate} />;
-    case 'school-info':
-      return <SchoolInfo onNavigate={handleNavigate} />;
-    case 'department':
-      return <DepartmentApp onNavigate={handleNavigate} />;
-    case 'login':
-      return <GTILogin onLoginSuccess={() => handleNavigate('admin')} onBackToHome={() => handleNavigate('home')} />;
-    case 'admin':
-      return <GTIAdminDashboard onBackToHome={() => handleNavigate('home')} />;
-    default:
-      return <GTIHomePage onNavigate={handleNavigate} />;
-  }
+  const renderView = () => {
+    switch (currentView) {
+      case 'result':
+        return <Result onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
+      case 'activity':
+        return <Activity onBackToHome={() => handleNavigate('home')} onNavigate={handleNavigate} />;
+      case 'latest-news':
+        return <SchoolNews onNavigate={handleNavigate} />;
+      case 'school-info':
+        return <SchoolInfo onNavigate={handleNavigate} />;
+      case 'department':
+        return <DepartmentApp onNavigate={handleNavigate} />;
+      case 'login':
+        return <GTILogin onLoginSuccess={() => handleNavigate('admin')} onBackToHome={() => handleNavigate('home')} />;
+      case 'admin':
+        return <GTIAdminDashboard onBackToHome={() => handleNavigate('home')} />;
+      default:
+        return <GTIHomePage onNavigate={handleNavigate} />;
+    }
+  };
+
+  return (
+    <>
+      {renderView()}
+      <BubbleChat
+        chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
+        apiHost="http://68.183.224.154:7000"
+      />
+    </>
+  );
 }

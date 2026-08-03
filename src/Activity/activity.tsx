@@ -346,7 +346,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
             <div className="bg-[#0a192f] text-white p-6 sm:p-10 rounded-2xl border border-slate-800 shadow-xl w-full box-border">
               
               {/* Featured Image / Video Viewer */}
-              <div className="relative w-full h-[260px] sm:h-[400px] rounded-xl overflow-hidden mb-6 shadow-2xl">
+              <div className="relative w-full h-65 sm:h-100 rounded-xl overflow-hidden mb-6 shadow-2xl">
                 {selectedActivity.images[activeImageIndex]?.endsWith('.mp4') ? (
                   <video 
                     src={selectedActivity.images[activeImageIndex]} 
@@ -434,7 +434,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
         ) : (
           /* LIST VIEW */
           <>
-            <header className="relative py-12 sm:py-20 px-4 sm:px-8 text-center text-white mb-8 w-full box-border overflow-hidden min-h-[300px] flex flex-col justify-center items-center">
+            <header className="relative py-12 sm:py-20 px-4 sm:px-8 text-center text-white mb-8 w-full box-border overflow-hidden min-h-75 flex flex-col justify-center items-center">
               <div 
                 className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
                 style={{ backgroundImage: `url(${activitiesList[currentBgIndex].images[0]})` }}
@@ -467,7 +467,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
               </div>
             </header>
 
-            <main className="flex-1 max-w-[1100px] w-full mx-auto px-4 sm:px-8 pb-16 box-border">
+            <main className="flex-1 max-w-275 w-full mx-auto px-4 sm:px-8 pb-16 box-border">
               <div className="flex flex-col gap-6 w-full">
                 {activitiesList.map((activity, index) => {
                   const isEven = index % 2 === 0;
@@ -479,8 +479,8 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                       className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} bg-[#0a192f] border border-slate-800 rounded-2xl cursor-pointer transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden md:overflow-visible my-2 w-full`}
                     >
                       {/* Responsive Image/Video Collage */}
-                      <div className="w-full md:w-[220px] shrink-0 relative p-4 md:p-0 min-h-[200px] md:min-h-auto flex justify-center items-center">
-                        <div className={`relative md:absolute md:top-1/2 md:-translate-y-1/2 ${isEven ? 'md:-left-4' : 'md:-right-4'} w-full max-w-[280px] md:w-[175px] h-[160px] md:h-[130px] rounded-xl overflow-hidden shadow-2xl bg-[#0a192f] border-2 sm:border-3 border-white z-20 group-hover:scale-105 transition-transform duration-300`}>
+                      <div className="w-full md:w-55 shrink-0 relative p-4 md:p-0 min-h-50 md:min-h-auto flex justify-center items-center">
+                        <div className={`relative md:absolute md:top-1/2 md:-translate-y-1/2 ${isEven ? 'md:-left-4' : 'md:-right-4'} w-full max-w-70 md:w-43.75 h-40 md:h-32.5 rounded-xl overflow-hidden shadow-2xl bg-[#0a192f] border-2 sm:border-3 border-white z-20 group-hover:scale-105 transition-transform duration-300`}>
                           {activity.images[0]?.endsWith('.mp4') ? (
                             <video src={activity.images[0]} className="w-full h-full object-cover" muted playsInline />
                           ) : (
@@ -488,7 +488,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                           )}
                         </div>
 
-                        <div className={`hidden lg:block absolute top-[12%] ${isEven ? 'left-[65px]' : '-right-[55px]'} w-[110px] h-[80px] rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-10 transition-all duration-400 group-hover:-translate-y-3 group-hover:scale-110 group-hover:-rotate-6`}>
+                        <div className={`hidden lg:block absolute top-[12%] ${isEven ? 'left-16.25' : '-right-13.75'} w-27.5 h-20 rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-10 transition-all duration-400 group-hover:-translate-y-3 group-hover:scale-110 group-hover:-rotate-6`}>
                           {activity.images[1]?.endsWith('.mp4') ? (
                             <video src={activity.images[1]} className="w-full h-full object-cover" muted playsInline />
                           ) : (
@@ -496,7 +496,7 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
                           )}
                         </div>
 
-                        <div className={`hidden lg:block absolute bottom-[8%] ${isEven ? 'left-[55px]' : '-right-[45px]'} w-[100px] h-[75px] rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-30 transition-all duration-400 group-hover:translate-y-3 group-hover:scale-110 group-hover:rotate-6`}>
+                        <div className={`hidden lg:block absolute bottom-[8%] ${isEven ? 'left-13.75' : '-right-11.25'} w-25 h-18.75 rounded-lg overflow-hidden shadow-xl bg-[#0a192f] border-2 border-white z-30 transition-all duration-400 group-hover:translate-y-3 group-hover:scale-110 group-hover:rotate-6`}>
                           {activity.images[2]?.endsWith('.mp4') ? (
                             <video src={activity.images[2]} className="w-full h-full object-cover" muted playsInline />
                           ) : (

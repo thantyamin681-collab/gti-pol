@@ -26,7 +26,7 @@ import { AtmPage } from './deptsx/atmres';
 import { CivilPage } from './deptsx/civilres';
 import { MechPage } from './deptsx/mechres';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info'| 'department';
 
 interface NavLink {
   name: string;
@@ -62,11 +62,11 @@ export function Result({ onBackToHome, onNavigate }: ResultProps) {
 
   const navLinks: NavLink[] = [
     { name: 'Home', target: 'home' },
-    { name: 'Department', target: 'home' },
+    { name: 'Department', target: 'department' },
     { name: 'Result', target: 'result' },
     { name: 'Activities', target: 'activity' },
-    { name: 'Latest News', target: 'home' },
-    { name: 'School Info', target: 'home' },
+    { name: 'Latest News', target: 'latest-news' },
+    { name: 'School Info', target: 'school-info' },
   ];
 
   const handleNavClick = (target: NavTarget) => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import logoImg from './assets/logo.jpg';
 import { Menu, X } from 'lucide-react';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info'| 'department';
 
 interface NewsItem {
   id: number | string;
@@ -80,7 +80,7 @@ export default function SchoolNews({ onBackToHome, onNavigate }: SchoolNewsProps
 
   const navLinks: NavLink[] = [
     { name: 'Home', target: 'home' },
-    { name: 'Department', target: 'home' },
+    { name: 'Department', target: 'department' },
     { name: 'Result', target: 'result' },
     { name: 'Activities', target: 'activity' },
     { name: 'Latest News', target: 'latest-news' },

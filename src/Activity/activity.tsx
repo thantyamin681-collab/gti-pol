@@ -67,7 +67,7 @@ import homageImg2 from '../assets/homage2.jpg';
 import homageImg3 from '../assets/homage3.jpg';
 import homageImg4 from '../assets/homage4.jpg';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info'| 'department';
 
 interface NavLink {
   name: string;
@@ -241,11 +241,11 @@ export function Activity({ onBackToHome, onNavigate }: ActivityProps) {
 
   const navLinks: NavLink[] = [
     { name: 'Home', target: 'home' },
-    { name: 'Department', target: 'home' },
+    { name: 'Department', target: 'department' },
     { name: 'Result', target: 'result' },
     { name: 'Activities', target: 'activity' },
-    { name: 'Latest News', target: 'home' },
-    { name: 'School Info', target: 'home' },
+    { name: 'Latest News', target: 'latest-news' },
+    { name: 'School Info', target: 'school-info' },
   ];
 
   const handleNavClick = (target: NavTarget) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import logoImg from './assets/logo.jpg';
+import campusImg from './assets/campus.jpg';
 import {
   Menu,
   X,
@@ -17,7 +18,7 @@ import DepartmentApp from './dept';
 import { GTILogin } from './GTILogin';
 import { GTIAdminDashboard } from './GTIAdminDashboard';
 
-type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info' | 'department' | 'news' | 'schoolinfo';
+type NavTarget = 'home' | 'login' | 'admin' | 'result' | 'activity' | 'latest-news' | 'school-info' | 'department'  | 'schoolinfo';
 
 interface NavLink {
   name: string;
@@ -98,6 +99,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
   };
 
   return (
+    
     <div className="min-h-screen bg-[#f0f4f8] text-slate-800 flex flex-col font-sans">
       <nav className="sticky top-0 z-50 bg-[#0a192f] text-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,7 +162,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
       <section className="relative h-80 sm:h-96 md:h-112.5 bg-slate-900 text-white flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80"
+          src={campusImg}
           alt="GTI Campus"
           className="absolute inset-0 w-full h-full object-cover opacity-30"
         />

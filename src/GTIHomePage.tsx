@@ -108,12 +108,19 @@ export const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 
       {/* Hero Banner */}
       <section className="relative h-72 bg-slate-900 text-white flex items-center justify-center overflow-hidden">
-        <img src={campusImg} alt="GTI Campus" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+        <img 
+          src={campusImg} 
+          alt="GTI Campus" 
+          className="absolute inset-0 w-full h-full object-cover opacity-60" 
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80';
+          }}
+        />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-2">
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-2 drop-shadow-md">
             Government Technical Institute (Pyin Oo Lwin)
           </h1>
-          <p className="text-base sm:text-lg text-slate-200 font-light">
+          <p className="text-base sm:text-lg text-slate-200 font-light drop-shadow">
             Empowering future engineers and leaders with practical technical education.
           </p>
         </div>
@@ -131,9 +138,12 @@ export const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </h2>
               <div className="flex flex-col sm:flex-row gap-6 items-center">
                 <img
-                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80"
+                  src={campusImg}
                   alt="GTI Campus"
                   className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80';
+                  }}
                 />
                 <p className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
                   Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise.

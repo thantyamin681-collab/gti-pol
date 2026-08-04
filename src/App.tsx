@@ -378,9 +378,9 @@ export default function App() {
     <>
       {renderView()}
       <BubbleChat
-        chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
-        apiHost="https://flowise-proxy.thantyamin681.workers.dev/"
-      />
+  chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
+  apiHost="https://corsproxy.io/?http://68.183.224.154:7000"
+/>
     </>
   );
 }

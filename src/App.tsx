@@ -378,15 +378,10 @@ export default function App() {
     <>
       {renderView()}
       <BubbleChat
-<<<<<<< HEAD
+
         chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
         apiHost="https://gti-pol.pages.dev"
       />
-=======
-  chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
-  apiHost="https://corsproxy.io/?http://68.183.224.154:7000"
-/>
->>>>>>> 78d4c9418ecfc55d228d325923f44eb31a06b3eb
     </>
   );
 }

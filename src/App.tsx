@@ -380,7 +380,7 @@ export default function App() {
       <BubbleChat
 
         chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
-        apiHost="https://api.allorigins.win/raw?url=http://68.183.224.154:7000"
+        apiHost="https://wfdev.akarizen.ai"
       />
     </>
   );

@@ -409,10 +409,10 @@ export default function App() {
   return (
     <>
       {renderView()}
-      <BubbleChat
-        chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
-        apiHost="https://wfdev.akarizen.ai"
-      />
+     <BubbleChat
+        chatflowid={import.meta.env.VITE_CHATFLOW_ID}
+        apiHost={import.meta.env.VITE_API_HOST}
+/>
     </>
   );
 }

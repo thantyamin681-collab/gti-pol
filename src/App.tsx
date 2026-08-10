@@ -380,7 +380,7 @@ export default function App() {
       <BubbleChat
 
         chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
-        apiHost="https://gti-pol.pages.dev"
+        apiHost="https://wfdev.akarizen.ai"
       />
     </>
   );

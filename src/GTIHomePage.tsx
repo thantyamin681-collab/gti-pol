@@ -118,8 +118,9 @@ export const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-2 drop-shadow-md">
-            Government Technical Institute<br/> (Pyin Oo Lwin)
-          </h1>
+      Government Technical Institute <br />
+      <span className="inline-block whitespace-nowrap">(Pyin Oo Lwin)</span>
+    </h1>
           <p className="text-base sm:text-lg text-slate-200 font-light drop-shadow">
             Empowering future engineers and leaders with practical technical education.
           </p>

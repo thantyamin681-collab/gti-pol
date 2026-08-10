@@ -56,6 +56,15 @@ import ep5Img from '../assets/ep5.jpg';
 import ep6Img from '../assets/ep6.jpg';
 import ep7Img from '../assets/ep7.jpg';
 import ep8Img from '../assets/ep8.jpg';
+import me1Img from '../assets/me1.jpg';
+import me2Img from '../assets/me2.jpg';
+import me3Img from '../assets/me3.jpg';
+import me4Img from '../assets/me4.jpg';
+import me9Img from '../assets/me9.jpg';
+import me5Img from '../assets/me5.jpg';
+import me6Img from '../assets/me6.jpg';
+import me7Img from '../assets/me7.jpg';
+import me8Img from '../assets/me8.jpg';
 
 import dept1Img from '../assets/itlogo.jpg';
 import dept2Img from '../assets/civillogo.jpg';
@@ -213,7 +222,7 @@ Thermal and Fluid Engineering: Designing systems related to heat transfer, therm
 
 Mechanics and Machine Design: Designing mechanical components, mechanisms, and structural parts to ensure durability, efficiency, and safety under various operational loads.`
       },
-      { type: 'image', src: [mechanicalImg, mechanicalImg, mechanicalImg], alt: 'Mechanical lab', caption: 'Mechanical lab and projects' },
+      { type: 'image', src: [me1Img, me2Img, me3Img,me4Img,me5Img,me6Img,me7Img,me8Img,me9Img], alt: 'Mechanical lab', caption: 'Mechanical lab and projects' },
     ]
       },
   {

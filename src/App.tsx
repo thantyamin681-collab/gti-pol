@@ -168,7 +168,7 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
         />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4 drop-shadow-md">
-            Government Technical Institute (Pyin Oo Lwin)
+            Government Technical Institute<br/> (Pyin Oo Lwin)
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light leading-relaxed">
             Empowering future engineers and leaders with practical technical education and innovation.
@@ -309,6 +309,38 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
 export default function App() {
   const [currentView, setCurrentView] = useState<NavTarget>('home');
 
+  // Dynamic Browser Tab Title လိုက်ပြောင်းပေးမည့် အပိုင်း
+  useEffect(() => {
+    switch (currentView) {
+      case 'department':
+        document.title = 'Department - GTI (Pyin Oo Lwin)';
+        break;
+      case 'result':
+        document.title = 'Exam Results - GTI (Pyin Oo Lwin)';
+        break;
+      case 'activity':
+        document.title = 'Activities - GTI (Pyin Oo Lwin)';
+        break;
+      case 'latest-news':
+        document.title = 'Latest News - GTI (Pyin Oo Lwin)';
+        break;
+      case 'school-info':
+      case 'schoolinfo':
+        document.title = 'School Info - GTI (Pyin Oo Lwin)';
+        break;
+      case 'login':
+        document.title = 'Admin Login - GTI (Pyin Oo Lwin)';
+        break;
+      case 'admin':
+        document.title = 'Admin Dashboard - GTI (Pyin Oo Lwin)';
+        break;
+      case 'home':
+      default:
+        document.title = 'GTI (Pyin Oo Lwin)';
+        break;
+    }
+  }, [currentView]);
+
   useEffect(() => {
     const handlePopState = () => {
       const pathname = window.location.pathname;
@@ -378,7 +410,6 @@ export default function App() {
     <>
       {renderView()}
       <BubbleChat
-
         chatflowid="ed240bf9-1470-445c-80e5-ea44a5d5fc26"
         apiHost="https://wfdev.akarizen.ai"
       />

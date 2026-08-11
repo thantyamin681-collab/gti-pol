@@ -191,8 +191,8 @@ const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
                 />
                 <div className="sm:w-1/2 text-sm sm:text-base text-slate-600 leading-relaxed">
                   <p>
-                    Government Technical Institute (Pyin Oo Lwin) provides high-quality diploma programs designed to build technical proficiency and practical expertise. Located in Pyin Oo Lwin, our college nurtures academic excellence and technological advancement.
-                  </p>
+                    အစိုးရစက်မှုလက်မှုသိပ္ပံ (ပြင်ဦးလွင်) ကို ၁၉၉၈ ခုနှစ်တွင် စတင်တည်ထောင်ခဲ့ပြီး မန္တလေးတိုင်းဒေသကြီး၊ ပြင်ဦးလွင်မြို့တွင် တည်ရှိပါသည်။ ပညာရေးဝန်ကြီးဌာန၊ နည်းပညာ၊ သက်မွေးပညာနှင့် လေ့ကျင့်ရေးဦးစီးဌာန (DTVET) ၏ ကွပ်ကဲမှုအောက်တွင် နိုင်ငံတော်၏ စက်မှုလက်မှုနှင့် နည်းပညာကဏ္ဍအတွက် အရည်အသွေးမြင့်မားသော နည်းပညာရှင်များ မွေးထုတ်ပေးလျက်ရှိပါသည်။
+                </p>
                 </div>
               </div>
             </div>

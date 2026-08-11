@@ -390,8 +390,34 @@ export default function SchoolInfo({ onBackToHome, onNavigate }: SchoolInfoProps
           </div>
         </section>
       </main>
+          {/*4. map*/}
+        
+  
+    <div className="school-info-container">
+      {/* Other School Info Sections */}
 
-      {/* 4. Footer */}
+      {/* Google Map Section */}
+      <section className="my-8">
+        <h2 className="text-2xl font-bold mb-4">School Location</h2>
+        <div className="w-full h-100 overflow-hidden rounded-2xl shadow-lg border border-gray-200">
+          <iframe
+            title="GTI Pyin Oo Lwin Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.857311545648!2d96.47167637590895!3d22.0167664528148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30cb9f0c610eb84d%3A0xcd9d46de15f216cd!2sG.T.I%20Pyin%20Oo%20Lwin!5e0!3m2!1sen!2smm!4v1710000000000!5m2!1sen!2smm"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </section>
+    </div>
+  
+
+
+
+      {/* 5. Footer */}
       <footer className="bg-[#0a192f] text-slate-400 text-sm py-8 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p>© {new Date().getFullYear()} Government Technical Institute (Pyin Oo Lwin). All Rights Reserved.</p>

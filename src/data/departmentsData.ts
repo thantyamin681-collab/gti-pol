@@ -83,32 +83,33 @@ export const departments: Department[] = [
     content: [
       {
         type: 'text',
-        text: `Civil engineering(Civil), the profession of designing and executing plans for structural works that serve the general public, such as dams, bridges, aqueducts, canals, highways, power plants, sewerage systems, and other infrastructure. The term was first used in the 18th century to distinguish the newly recognized profession from military engineering, until then preeminent. From earliest times, however, engineers have engaged in peaceful activities, and many of the civil engineering works of ancient and medieval times—such as the Roman public baths, roads, bridges, and aqueducts; the Flemish canals; the Dutch sea defenses; the French Gothic cathedrals; and many other monuments—reveal a history of inventive genius and persistent experimentation.`
+        text: `ဆောက်လုပ်ရေး အင်ဂျင်နီယာပညာရပ် (Civil engineering) ဆိုသည်မှာ ရေကာတာများ၊ တံတားများ၊ ရေသွယ်မြောင်းများ၊ တူးမြောင်းများ၊ အဓိကလမ်းမကြီးများ၊ ဓာတ်အားပေးစက်ရုံများ၊ မိလ္လာစနစ်များ နှင့် အခြားသော အခြေခံအဆောက်အအုံများကဲ့သို့သော အများပြည်သူအတွက် ဝန်ဆောင်မှုပေးသည့် တည်ဆောက်ရေးလုပ်ငန်းများအတွက် အစီအစဉ်များကို ရေးဆွဲခြင်းနှင့် အကောင်အထည်ဖော်ခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။
+
+"Civil engineering" ဟုသော အသုံးအနှုန်းကို ၁၈ ရာစုနှစ်တွင် အသစ်ပေါ်ပေါက်လာသော ဤပညာရပ်ကို ယခင်က လူသိအများဆုံးဖြစ်ခဲ့သည့် စစ်ဘက်ဆိုင်ရာ အင်ဂျင်နီယာပညာရပ် (military engineering) နှင့် ခွဲခြားသိရှိနိုင်ရန်အတွက် စတင်အသုံးပြုခဲ့ခြင်း ဖြစ်သည်။ သို့သော် ရှေးဦးကာလများကတည်းကပင် အင်ဂျင်နီယာများသည် ငြိမ်းချမ်းရေးဆိုင်ရာ လုပ်ငန်းများတွင် ပါဝင်လုပ်ကိုင်ခဲ့ကြပြီး ရှေးခေတ်နှင့် အလယ်ခေတ်တို့၏ ရေပူစမ်း/ရေချိုးကန်များ၊ လမ်းများ၊ တံတားများနှင့် ရေသွယ်မြောင်းများကဲ့သို့သော ရောမခေတ် အဆောက်အအုံများ၊ ဖလန်းဒားစ် (Flemish) တူးမြောင်းများ၊ ဒတ်ခ်ျ (Dutch) ပင်လယ်ရေကာတာများ၊ ပြင်သစ်ဂေါ့သစ် (Gothic) ဘုရားကျောင်းများနှင့် အခြားသော အထိမ်းအမှတ်အဆောက်အအုံများစွာတို့သည် တီထွင်ဖန်တီးနိုင်စွမ်းရှိသော ဉာဏ်ပညာနှင့် စဉ်ဆက်မပြတ် စမ်းသပ်လုပ်ဆောင်ခဲ့ကြသည့် သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။`
       },
       {
         type: 'markdown',
-        markdown: `Civil Engineering can be divided into two main categories based on the nature of the work:
+        markdown: `ဆောက်လုပ်ရေး အင်ဂျင်နီယာပညာရပ် (Civil Engineering) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-- **Design and Planning:** This involves office-based work such as drafting designs, calculating structural loads, and creating project plans before construction begins.
+ဒီဇိုင်းနှင့် စီမံကိန်းရေးဆွဲခြင်း (Design and Planning): ဤသည်မှာ ဆောက်လုပ်ရေးလုပ်ငန်းများ မစတင်မီ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး ဒီဇိုင်းများ ရေးဆွဲခြင်း၊ တည်ဆောက်မည့် အဆောက်အအုံ၏ ဝန်ထမ်းအား/ခံနိုင်ဝန်များကို တွက်ချက်ခြင်းနှင့် စီမံကိန်းအစီအစဉ်များ ဖန်တီးခြင်းတို့ ပါဝင်သည်။
 
-- **Construction and Execution:** This involves site-based, practical work including the use of heavy machinery, manual labor, and managing the actual construction process on-site.`
+ဆောက်လုပ်ခြင်းနှင့် အကောင်အထည်ဖော်ခြင်း (Construction and Execution): ဤသည်မှာ လုပ်ငန်းခွင်အခြေပြု လုပ်ဆောင်ရသည့် လက်တွေ့ကျသော လုပ်ငန်းများဖြစ်ပြီး လေးလံသော စက်ယន្តတရားကြီးများ အသုံးပြုခြင်း၊ လူအာဏာဖြင့် လုပ်ကိုင်ခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း တည်ဆောက်ရေးလုပ်ငန်းစဉ်များကို တိုက်ရိုက် စီမံခန့်ခွဲခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Civil Engineering
-Additionally, Civil Engineering encompasses several specialized branches:
+        markdown: `ဆောက်လုပ်ရေး အင်ဂျင်နီယာပညာရပ် (Civil Engineering) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Structural Engineering: Calculating the load capacity and designing buildings, bridges, and dams.
+Structural Engineering (တည်ဆောက်ပုံဆိုင်ရာ အင်ဂျင်နီယာပညာရပ်): အဆောက်အအုံများ၊ တံတားများနှင့် ရေကာတာများ၏ ခံနိုင်ဝန်စွမ်းရည်ကို တွက်ချက်ခြင်းနှင့် ဒီဇိုင်းရေးဆွဲခြင်း။
 
-Geotechnical Engineering: Studying the properties of soil and rock to ensure the stability of foundations.
+Geotechnical Engineering (မြေဧရိယာနှင့် မြေဆီလွှာဆိုင်ရာ အင်ဂျင်နီယာပညာရပ်): အခြေခံအုတ်မြစ်များ တည်ငြိမ်ခိုင်မာစေရန် မြေဆီလွှာနှင့် ကျောက်သားတို့၏ သတ္တိများကို လေ့လာခြင်း။
 
-Transportation Engineering: Designing and managing transportation systems such as highways, railways, airports, and bridges.
+Transportation Engineering (သယ်ယူပို့ဆောင်ရေး အင်ဂျင်နီယာပညာရပ်): အဓိကလမ်းမကြီးများ၊ မီးရထားလမ်းများ၊ လေဆိပ်များနှင့် တံတားများကဲ့သို့သော သယ်ယူပို့ဆောင်ရေး စနစ်များကို ဒီဇိုင်းရေးဆွဲခြင်းနှင့် စီမံခန့်ခွဲခြင်း။
 
-Water Resources & Environmental Engineering: Managing water supply systems, sewage systems, flood prevention, and environmental conservation.
+Water Resources & Environmental Engineering (ရေအရင်းအမြစ်နှင့် ပတ်ဝန်းကျင် အင်ဂျင်နီယာပညာရပ်): ရေပေးဝေရေးစနစ်များ၊ မိလ္လာစနစ်များ၊ ရေကြီးရေလျှံမှု ကာကွယ်ရေးနှင့် ပတ်ဝန်းကျင် ထိန်းသိမ်းရေးတို့ကို စီမံခန့်ခွဲခြင်း။
 
-Construction Engineering & Management: Managing construction sites, optimizing time and costs, and coordinating labor and equipment.
+Construction Engineering & Management (ဆောက်လုပ်ရေး အင်ဂျင်နီယာပညာရပ်နှင့် စီမံခန့်ခွဲမှု): ဆောက်လုပ်ရေးလုပ်ငန်းခွင်များကို စီမံခန့်ခွဲခြင်း၊ အချိန်နှင့် ကုန်ကျစရိတ်များကို အကောင်းဆုံးဖြစ်အောင် ဆောင်ရွက်ခြင်း၊ လုပ်အားနှင့် စက်ယន្តတရားများကို ညှိနှိုင်းဆောင်ရွက်ခြင်း။
 
-Surveying & Geomatics: Accurately measuring terrain and locations, map creation, and using GIS technology to collect data.`
+Surveying & Geomatics (မြေတိုင်းတာရေးနှင့် ဂျီအိုမက်တစ်ပညာရပ်): မြေပြင်အနေအထားနှင့် တည်နေရာများကို တိကျစွာ တိုင်းတာခြင်း၊ မြေပုံများ ဖန်တီးခြင်းနှင့် အချက်အလက်များ စုဆောင်းရန် GIS နည်းပညာကို အသုံးပြုခြင်း။`
       },
       { type: 'image', src: [civilImg, civilImg, civilImg], alt: 'Civil building', caption: 'Civil lab and projects' },
     ],
@@ -120,23 +121,23 @@ Surveying & Geomatics: Accurately measuring terrain and locations, map creation,
     content: [
       {
         type: 'text',
-        text: 'Information Technology(IT), the profession of designing, developing, and managing computer systems, software applications, networks, and databases that serve organizations and individuals, such as web platforms, mobile applications, enterprise software, cloud infrastructure, security systems, and other digital solutions. The term represents a modern and rapidly expanding field that evolved alongside the computer revolution to handle digital data and computational tasks. From early computing machinery to modern digital systems—such as enterprise databases, internet protocols, cloud computing networks, mobile operating systems, and countless applications—the history of IT reveals continuous innovation and persistent technological advancement.'
+        text: 'သတင်းအချက်အလက် နည်းပညာ (Information Technology - IT) ဆိုသည်မှာ အဖွဲ့အစည်းများနှင့် တစ်ဦးချင်းစီအတွက် ဝန်ဆောင်မှုပေးသော ကွန်ပျူတာစနစ်များ၊ ဆော့ဖ်ဝဲအပလီကေးရှင်းများ၊ ကွန်ရက်များနှင့် ဒေတာဘေ့စ်များကို ဒီဇိုင်းထုတ်ခြင်း၊ တည်ဆောက်ခြင်းနှင့် စီမံခန့်ခွဲခြင်းဆိုင်ရာ ပညာရပ်ဖြစ်ပြီး ဝဘ်ပလက်ဖောင်းများ၊ မိုဘိုင်းအပလီကေးရှင်းများ၊ လုပ်ငန်းသုံးဆော့ဖ်ဝဲများ၊ ကလောက်ဒ်အခြေခံအဆောက်အအုံများ၊ လုံခြုံရေးစနစ်များနှင့် အခြားသော ဒစ်ဂျစ်တယ်ဖြေရှင်းနည်းများ စသည်တို့ ပါဝင်သည်။ ဤအသုံးအနှုန်းသည် ဒစ်ဂျစ်တယ်အချက်အလက်များနှင့် တွက်ချက်မှုဆိုင်ရာ တာဝန်များကို လုပ်ဆောင်ရန်အတွက် ကွန်ပျူတာတော်လှန်ရေးနှင့်အတူ တိုးတက်လာခဲ့သော ခေတ်မီပြီး လျင်မြန်စွာ ကျယ်ပြန့်လာသည့် နယ်ပယ်တစ်ခုကို ကိုယ်စားပြုပါသည်။ ရှေးဦးကွန်ပျူတာ စက်ယន្តတရားများမှသည် လုပ်ငန်းသုံး ဒေတာဘေ့စ်များ၊ အင်တာနက် ပရိုတိုကောများ၊ ကလောက်ဒ် ကွန်ပျူတာကွန်ရက်များ၊ မိုဘိုင်း အპერတင်းစနစ်များနှင့် ရေတွက်၍မကုန်နိုင်သော အပလီကေးရှင်းများကဲ့သို့သော ခေတ်မီဒစ်ဂျစ်တယ်စနစ်များအထိ IT ၏သမိုင်းကြောင်းသည် စဉ်ဆက်မပြတ် တီထွင်ဆန်းသစ်မှုနှင့် နည်းပညာပိုင်းဆိုင်ရာ တိုးတက်မှုများကို ဖော်ပြနေပါသည်။'
       },
       {
         type: 'markdown',
-        markdown: `Information Technology can be divided into two main categories based on the nature of the work:
+        markdown: `သတင်းအချက်အလက် နည်းပညာ (Information Technology) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Software and Development: This involves office-based or remote work such as writing application code, designing system architectures, testing software, and creating digital solutions before deployment.
+ဆော့ဖ်ဝဲနှင့် ဖွံ့ဖြိုးတိုးတက်ရေး (Software and Development): ဤသည်မှာ ရုံးတွင်း သို့မဟုတ် အဝေးရောက် (remote) အခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး အပလီကေးရှင်း ကုဒ်များ ရေးသားခြင်း၊ စနစ်ဒီဇိုင်းများကို တည်ဆောက်ခြင်း၊ ဆော့ဖ်ဝဲများကို စမ်းသပ်ခြင်းနှင့် (deployment) မတင်မီ ဒစ်ဂျစ်တယ် ဖြေရှင်းနည်းများကို ဖန်တီးခြင်းတို့ ပါဝင်သည်။
 
-Hardware and Infrastructure: This involves hands-on, practical work including setting up physical servers, configuring networking hardware, maintaining data centers, and managing hardware components on-site.`
+ဟာ့ဒ်ဝဲနှင့် အခြေခံအဆောက်အအုံ (Hardware and Infrastructure): ဤသည်မှာ လက်တွေ့လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး ရုပ်ပိုင်းဆိုင်ရာ ဆာဗာများကို တပ်ဆင်ခြင်း၊ ကွန်ရက် ဟာ့ဒ်ဝဲများကို ချိတ်ဆက်ပြင်ဆင်ခြင်း၊ ဒေတာစင်တာများကို ထိန်းသိမ်းခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း ဟာ့ဒ်ဝဲ အစိတ်အပိုင်းများကို စီမံခန့်ခွဲခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Information Technology: Additionally, Information Technology encompasses several specialized branches:
+        markdown: `သတင်းအချက်အလက် နည်းပညာ (Information Technology) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Software Engineering: Designing, developing, and maintaining software applications and systems using programming languages and frameworks.
+Software Engineering (ဆော့ဖ်ဝဲအင်ဂျင်နီယာပညာရပ်): ပရိုဂရမ်းမင်းဘာသာစကားများနှင့် ဖရိန်ဝပ်ခ်များကို အသုံးပြု၍ ဆော့ဖ်ဝဲအပလီကေးရှင်းများနှင့် စနစ်များကို ဒီဇိုင်းထုတ်ခြင်း၊ တည်ဆောက်ခြင်းနှင့် ထိန်းသိမ်းခြင်း။
 
-Network and Systems Administration: Managing and configuring computer networks, servers, and system security to ensure reliable communication and data access.`
+Network and Systems Administration (ကွန်ရက်နှင့် စနစ် စီမံခန့်ခွဲမှု): ယုံကြည်စိတ်ချရသော ဆက်သွယ်မှုနှင့် ဒေတာဝင်ရောက်မှုကို သေချာစေရန် ကွန်ပျူတာကွန်ရက်များ၊ ဆာဗာများနှင့် စနစ်လုံခြုံရေးတို့ကို စီမံခန့်ခွဲခြင်းနှင့် ချိတ်ဆက်ပြင်ဆင်ခြင်း။`
       },
       { type: 'image', src: [it1Img, it2Img, it3Img, it4Img, it5Img, it6Img, it7Img, it8Img, it9Img], alt: 'Computers', caption: 'Computer lab,Projects,Activities' },
     ],
@@ -148,23 +149,23 @@ Network and Systems Administration: Managing and configuring computer networks, 
     content: [
       {
         type: 'text',
-        text: 'Electronic engineering(EC), the profession of designing, developing, and testing electronic equipment, circuits, and systems that serve various applications, such as telecommunications devices, computer hardware, medical instruments, power generation systems, consumer electronics, and other technology infrastructure. The term emerged as a distinct branch of engineering to focus on the behavior and effects of electrons and electrical components, expanding rapidly alongside the advancement of semiconductors and microchips. From early vacuum-tube radios to modern integrated circuits—such as microprocessors, communication transceivers, embedded sensor arrays, renewable energy inverters, and countless digital devices—the history of electronic engineering reveals continuous innovation and persistent technological advancement.'
+        text: 'အီလက်ထရွန်နစ် အင်ဂျင်နီယာပညာရပ် (Electronic Engineering - EC) ဆိုသည်မှာ ကြေးနန်းနှင့် ဆက်သွယ်ရေး ပစ္စည်းများ၊ ကွန်ပျူတာ ဟာ့ဒ်ဝဲများ၊ ဆေးဘက်ဆိုင်ရာ ကိရိယာများ၊ ဓာတ်အားထုတ်လုပ်ရေး စနစ်များ၊ သုံးစွဲသူသုံး အီလက်ထရွန်နစ် ပစ္စည်းများနှင့် အခြားသော နည်းပညာ အခြေခံအဆောက်အအုံများကဲ့သို့သော အမျိုးမျိုးသော အသုံးချမှုများအတွက် ဝန်ဆောင်မှုပေးသည့် အီလက်ထရွန်နစ် ပစ္စည်းကိရိယာများ၊ ဆားကစ်များနှင့် စနစ်များကို ဒီဇိုင်းထုတ်ခြင်း၊ တည်ဆောက်ခြင်းနှင့် စမ်းသပ်ခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် လျှပ်စစ်ဓာတ်အားနှင့် လျှပ်စစ် အစိတ်အပိုင်းများ၏ သဘောသဘာဝနှင့် သက်ရောက်မှုများကို အထူးပြုလေ့လာရန်အတွက် အင်ဂျင်နီယာပညာရပ်၏ သီးသန့်ကဏ္ဍတစ်ခုအနေဖြင့် ပေါ်ထွက်လာခဲ့ပြီး ဆီမီးကွန်ဒတ်တာများနှင့် မိုက်ခရိုချစ်ပ်များ တိုးတက်လာမှုနှင့်အတူ လျင်မြန်စွာ ကျယ်ပြန့်လာခဲ့သည်။ ရှေးဦး ဗျူကွန်းပြွန် (vacuum-tube) ရေဒီယိုများမှသည် မိုက်ခရိုပရိုဆက်ဆာများ၊ ဆက်သွယ်ရေး ထရန်စီဗာများ၊ စိုက်သွင်းထားသော ဆင်ဆာအစုအဝေးများ (embedded sensor arrays)၊ ပြန်လည်ပြည့်ဖြိုးမြဲ စွမ်းအင် အင်ဗာတာများနှင့် ရေတွက်၍မကုန်နိုင်သော ဒစ်ဂျစ်တယ် ကိရိယာများကဲ့သို့သော ခေတ်မီ ပေါင်းစပ်ဆားကစ်များအထိ အီလက်ထရွန်နစ် အင်ဂျင်နီယာပညာရပ်၏ သမိုင်းကြောင်းသည် စဉ်ဆက်မပြတ် တီထွင်ဆန်းသစ်မှုနှင့် နည်းပညာဆိုင်ရာ တိုးတက်မှုများကို ဖော်ပြနေပါသည်။'
       },
       {
         type: 'markdown',
-        markdown: `Electronic Engineering can be divided into two main categories based on the nature of the work:
+        markdown: `အီလက်ထရွန်နစ် အင်ဂျင်နီယာပညာရပ် (Electronic Engineering) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Design and Simulation: This involves office-based work such as drafting circuit schematics, running electronic simulations, calculating signal behaviors, and designing PCB (Printed Circuit Board) layouts before physical manufacturing begins.
+ဒီဇိုင်းနှင့် စီမံဖန်တီးခြင်း (Design and Simulation): ဤသည်မှာ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး ဆားကစ် ပုံစံကြမ်းများ ရေးဆွဲခြင်း၊ အီလက်ထရွန်နစ် ဆင်းမ်ူလေရှင်းများ ပြုလုပ်ခြင်း၊ လှိုင်းအချက်ပြမှု အပြုအမူများကို တွက်ချက်ခြင်းနှင့် ရုပ်ပိုင်းဆိုင်ရာ ထုတ်လုပ်မှု မစတင်မီ PCB (Printed Circuit Board) လေထီးပုံစံများကို ဒီဇိုင်းဆွဲခြင်းတို့ ပါဝင်သည်။
 
-Hardware and Fabrication: This involves hands-on, practical work including soldering components, assembling physical prototype boards, testing electrical hardware using oscilloscopes, and maintaining physical electronic systems on-site.`
+ဟာ့ဒ်ဝဲနှင့် လက်တွေ့တပ်ဆင်ထုတ်လုပ်ခြင်း (Hardware and Fabrication): ဤသည်မှာ လက်တွေ့လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး အစိတ်အပိုင်းများကို ဂိုဏ်းဆက်ခြင်း (soldering)၊ ရုပ်ပိုင်းဆိုင်ရာ ပုံစံငယ် ဘုတ်ပြားများကို စုစည်းတပ်ဆင်ခြင်း၊ Oscilloscope များကို အသုံးပြု၍ လျှပ်စစ် ဟာ့ဒ်ဝဲများကို စမ်းသပ်ခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း ရုပ်ပိုင်းဆိုင်ရာ အီလက်ထရွန်နစ် စနစ်များကို ထိန်းသိမ်းခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Electronic Engineering: Additionally, Electronic Engineering encompasses several specialized branches:
+        markdown: `အီလက်ထရွန်နစ် အင်ဂျင်နီယာပညာရပ် (Electronic Engineering) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Circuit Design: Designing and optimizing analog, digital, and mixed-signal integrated circuits for various electronic devices.
+Circuit Design (ဆားကစ်ဒီဇိုင်းရေးဆွဲခြင်း): အမျိုးမျိုးသော အီလက်ထရွန်နစ် ကိရိယာများအတွက် အင်နာလော့ (analog)၊ ဒစ်ဂျစ်တယ် (digital) နှင့် ရောနှောအချက်ပြ (mixed-signal) ပေါင်းစပ်ဆားကစ်များကို ဒီဇိုင်းဆွဲခြင်းနှင့် အကောင်းဆုံးဖြစ်အောင် ပြုလုပ်ခြင်း။
 
-Embedded Systems: Integrating microcontrollers, processors, and hardware interfaces with software to control specific electronic machinery and devices.`
+Embedded Systems (စိုက်သွင်းထားသော စနစ်များ): သီးသန့် အီလက်ထရွန်နစ် စက်ယន្តတရားများနှင့် ကိရိယာများကို ထိန်းချုပ်ရန်အတွက် မိုက်ခရိုကွန်ထရိုလာများ၊ ပရိုဆက်ဆာများနှင့် ဟာ့ဒ်ဝဲ ဆက်သွယ်မှုများကို ဆော့ဖ်ဝဲလ်နှင့် ပေါင်းစပ်ခြင်း။`
       },
       { type: 'image', src: [ec1Img, ec2Img, ec3Img, ec4Img, ec5Img, ec6Img, ec7Img, ec8Img, ec9Img], alt: 'Electronic lab', caption: 'Electronic lab and projects' },
     ]
@@ -176,23 +177,23 @@ Embedded Systems: Integrating microcontrollers, processors, and hardware interfa
     content: [
       {
         type: 'text',
-        text: 'Electrical power engineering(EP), the profession of designing and executing plans for electrical systems that serve the general public and industries, such as power plants, transmission grids, electrical substations, renewable energy installations, distribution networks, industrial motor drives, and other energy infrastructure. The term evolved alongside the industrial revolution to harness and distribute electrical energy safely on a large scale. From early electrical generators and lighting systems to modern smart grids and high-voltage transmission lines—such as hydroelectric dynamos, regional power grids, transformer stations, industrial power distribution units, and many other monuments of engineering—the history of electrical power engineering reveals a history of inventive genius and persistent experimentation.'
+        text: 'လျှပ်စစ်စွမ်းအင် အင်ဂျင်နီယာပညာရပ် (Electrical Power Engineering - EP) ဆိုသည်မှာ ဓာတ်အားပေးစက်ရုံများ၊ ဓာတ်အားပို့လွှတ်ရေး လိုင်းကွန်ရက်များ၊ ဓာတ်အားခွဲရုံများ၊ ပြန်လည်ပြည့်မြဲစွမ်းအင် တပ်ဆင်မှုများ၊ ဖြန့်ဝေရေးကွန်ရက်များ၊ စက်မှုလုပ်ငန်းသုံး မော်တာဒရိုက်များနှင့် အခြားသော စွမ်းအင် အခြေခံအဆောက်အအုံများကဲ့သို့သော အများပြည်သူနှင့် စက်မှုလုပ်ငန်းများအတွက် ဝန်ဆောင်မှုပေးသည့် လျှပ်စစ်စနစ်များအတွက် အစီအစဉ်များကို ရေးဆွဲခြင်းနှင့် အကောင်အထည်ဖော်ခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် လျှပ်စစ်စွမ်းအင်ကို ကျယ်ကျယ်ပြန့်ပြန့်နှင့် ဘေးကင်းလုံခြုံစွာ အသုံးချနိုင်ရန်နှင့် ဖြန့်ဝေနိုင်ရန်အတွက် စက်မှုတော်လှန်ရေးနှင့်အတူ တိုးတက်လာခဲ့ခြင်း ဖြစ်သည်။ ရှေးဦး လျှပ်စစ်ဂျင်နရေတာများနှင့် မီးათယ်စနစ်များမှသည် ခေတ်မီ စမတ်ဂရစ်များ (smart grids) နှင့် ဗို့အားမြင့် ဓာတ်အားပို့လွှတ်ရေးလိုင်းများအထိ—ဥပမာအားဖြင့် ရေအားလျှပ်စစ် ဒိုင်နမိုများ၊ ဒေသဆိုင်ရာ ဓာတ်အားလိုင်းများ၊ ထရန်စဖော်မာ စခန်းများ၊ စက်မှုဓာတ်အား ဖြန့်ဖြူးရေး ယူနစ်များနှင့် အင်ဂျင်နီယာပညာရပ်ဆိုင်ရာ အထိမ်းအမှတ်အဆောက်အအုံများစွာတို့သည် လျှပ်စစ်စွမ်းအင် အင်ဂျင်နီယာပညာရပ်၏ တီထွင်ဖန်တီးနိုင်စွမ်းရှိသော ဉာဏ်ပညာနှင့် စဉ်ဆက်မပြတ် စမ်းသပ်လုပ်ဆောင်ခဲ့ကြသည့် သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။'
       },
       {
         type: 'markdown',
-        markdown: `Electrical Power Engineering can be divided into two main categories based on the nature of the work:
+        markdown: `လျှပ်စစ်စွမ်းအင် အင်ဂျင်နီယာပညာရပ် (Electrical Power Engineering) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Design and Planning: This involves office-based work such as drafting electrical schematics, calculating power load requirements, analyzing grid stability, and creating electrical network blueprints before installation begins.
+ဒီဇိုင်းနှင့် စီမံကိန်းရေးဆွဲခြင်း (Design and Planning): ဤသည်မှာ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး လျှပ်စစ် ပုံစံကြမ်းများ ရေးဆွဲခြင်း၊ လျှပ်စစ်ဝန်အား လိုအပ်ချက်များကို တွက်ချက်ခြင်း၊ ဓာတ်အားလိုင်း တည်ငြိမ်မှုကို ခွဲခြပ်စိတ်ဖြာခြင်းနှင့် တပ်ဆင်မှုများ မစတင်မီ လျှပ်စစ်ကွန်ရက် ပုံစံငယ်များကို ဖန်တီးခြင်းတို့ ပါဝင်သည်။
 
-Construction and Execution: This involves site-based, practical work including installing high-voltage equipment, stringing transmission lines, wiring industrial control panels, and managing the actual deployment and maintenance of electrical systems on-site.`
+တည်ဆောက်ခြင်းနှင့် အကောင်အထည်ဖော်ခြင်း (Construction and Execution): ဤသည်မှာ လုပ်ငန်းခွင်အခြေပြု လုပ်ဆောင်ရသည့် လက်တွေ့ကျသော လုပ်ငန်းများဖြစ်ပြီး ဗို့အားမြင့် ကိရိယာပစ္စည်းများ တပ်ဆင်ခြင်း၊ ဓာတ်အားပို့လွှတ်ရေး လိုင်းများ ဆွဲခြင်း၊ စက်မှုလုပ်ငန်းသုံး ထိန်းချုပ်ရေး ဘုတ်ပြားများကို ဝိုင်ယာကြိုး တပ်ဆင်ခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း လျှပ်စစ်စနစ်များ တပ်ဆင်ခြင်းနှင့် ထိန်းသိမ်းခြင်းတို့ကို စီမံခန့်ခွဲခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Electrical Power Engineering: Additionally, Electrical Power Engineering encompasses several specialized branches:
+        markdown: `လျှပ်စစ်စွမ်းအင် အင်ဂျင်နီယာပညာရပ် (Electrical Power Engineering) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Power Generation: Designing and operating facilities that convert various energy sources (such as thermal, hydro, solar, and wind) into electrical energy.
+Power Generation (ဓာတ်အားထုတ်လုပ်ခြင်း): အပူစွမ်းအင်၊ ရေအား၊ နေရောင်ခြည်နှင့် လေစွမ်းအင်ကဲ့သို့သော အမျိုးမျိုးသော စွမ်းအင်အရင်းအမြစ်များကို လျှပ်စစ်စွမ်းအင်အဖြစ်သို့ ပြောင်းလဲပေးသည့် စက်ရုံများကို ဒီဇိုင်းထုတ်ခြင်းနှင့် လည်ပတ်ခြင်း။
 
-Transmission and Distribution: Managing the high-voltage transport of electricity across long distances and safely distributing it to commercial, industrial, and residential end-users.`
+Transmission and Distribution (ဓာတ်အားပို့လွှတ်ခြင်းနှင့် ဖြန့်ဖြူးခြင်း): လျှပ်စစ်မီးများကို အကွာအဝေးဝေးသို့ ဗို့အားမြင့်မားစွာဖြင့် သယ်ယူပို့ဆောင်ခြင်းနှင့် ကုန်သွယ်ရေး၊ စက်မှုလုပ်ငန်းနှင့် လူနေအိမ်သုံး အသုံးပြုသူများထံသို့ ဘေးကင်းလုံခြုံစွာ ဖြန့်ဝေပေးခြင်းတို့ကို စီမံခန့်ခွဲခြင်း။`
       },
       { type: 'image', src:[ep1Img,ep2Img,ep3Img,ep4Img,ep5Img,ep6Img,ep7Img,ep8Img,ep9Img], alt: 'Power lab', caption: 'Power lab and projects' },
     ],
@@ -204,23 +205,23 @@ Transmission and Distribution: Managing the high-voltage transport of electricit
     content:[
       {
         type: 'text',
-        text: 'Mechanical engineering(ME), the profession of designing, analyzing, and manufacturing mechanical systems and thermal devices that serve the general public and industries, such as engines, power-generating equipment, HVAC systems, robotics, manufacturing tools, transportation vehicles, and other infrastructure. The term evolved during the industrial revolution to distinguish the practice from military engineering and focus on machinery and power systems. From early water wheels and steam engines to modern precision machinery—such as industrial turbines, automotive powertrains, manufacturing assembly lines, aerospace propulsion systems, and many other monuments of engineering—the history of mechanical engineering reveals a history of inventive genius and persistent experimentation.'
+        text: 'စက်မှု အင်ဂျင်နီယာပညာရပ် (Mechanical Engineering - ME) ဆိုသည်မှာ အင်ဂျင်များ၊ ဓာတ်အားထုတ်လုပ်ရေး ပစ္စည်းကိရိယာများ၊ လေအေးပေးစက်နှင့် လေဝင်လေထွက်စနစ်များ (HVAC)၊ စက်ရုပ်များ၊ ကုန်ထုတ်လုပ်မှု ကိရိယာများ၊ သယ်ယူပို့ဆောင်ရေး ယာဉ်များနှင့် အခြားသော အခြေခံအဆောက်အအုံများကဲ့သို့သော အများပြည်သူနှင့် စက်မှုလုပ်ငန်းများအတွက် ဝန်ဆောင်မှုပေးသည့် စက်ပိုင်းဆိုင်ရာ စနစ်များနှင့် အပူပိုင်းဆိုင်ရာ ကိရိယာများကို ဒီဇိုင်းထုတ်ခြင်း၊ ခွဲခြပ်စိတ်ဖြာခြင်းနှင့် ထုတ်လုပ်ခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် စက်ယន្តတရားများနှင့် စွမ်းအင်စနစ်များအပေါ် အဓိကထားလုပ်ဆောင်ရန်အတွက် စစ်ဘက်ဆိုင်ရာ အင်ဂျင်နီယာပညာရပ်မှ ခွဲထွက်လာစေရန် စက်မှုတော်လှန်ရေးကာလအတွင်း ပေါ်ပေါက်လာခဲ့ခြင်း ဖြစ်သည်။ ရှေးဦး ရေဘီးများနှင့် ရေနွေးငွေ့ အင်ဂျင်များမှသည် ခေတ်မီ တိကျသေချာသော စက်ယន្តတရားများ—ဥပမာအားဖြင့် စက်မှုလုပ်ငန်းသုံး တာဘိုင်များ၊ မော်တော်ကား ပါဝါရထားစနစ်များ၊ ကုန်ထုတ်လုပ်မှု တပ်ဆင်ရေးလိုင်းများ၊ အာကာသယာဉ် တွန်းကန်အားစနစ်များ နှင့် အင်ဂျင်နီယာပညာရပ်ဆိုင်ရာ အထိမ်းအမှတ်အဆောက်အအုံများစွာတို့သည် စက်မှု အင်ဂျင်နီယာပညာရပ်၏ တီထွင်ဖန်တီးနိုင်စွမ်းရှိသော ဉာဏ်ပညာနှင့် စဉ်ဆက်မပြတ် စမ်းသပ်လုပ်ဆောင်ခဲ့ကြသည့် သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။'
       },
       {
         type: 'markdown',
-        markdown: `Mechanical Engineering can be divided into two main categories based on the nature of the work:
+        markdown: `စက်မှု အင်ဂျင်နီယာပညာရပ် (Mechanical Engineering) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Design and Analysis: This involves office-based work such as drafting 3D CAD models, running finite element analysis (FEA) and computational fluid dynamics (CFD) simulations, calculating mechanical stresses, and creating technical blueprints before manufacturing begins.
+ဒီဇိုင်းနှင့် ခွဲခြပ်စိတ်ဖြာခြင်း (Design and Analysis): ဤသည်မှာ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး 3D CAD ပုံစံများကို ရေးဆွဲခြင်း၊ Finite Element Analysis (FEA) နှင့် Computational Fluid Dynamics (CFD) ဆင်းမ်ူလေရှင်းများကို လုပ်ဆောင်ခြင်း၊ စက်ပိုင်းဆိုင်ရာ ဖိအားများကို တွက်ချက်ခြင်းနှင့် ကုန်ထုတ်လုပ်မှု မစတင်မီ နည်းပညာဆိုင်ရာ ပုံစံငယ်များကို ဖန်တီးခြင်းတို့ ပါဝင်သည်။
 
-Manufacturing and Execution: This involves site-based or factory-based practical work including machining components, assembling mechanical machinery, operating industrial fabrication equipment, and managing the actual production and maintenance processes on-site.`
+ထုတ်လုပ်ခြင်းနှင့် အကောင်အထည်ဖော်ခြင်း (Manufacturing and Execution): ဤသည်မှာ စက်ရုံ သို့မဟုတ် လုပ်ငန်းခွင်အခြေပြု လုပ်ဆောင်ရသည့် လက်တွေ့ကျသော လုပ်ငန်းများဖြစ်ပြီး စက်အစိတ်အပိုင်းများကို ထုလုပ်ခြင်း (machining)၊ စက်ပိုင်းဆိုင်ရာ စက်ယន្តတရားများကို တပ်ဆင်ခြင်း၊ စက်မှုလုပ်ငန်းသုံး ထုတ်လုပ်ရေး ကိရိယာပစ္စည်းများကို လည်ပတ်ခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း တကယ့်ထုတ်လုပ်မှုနှင့် ထိန်းသိမ်းခြင်း လုပ်ငန်းစဉ်များကို စီမံခန့်ခွဲခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Mechanical Engineering: Additionally, Mechanical Engineering encompasses several specialized branches:
+        markdown: `စက်မှု အင်ဂျင်နီယာပညာရပ် (Mechanical Engineering) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Thermal and Fluid Engineering: Designing systems related to heat transfer, thermodynamics, fluid mechanics, refrigeration, and power generation.
+Thermal and Fluid Engineering (အပူနှင့် အရည်စွမ်းအင်ဆိုင်ရာ အင်ဂျင်နီယာပညာရပ်): အပူကူးပြောင်းမှု၊ သာမိုဒိုင်းနမစ် (thermodynamics)၊ အရည်စက်မှုပညာ (fluid mechanics)၊ ရေခဲသေတ္တာနှင့် အေးခဲမှုစနစ်များ၊ နှင့် ဓာတ်အားထုတ်လုပ်ခြင်းဆိုင်ရာ စနစ်များကို ဒီဇိုင်းထုတ်ခြင်း။
 
-Mechanics and Machine Design: Designing mechanical components, mechanisms, and structural parts to ensure durability, efficiency, and safety under various operational loads.`
+Mechanics and Machine Design (စက်ယន្តတရားနှင့် စက်အစိတ်အပိုင်း ဒီဇိုင်းရေးဆွဲခြင်း): လုပ်ငန်းခွင် ဝန်အားအမျိုးမျိုးအောက်တွင် ကြာရှည်ခံမှု၊ စွမ်းဆောင်ရည်နှင့် ဘေးကင်းလုံခြုံမှုကို သေချာစေရန်အတွက် စက်ပိုင်းဆိုင်ရာ အစိတ်အပိုင်းများ၊ စက်ယန္တရားများနှင့် တည်ဆောက်ပုံ အစိတ်အပိုင်းများကို ဒီဇိုင်းထုတ်ခြင်း။`
       },
       { type: 'image', src: [me1Img, me2Img, me3Img,me4Img,me5Img,me6Img,me7Img,me8Img,me9Img], alt: 'Mechanical lab', caption: 'Mechanical lab and projects' },
     ]
@@ -232,23 +233,23 @@ Mechanics and Machine Design: Designing mechanical components, mechanisms, and s
     content: [
       {
         type: 'text',
-        text: 'Automotive technology, the profession of designing, developing, and manufacturing vehicles and transport systems that serve the general public and industries, such as passenger cars, commercial trucks, electric vehicles, autonomous transport systems, internal combustion engines, powertrain components, and other mobility infrastructure. The term evolved alongside the rapid expansion of the automotive industry to combine mechanical, electrical, and computer systems for modern transportation. From early horseless carriages and basic mechanical carburetors to modern smart vehicles—such as hybrid powertrains, electronic control units (ECUs), advanced driver-assistance systems (ADAS), electric vehicle battery packs, and many other monuments of engineering—the history of automotive technology reveals a history of inventive genius and persistent experimentation.'
+        text: 'မော်တော်ယာဉ် နည်းပညာ (Automotive Technology) ဆိုသည်မှာ ခရီးသည်တင် ကားများ၊ ကုန်တင်ထရပ်ကားများ၊ လျှပ်စစ်ကားများ၊ ကိုယ်ပိုင်မောင်းနှင်သည့် သယ်ယူပို့ဆောင်ရေး စနစ်များ၊ အတွင်း ပေါက်ကွဲအင်ဂျင်များ၊ ပါဝါရထား အစိတ်အပိုင်းများနှင့် အခြားသော ရွေ့လျားသွားလာမှု အခြေခံအဆောက်အအုံများကဲ့သို့သော အများပြည်သူနှင့် စက်မှုလုပ်ငန်းများအတွက် ဝန်ဆောင်မှုပေးသည့် ယာဉ်များနှင့် သယ်ယူပို့ဆောင်ရေး စနစ်များကို ဒီဇိုင်းထုတ်ခြင်း၊ တည်ဆောက်ခြင်းနှင့် ထုတ်လုပ်ခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် ခေတ်မီ သယ်ယူပို့ဆောင်ရေးအတွက် စက်ပိုင်းဆိုင်ရာ၊ လျှပ်စစ်ပိုင်းဆိုင်ရာနှင့် ကွန်ပျူတာစနစ်များကို ပေါင်းစပ်နိုင်ရန် မော်တော်ယာဉ် လုပ်ငန်းစုကြီး၏ လျင်မြန်စွာ ကျယ်ပြန့်လာမှုနှင့်အတူ တိုးတက်လာခဲ့ခြင်း ဖြစ်သည်။ ရှေးဦး မြင်းမပါသော ရထားများ (horseless carriages) နှင့် အခြေခံ စက်ပိုင်းဆိုင်ရာ ကာဘူရေတာများမှသည် ခေတ်မီ စမတ်ယာဉ်များ—ဥပမာအားဖြင့် ဟိုက်ဘရစ် ပါဝါရထားစနစ်များ၊ အီလက်ထရွန်နစ် ထိန်းချုပ်ရေး ယူနစ်များ (ECUs)၊ အဆင့်မြင့် ယာဉ်မောင်း အကူအညီပေးရေး စနစ်များ (ADAS)၊ လျှပ်စစ်ကား ဘက်ထရီ အထုပ်များ နှင့် အင်ဂျင်နီယာပညာရပ်ဆိုင်ရာ အထိမ်းအမှတ်အဆောက်အအုံများစွာတို့သည် မော်တော်ယာဉ် နည်းပညာ၏ တီထွင်ဖန်တီးနိုင်စွမ်းရှိသော ဉာဏ်ပညာနှင့် စဉ်ဆက်မပြတ် စမ်းသပ်လုပ်ဆောင်ခဲ့ကြသည့် သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။'
       },
       {
         type: 'markdown',
-        markdown: `Automotive Technology can be divided into two main categories based on the nature of the work:
+        markdown: `မော်တော်ယာဉ် နည်းပညာ (Automotive Technology) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Design and Engineering: This involves office-based work such as drafting 3D CAD vehicle models, simulating aerodynamics and crash safety, programming vehicle software systems, and creating technical blueprints before production begins.
+ဒီဇိုင်းနှင့် အင်ဂျင်နီယာပိုင်း (Design and Engineering): ဤသည်မှာ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး 3D CAD ယာဉ်ပုံစံများကို ရေးဆွဲခြင်း၊ လေထုစွမ်းအင်ဆိုင်ရာ (aerodynamics) နှင့် ယာဉ်တိုက်မှု ဘေးကင်းလုံခြုံမှုကို ဆင်းမ်ူလေရှင်းလုပ်ခြင်း၊ ယာဉ်ဆော့ဖ်ဝဲစနစ်များကို ပရိုဂရမ်ရေးခြင်းနှင့် ကုန်ထုတ်လုပ်မှု မစတင်မီ နည်းပညာဆိုင်ရာ ပုံစံငယ်များကို ဖန်တီးခြင်းတို့ ပါဝင်သည်။
 
-Manufacturing and Maintenance: This involves factory-based and site-based practical work including assembling vehicle frames, installing mechanical and electrical components, operating production line robotics, and diagnosing and repairing automotive systems on-site.`
+ထုတ်လုပ်ခြင်းနှင့် ထိန်းသိမ်းပြုပြင်ခြင်း (Manufacturing and Maintenance): ဤသည်မှာ စက်ရုံနှင့် လုပ်ငန်းခွင်အခြေပြု လုပ်ဆောင်ရသည့် လက်တွေ့ကျသော လုပ်ငန်းများဖြစ်ပြီး ယာဉ်ကိုယ်ထည်များကို စုစည်းတပ်ဆင်ခြင်း၊ စက်ပိုင်းဆိုင်ရာနှင့် လျှပ်စစ်အစိတ်အပိုင်းများကို တပ်ဆင်ခြင်း၊ ထုတ်လုပ်ရေးလိုင်း စက်ရုပ်များကို လည်ပတ်ခြင်းနှင့် မော်တော်ယာဉ် စနစ်များကို လုပ်ငန်းခွင်အတွင်း စစ်ဆေးရှာဖွေခြင်းနှင့် ပြုပြင်ခြင်းတို့ ပါဝင်သည်။`
       },
       {
         type: 'markdown',
-        markdown: `Main Branches of Automotive Technology: Additionally, Automotive Technology encompasses several specialized branches:
+        markdown: `မော်တော်ယာဉ် နည်းပညာ (Automotive Technology) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Powertrain Engineering: Designing and optimizing internal combustion engines, electric motors, transmissions, and energy storage systems to drive vehicle performance.
+Powertrain Engineering (ပါဝါရထား အင်ဂျင်နီယာပညာရပ်): ယာဉ်၏ စွမ်းဆောင်ရည်ကို မြှင့်တင်ရန်အတွက် အတွင်း ပေါက်ကွဲအင်ဂျင်များ၊ လျှပ်စစ်မော်တာများ၊ ဂီယာဘောက်စ်များနှင့် စွမ်းအင်သိုလှောင်မှု စနစ်များကို ဒီဇိုင်းထုတ်ခြင်းနှင့် အကောင်းဆုံးဖြစ်အောင် ပြုလုပ်ခြင်း။
 
-Vehicle Electronics and Diagnostics: Managing onboard computer networks, sensors, control units, and electrical wiring systems to ensure proper vehicle operation and troubleshooting.`
+Vehicle Electronics and Diagnostics (ယာဉ်အီလက်ထရွန်နစ်နှင့် ရောဂါရှာဖွေစစ်ဆေးခြင်း): ယာဉ်လည်ပတ်မှု မှန်ကန်စေရန်နှင့် ပြဿနာများကို စစ်ဆေးရှာဖွေပြင်ဆင်နိုင်ရန်အတွက် ကားပေါ်ပါ ကွန်ပျူတာကွန်ရက်များ၊ ဆင်ဆာများ၊ ထိန်းချုပ်ရေးယူနစ်များနှင့် လျှပ်စစ်ဝိုင်ယာကြိုး စနစ်များကို စီမံခန့်ခွဲခြင်း။`
       },
       { type: 'image', src: [atm1Img, atm2Img, atm3Img, atm4Img, atm5Img, atm6Img, atm7Img, atm8Img, atm9Img], alt: 'Automotive lab', caption: 'Automotive lab ,Activities and projects' },
     ]
@@ -260,18 +261,18 @@ Vehicle Electronics and Diagnostics: Managing onboard computer networks, sensors
     content: [
       {
         type: 'text',
-        text: 'Industrial engineering, the profession of designing, optimizing, and managing complex processes, systems, or organizations that serve industries and manufacturing sectors, such as supply chains, production lines, assembly plants, healthcare delivery systems, logistics networks, and other operational infrastructure. The term evolved during the industrial revolution and modern manufacturing eras to integrate human labor, machines, materials, and information efficiently. From early time-and-motion studies and factory floor layouts to modern automated facilities—such as lean manufacturing systems, global logistics networks, automated warehousing, quality control frameworks, and many other milestones of engineering—the history of industrial engineering reveals a history of inventive genius and persistent experimentation.'
+        text: 'စက်မှု အင်ဂျင်နီယာပညာရပ် (Industrial Engineering) ဆိုသည်မှာ ထောက်ပံ့ရေးကွင်းဆက်များ၊ ထုတ်လုပ်ရေးလိုင်းများ၊ တပ်ဆင်ရေးစက်ရုံများ၊ ကျန်းမာရေးစောင့်ရှောက်မှု ပို့ဆောင်ရေးစနစ်များ၊ ထောက်ပံ့ပို့ဆောင်ရေး ကွန်ရက်များနှင့် အခြားသော လုပ်ငန်းလည်ပတ်ရေး အခြေခံအဆောက်အအုံများကဲ့သို့သော စက်မှုလုပ်ငန်းများနှင့် ကုန်ထုတ်လုပ်မှုကဏ္ဍများကို ဝန်ဆောင်မှုပေးသည့် ရှုပ်ထွေးသော လုပ်ငန်းစဉ်များ၊ စနစ်များ သို့မဟုတ် အဖွဲ့အစည်းများကို ဒီဇိုင်းထုတ်ခြင်း၊ အကောင်းဆုံးဖြစ်အောင် ပြုလုပ်ခြင်းနှင့် စီမံခန့်ခွဲခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် လူ့စွမ်းအားအရင်းအမြစ်၊ စက်ယန္တရားများ၊ ပစ္စည်းကိရိယာများနှင့် အချက်အလက်များကို ထိရောက်စွာ ပေါင်းစပ်နိုင်ရန်အတွက် စက်မှုတော်လှန်ရေးနှင့် ခေတ်မီ ကုန်ထုတ်လုပ်မှုခေတ်များအတွင်း တိုးတက်လာခဲ့ခြင်း ဖြစ်သည်။ ရှေးဦး အချိန်နှင့်လှုပ်ရှားမှု လေ့လာမှုများ (time-and-motion studies) နှင့် စက်ရုံကြမ်းပြင် ပုံစံထုတ်လုပ်မှုများမှသည် ခေတ်မီ အလိုအလျောက် စက်ရုံများ—ဥပမာအားဖြင့် မွတ်သိပ်ကုန်ထုတ်လုပ်မှု စနစ်များ (lean manufacturing systems)၊ ကမ္ဘာလုံးဆိုင်ရာ ထောက်ပံ့ပို့ဆောင်ရေး ကွန်ရက်များ၊ အလိုအလျောက် ကုန်လှောင်ရုံများ၊ အရည်အသွေး ထိန်းချုပ်ရေး မူဘောင်များ နှင့် အင်ဂျင်နီယာပညာရပ်ဆိုင်ရာ မှတ်တိုင်များစွာတို့သည် စက်မှု အင်ဂျင်နီယာပညာရပ်၏ တီထွင်ဖန်တီးနိုင်စွမ်းရှိသော ဉာဏ်ပညာနှင့် စဉ်ဆက်မပြတ် စမ်းသပ်လုပ်ဆောင်ခဲ့ကြသည့် သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။'
       },
-     { type: 'markdown', markdown: `Industrial Engineering can be divided into two main categories based on the nature of the work:
+     { type: 'markdown', markdown: `စက်မှု အင်ဂျင်နီယာပညာရပ် (Industrial Engineering) ကို လုပ်ငန်းသဘာဝအပေါ် မူတည်ပြီး အဓိက အပိုင်း (၂) ပိုင်း ထပ်မံခွဲခြားနိုင်ပါသည် -
 
-Design and Analysis: This involves office-based work such as creating facility layouts, simulating workflow bottlenecks, optimizing supply chain models, and calculating production efficiency metrics before implementation begins.
+ဒီဇိုင်းနှင့် ခွဲခြပ်စိတ်ဖြာခြင်း (Design and Analysis): ဤသည်မှာ ရုံးတွင်းအခြေပြု လုပ်ဆောင်ရသည့် လုပ်ငန်းများဖြစ်ပြီး စက်ရုံ/အဆောက်အအုံ ပုံစံထုတ်လုပ်ခြင်း (facility layouts)၊ လုပ်ငန်းစဉ် ကြန့်ကြာချက်များကို ဆင်းမ်ူလေရှင်းလုပ်ခြင်း၊ ထောက်ပံ့ရေးကွင်းဆက် ပုံစံများကို အကောင်းဆုံးဖြစ်အောင် ပြုလုပ်ခြင်းနှင့် အကောင်အထည်မဖော်မီ ထုတ်လုပ်မှု စွမ်းဆောင်ရည် တိုင်းတာချက်များကို တွက်ချက်ခြင်းတို့ ပါဝင်သည်။
 
-Operations and Execution: This involves factory-based and site-based practical work including implementing lean manufacturing principles, supervising shop floor operations, managing inventory systems, and ensuring quality control standards are met on-site.` },
-     { type: 'markdown', markdown: `Main Branches of Industrial Engineering: Additionally, Industrial Engineering encompasses several specialized branches:
+လုပ်ငန်းလည်ပတ်မှုနှင့် အကောင်အထည်ဖော်ခြင်း (Operations and Execution): ဤသည်မှာ စက်ရုံနှင့် လုပ်ငန်းခွင်အခြေပြု လုပ်ဆောင်ရသည့် လက်တွေ့ကျသော လုပ်ငန်းများဖြစ်ပြီး မွတ်သိပ်ကုန်ထုတ်လုပ်မှု မူဝါဒများ (lean manufacturing principles) ကို ကျင့်သုံးခြင်း၊ စက်ရုံကြမ်းပြင် လုပ်ငန်းလည်ပတ်မှုများကို ကြီးကြပ်ခြင်း၊ ပစ္စည်းစာရင်း စနစ်များကို စီမံခန့်ခွဲခြင်းနှင့် လုပ်ငန်းခွင်အတွင်း အရည်အသွေး ထိန်းချုပ်ရေး စံနှုန်းများ ပြည့်မီစေရန် သေချာစေခြင်းတို့ ပါဝင်သည်။` },
+     { type: 'markdown', markdown: `စက်မှု အင်ဂျင်နီယာပညာရပ် (Industrial Engineering) တွင် အဓိက အထူးပြုကဏ္ဍခွဲများစွာ ပါဝင်ပါသည် -
 
-Operations Research: Utilizing mathematical modeling, statistical analysis, and optimization techniques to solve complex decision-making and resource allocation problems.
+Operations Research (လုပ်ငန်းလည်ပတ်မှု သုတေသန): ရှုပ်ထွေးသော ဆုံးဖြတ်ချက်ချမှတ်ခြင်းနှင့် အရင်းအမြစ် ခွဲဝေချထားခြင်းဆိုင်ရာ ပြဿနာများကို ဖြေရှင်းရန်အတွက် သင်္ချာဆိုင်ရာ ပုံစံထုတ်ခြင်း၊ စာရင်းအင်းဆိုင်ရာ ခွဲခြပ်စိတ်ဖြာခြင်းနှင့် အကောင်းဆုံးဖြစ်အောင် ပြုလုပ်သည့် နည်းပညာများကို အသုံးပြုခြင်း။
 
-Supply Chain and Logistics Management: Designing and overseeing the flow of goods, services, and information from raw material sourcing to final customer delivery to minimize costs and maximize efficiency.` },
+Supply Chain and Logistics Management (ထောက်ပံ့ရေးကွင်းဆက်နှင့် ထောက်ပံ့ပို့ဆောင်ရေး စီမံခန့်ခွဲမှု): ကုန်ကျစရိတ် အနည်းဆုံးဖြစ်စေရန်နှင့် စွမ်းဆောင်ရည် အမြင့်ဆုံးဖြစ်စေရန်အတွက် ကုန်ကြမ်းပစ္စည်း ရရှိရေးမှသည် နောက်ဆုံး ဖောက်သည်လက်ဝယ်သို့ အရောက်ပို့ဆောင်ပေးသည့်အထိ ကုန်ပစ္စည်းများ၊ ဝန်ဆောင်မှုများနှင့် သတင်းအချက်အလက်များ စီးဆင်းမှုကို ဒီဇိုင်းထုတ်ခြင်းနှင့် ကြီးကြပ်ကွပ်ကဲခြင်း။` },
       { type: 'image', src:[ ie1Img,ie2Img,ie3Img,ie4Img,ie5Img,ie6Img,ie7Img,ie8Img,ie9Img], alt: 'Industrial lab', caption: 'Industrial lab and projects' },
     ]
   },
@@ -279,31 +280,31 @@ Supply Chain and Logistics Management: Designing and overseeing the flow of good
     name: "Science Department",
     image: scienceImg,
     content: [
-      { type: 'text', text: 'The Science Department covers various fields of science including Myanmar, English,Mathematics,Physics,Chemistry.' },
+      { type: 'text', text: 'သိပ္ပံဌာန (Science Department) တွင် မြန်မာစာ၊ အင်္ဂလိပ်စာ၊ သင်္ချာ၊ ရူပဗေဒနှင့် ဓာတုဗေဒ အပါအဝင် သိပ္ပံပညာရပ်ဆိုင်ရာ နယ်ပယ်အမျိုးမျိုး ပါဝင်ပါသည်။' },
       
-      { type: 'markdown', markdown: `The Department of Literature teaches various categories in addition to relevant specialized subjects. These categories include:
+      { type: 'markdown', markdown: `စာပေဌာန (The Department of Literature) တွင် သက်ဆိုင်ရာ အထူးပြုဘာသာရပ်များအပြင် အခြားသော ကဏ္ဍအမျိုးမျိုးကိုလည်း သင်ကြားပေးပါသည်။ ဤကဏ္ဍများတွင် အောက်ပါတို့ ပါဝင်သည် -
 
-Law
+Law (ဥပဒေပညာ)
 
-Social Science
+Social Science (လူမှုရေးသိပ္ပံ)
 
-Life Skills
+Life Skills (ဘဝအတွက် အသုံးချပညာရပ်များ)
 
-Drawing
+Drawing (ပုံဆွဲခြင်း)
 
-National Development Plans (NDP)
+National Development Plans - NDP (နိုင်ငံတော် ဖွံ့ဖြိုးတိုးတက်ရေး စီမံကိန်းများ)
 
-Engineering Mechanics
+Engineering Mechanics (အင်ဂျင်နီယာ မက္ကင်းနစ်)
 
-Information and Communication Technology (ICT)
+Information and Communication Technology - ICT (သတင်းအချက်အလက်နှင့် ဆက်သွယ်ရေး နည်းပညာ)
 
-Ethics
+Ethics (ကျင့်ဝတ်)
 
-Occupational Safety and Health (OSH)
+Occupational Safety and Health - OSH (လုပ်ငန်းခွင် ဘေးကင်းလုံခြုံရေးနှင့် ကျန်းမာရေး)
 
-Engineering Economics
+Engineering Economics (အင်ဂျင်နီယာ ဘောဂဗေဒ)
 
-Engineering Entrepreneurship and Project Management` },
+Engineering Entrepreneurship and Project Management (အင်ဂျင်နီယာ လုပ်ငန်းစတင်တည်ထွင်မှုနှင့် စီမံကိန်း စီမံခန့်ခွဲမှု)` },
       { type: 'image', src: scienceImg, alt: 'Science lab', caption: 'Science lab and projects' },
     ]
   },
@@ -311,21 +312,21 @@ Engineering Entrepreneurship and Project Management` },
     name: "Student Affairs",
     image: studentAffairsImg,
      content: [
-       { type: 'text', text: 'Student Affairs, the administrative department and profession focused on supporting student development, enhancing campus life, and providing services that serve the student body, such as academic advising, career counseling, housing and residential life, student organizations, financial aid, health and wellness services, and other campus infrastructure. The term evolved within higher education institutions to provide holistic support for students outside the traditional classroom environment. From early student disciplinary committees and faculty-led housing oversight to modern comprehensive student services—such as campus life centers, mental health counseling clinics, international student support offices, career placement services, and many other pillars of academic communities—the history of student affairs reveals continuous dedication to student well-being and institutional success.' },
+       { type: 'text', text: 'ကျောင်းသားရေးရာဌာန (Student Affairs) ဆိုသည်မှာ ပညာရေးဆိုင်ရာ အကြံပေးခြင်း၊ အသက်မွေးဝမ်းကျောင်းဆိုင်ရာ ကောင်စီဝင်ပေးခြင်း၊ အဆောင်နှင့် ကျောင်းသားနေထိုင်မှုဘပိုင်းဆိုင်ရာ အစီအစဉ်များ၊ ကျောင်းသား အသင်းအဖွဲ့များ၊ ဘဏ္ဍာရေး အထောက်အပံ့များ၊ ကျန်းမာရေးနှင့် သုခချမ်းသာ ဝန်ဆောင်မှုများနှင့် အခြားသော ကျောင်းဝင်းအတွင်း အခြေခံအဆောက်အအုံများကဲ့သို့သော ကျောင်းသားထုကို ဝန်ဆောင်မှုပေးသည့် ဝန်ဆောင်မှုများကို ပံ့ပိုးပေးရန်၊ ကျောင်းသားများ၏ ဖွံ့ဖြိုးတိုးတက်မှုကို အားပေးရန်၊ ကျောင်းဝင်းတွင်း ဘဝကို မြှင့်တင်ရန်နှင့် အဓိက အာရုံစိုက်လုပ်ကိုင်သော အုပ်ချုပ်ရေးဌာနနှင့် ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။' },
      ]
   },
   {
     name: "Administration",
     image: adminImg,
      content: [
-       { type: 'text', text: 'Administration, the profession of organizing, directing, and managing the operations, resources, and personnel of an organization to ensure its efficient functioning and achievement of goals, such as corporate offices, government agencies, educational institutions, non-profit organizations, healthcare facilities, and other institutional infrastructure. The term evolved alongside the growth of organized governance and commerce to maintain order, handle logistics, and coordinate complex institutional activities. From early bureaucratic record-keeping and royal court management to modern enterprise management systems—such as executive secretariats, institutional policy frameworks, resource allocation bureaus, regulatory compliance units, and many other pillars of organizational structure—the history of administration reveals a continuous drive toward efficiency, structure, and systematic control.' },
+       { type: 'text', text: 'အုပ်ချုပ်ရေး (Administration) ဆိုသည်မှာ ကော်ပိုရိတ်ရုံးများ၊ အစိုးရဌာနဆိုင်ရာများ၊ ပညာရေး အဖွဲ့အစည်းများ၊ အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းများ၊ ကျန်းမာရေးစောင့်ရှောက်မှု အဆောက်အအုံများနှင့် အခြားသော အဖွဲ့အစည်းဆိုင်ရာ အခြေခံအဆောက်အအုံများကဲ့သို့သော အဖွဲ့အစည်းတစ်ခု၏ ထိရောက်စွာ လည်ပတ်နိုင်မှုနှင့် ရည်မှန်းချက်များ အောင်မြင်စေရန်အတွက် လုပ်ငန်းဆောင်တာများ၊ အရင်းအမြစ်များနှင့် ဝန်ထမ်းများကို စနစ်တကျ ဖွဲ့စည်းခြင်း၊ လမ်းညွှန်ခြင်းနှင့် စီမံခန့်ခွဲခြင်းဆိုင်ရာ ကျွမ်းကျင်မှုလုပ်ငန်းရပ်တစ်ခု ဖြစ်သည်။ဤအသုံးအနှုန်းသည် စည်းကမ်းသေဝပ်မှုကို ထိန်းသိမ်းရန်၊ ထောက်ပံ့ပို့ဆောင်ရေးများကို ကိုင်တွယ်ရန်နှင့် ရှုပ်ထွေးသော အဖွဲ့အစည်းဆိုင်ရာ လှုပ်ရှားမှုများကို ညှိနှိုင်းဆောင်ရွက်ရန်အတွက် စနစ်တကျ စီမံအုပ်ချုပ်မှုနှင့် ကူးသန်းရောင်းဝယ်ရေးတို့ ကြီးထွားလာမှုနှင့်အတူ တိုးတက်လာခဲ့ခြင်း ဖြစ်သည်။ ရှေးဦး ဗျူရိုကရေစီ မှတ်တမ်းထိန်းသိမ်းမှုနှင့် တော်ဝင်နန်းတော် စီမံခန့်ခွဲမှုမှသည် ခေတ်မီ လုပ်ငန်းခွင် စီမံခန့်ခွဲမှုစနစ်များ—ဥပမာအားဖြင့် အမှုဆောင် အတွင်းဝန်ရုံးများ၊ အဖွဲ့အစည်းဆိုင်ရာ မူဝါဒဘူဘောင်များ၊ အရင်းအမြစ် ခွဲဝေချထားရေး ဗျူရိုများ၊ စည်းမျဉ်းစည်းကမ်း လိုက်နာမှု ယူနစ်များ နှင့် အဖွဲ့အစည်းဆိုင်ရာ ဖွဲ့စည်းပုံ၏ အခြားသော အဓိက မဏ္ဍိုင်များစွာတို့သည် ထိရောက်မှု၊ ဖွဲ့စည်းပုံနှင့် စနစ်တကျ ထိန်းချုပ်မှုတို့ဆီသို့ အစဉ်တစိုက် ဦးတည်ကြိုးပမ်းခဲ့သည့် အုပ်ချုပ်ရေး၏ သမိုင်းကြောင်းကို ပေါ်လွင်ထင်ရှားစေပါသည်။' },
      ]
   },
   {
     name: "Library",
     image: libraryImg,
     content: [
-      { type: 'text', text: 'Library, the profession and institution dedicated to collecting, organizing, preserving, and providing access to information, literature, and educational resources that serve the general public and academic communities, such as books, digital databases, historical archives, multimedia collections, research journals, and other knowledge infrastructure. The term evolved from ancient repositories of scrolls and manuscripts to modern digital and physical knowledge hubs. From early monastic and royal archives to modern public and university libraries—such as national libraries, digital repository networks, specialized research centers, community reading rooms, and many other monuments of learning—the history of libraries reveals a continuous commitment to preserving human knowledge and ensuring universal access to information.' },
+      { type: 'text', text: 'စာကြည့်တိုက် (Library) ဆိုသည်မှာ စာအုပ်များ၊ ဒစ်ဂျစ်တယ် ဒေတာဘေ့စ်များ၊ သမိုင်းဝင် မှတ်တမ်းတိုက်များ၊ မာယ်တီမီဒီယာ စုဆောင်းမှုများ၊ သုတေသန ဂျာနယ်များနှင့် အခြားသော အသိပညာဆိုင်ရာ အခြေခံအဆောက်အအုံများကဲ့သို့သော အများပြည်သူနှင့် ပညာရေးအသိုက်အဝန်းများကို ဝန်ဆောင်မှုပေးသည့် သတင်းအချက်အလက်များ၊ စာပေများနှင့် ပညာရေးဆိုင်ရာ အရင်းအမြစ်များကို စုဆောင်းခြင်း၊ စနစ်တကျ ဖွဲ့စည်းခြင်း၊ ထိန်းသိမ်းခြင်းနှင့် ရယူသုံးစွဲနိုင်ရန် ဆောင်ရွက်ပေးခြင်းတို့အတွက် ရည်စူးထားသော ကျွမ်းကျင်မှုလုပ်ငန်းရပ်နှင့် အဖွဲ့အစည်းတစ်ခု ဖြစ်သည်။' },
     ]
   },
 ];

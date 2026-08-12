@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import logoImg from './assets/logo.jpg';
 import campusImg from './assets/campus.jpg';
+import collegeImg from './assets/college.jpg';
 import { 
   Menu, 
   X, 
@@ -139,7 +140,7 @@ export const GTIHomePage: React.FC<GTIHomePageProps> = ({ onNavigate }) => {
               </h2>
               <div className="flex flex-col sm:flex-row gap-6 items-center">
                 <img
-                  src={campusImg}
+                  src={collegeImg}
                   alt="GTI Campus"
                   className="w-full sm:w-1/2 h-48 object-cover rounded-lg shadow-sm"
                   onError={(e) => {

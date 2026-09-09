@@ -16,10 +16,43 @@ interface StudentResult {
 // // Initial student data for Third Year Information Technology
 // -----------------------------------------------------------------------------
 const initialStudentResults: StudentResult[] = [
-  { no: 1, rollNo: 'IT-Y3-01', name: 'Zin Mar', marks: [90, 88, 92, 85, 89, 91, 94, 87] },
-  { no: 2, rollNo: 'IT-Y3-02', name: 'Min Min', marks: [82, 79, 85, 88, 80, 83, 81, 84] },
-  { no: 3, rollNo: 'IT-Y3-03', name: 'Wai Wai', marks: [35, 52, 40, 58, 60, 45, 38, 41] },
-  { no: 4, rollNo: 'IT-Y3-04', name: 'Bo Bo', marks: [25, 29, 30, 35, 48, 32, 27, 30] },
+  { no: 1, rollNo: '3GIT-01', name: 'မယမင်းသန့်', marks: [80, 98, 92, 95, 99, 80, 80, ] },
+  { no: 2, rollNo: '3GIT-02', name: 'မဇင်နှင်းမောင်', marks: [82, 88, 95, 88, 80, 83, 75, ] },
+  { no: 3, rollNo: '3GIT-03', name: 'မရွှေအိ', marks: [95, 95, 95, 95, 95, 85, 75 ] },
+  { no: 4, rollNo: '3GIT-04', name: 'မခင်ထိပ်ထားဦး', marks: [95, 95, 95, 95, 95, 80,80 ] },
+  { no: 5, rollNo: '3GIT-05', name: 'မယွန်းဒါလီဝင်းမောင်', marks: [70, 65, 75, 80, 72, 68, 74 ] },
+  { no: 6, rollNo: '3GIT-06', name: 'မရွှန်းလဲ့ဝေ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 7, rollNo: '3GIT-07', name: 'မထက်နန္ဒာလှိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 8, rollNo: '3GIT-08', name: 'မသျှားသက်ဟန်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 9, rollNo: '3GIT-09', name: 'မနွေနေနန်း', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 10, rollNo: '3GIT-10', name: 'မမင်းပပခိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 11, rollNo: '3GIT-11', name: 'မခိုင်ကြာဖြူစင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 12, rollNo: '3GIT-12', name: 'မယဉ်မင်းမြတ်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 13, rollNo: '3GIT-13', name: 'မပန်းအိသွယ်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 14, rollNo: '3GIT-14', name: 'မချောရတနာ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 15, rollNo: '3GIT-15', name: 'မစောကလျာထူး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 16, rollNo: '3GIT-16', name: 'မောင်အောင်မင်းသန့်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 17, rollNo: '3GIT-17', name: 'မသက်သက်ခင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 18, rollNo: '3GIT-18', name: 'မဖြိုးအိန္ဒြေအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 19, rollNo: '3GIT-19', name: 'မအေးငြိမ်းဖြိုး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 20, rollNo: '3GIT-20', name: 'မရွှန်းပြည့်ပြည့်အောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 21, rollNo: '3GIT-21', name: 'မသက်ထားခင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 22, rollNo: '3GIT-22', name: 'မမေဇူးဇူးအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 23, rollNo: '3GIT-23', name: 'မောင်ကောင်းခန့်ကျော်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 24, rollNo: '3GIT-24', name: 'မောင်စည်သူအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 25, rollNo: '3GIT-25', name: 'မောင်ကောင်းခန့်သူ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 26, rollNo: '3GIT-26', name: 'မအေးငြိမ်းထိုက်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 27, rollNo: '3GIT-27', name: 'မောင်သူရိန်စိုးစံ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 28, rollNo: '3GIT-28', name: 'မကြယ်စင်ဝန်း', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 29, rollNo: '3GIT-29', name: 'မောင်ထက်ယံအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  { no: 30, rollNo: '3GIT-30', name: 'မပန်းအိစံ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+   { no: 31, rollNo: '3GIT-31', name: 'မဖူးမြတ်သွယ်ဇင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+   { no: 32, rollNo: '3GIT-32', name: 'မောင်ရဲရင့်ရန်နိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+   { no: 33, rollNo: '3GIT-33', name: 'မောင်စစ်အောင်မှူး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+   { no: 34, rollNo: '3GIT-34', name: 'မောင်မျိုးသူရိန်ခန့်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+   { no: 35, rollNo: '3GIT-35R', name: 'မသက်မှူးခိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
+  
+  
 ];
 
 // -----------------------------------------------------------------------------
@@ -187,14 +220,14 @@ export function ItYear3({ onBack }: ItYear3Props) {
                 <th style={{ padding: '12px' }}>No</th>
                 <th style={{ padding: '12px' }}>Roll No</th>
                 <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                <th style={{ padding: '12px' }}>Sub 1</th>
-                <th style={{ padding: '12px' }}>Sub 2</th>
-                <th style={{ padding: '12px' }}>Sub 3</th>
-                <th style={{ padding: '12px' }}>Sub 4</th>
-                <th style={{ padding: '12px' }}>Sub 5</th>
-                <th style={{ padding: '12px' }}>Sub 6</th>
-                <th style={{ padding: '12px' }}>Sub 7</th>
-                <th style={{ padding: '12px' }}>Sub 8</th>
+                <th style={{ padding: '12px' }}>Engineering Economics</th>
+                <th style={{ padding: '12px' }}>Entrepreneurship Development and Project Management</th>
+                <th style={{ padding: '12px' }}>Programming with C#</th>
+                <th style={{ padding: '12px' }}>Web Development Technology Using PHP</th>
+                <th style={{ padding: '12px' }}>Information Security</th>
+                <th style={{ padding: '12px' }}>Computer Network Administration (Elective)</th>
+                <th style={{ padding: '12px' }}>Mobile Application Development (Elective)</th>
+
                 <th style={{ padding: '12px' }}>Result</th>
                 {isAdmin && <th style={{ padding: '12px' }}>Action</th>}
               </tr>

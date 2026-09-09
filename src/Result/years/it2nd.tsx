@@ -16,10 +16,39 @@ interface StudentResult {
 // // Initial student data for Second Year Information Technology
 // -----------------------------------------------------------------------------
 const initialStudentResults: StudentResult[] = [
-  { no: 1, rollNo: 'IT-Y2-01', name: 'Kyaw Kyaw', marks: [88, 82, 85, 90, 78, 84, 86, 89] },
-  { no: 2, rollNo: 'IT-Y2-02', name: 'Nilar Win', marks: [92, 94, 89, 91, 88, 90, 93, 95] },
-  { no: 3, rollNo: 'IT-Y2-03', name: 'Hla Hla', marks: [38, 45, 35, 55, 50, 42, 48, 36] },
-  { no: 4, rollNo: 'IT-Y2-04', name: 'Thura Aung', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+  { no: 1, rollNo: '2GIT-01', name: 'မအင်ကြင်းသူ', marks: [75, 99, 80, 80, 80, 80, 76, 80] },
+  { no: 2, rollNo: '2GIT-02', name: 'မဝိုင်းသော်တာ', marks: [92, 94, 89, 91, 88, 90, 93, 95] },
+  { no: 3, rollNo: '2GIT-03', name: 'မနှင်းယုမွန်', marks: [38, 45, 35, 55, 50, 42, 48, 36] },
+  { no: 4, rollNo: '2GIT-04', name: 'မောင်ချမ်းမြေ့ဦး', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+  { no: 5, rollNo: '2GIT-05', name: 'မောင်မင်းသက်ဟန်', marks: [75, 80, 78, 82, 70, 76, 81, 79] },
+  { no: 6, rollNo: '2GIT-06', name: 'မခင်သန္တာဦး', marks: [65, 68, 70, 72, 60, 66, 69, 71] },
+  { no: 7, rollNo: '2GIT-07', name: 'မသူသူဝင်း', marks: [55, 58, 60, 62, 50, 56, 59, 61] },
+  { no: 8, rollNo: '2GIT-08', name: 'မောင်ကျော်ဇင်ဝင်း', marks: [45, 48, 50, 52, 40, 46, 49, 51] },
+  { no: 9, rollNo: '2GIT-09', name: 'မရွှန်းလဲ့ဝင်း', marks: [35, 38, 40, 42, 30, 36, 39, 41] },
+  { no: 10, rollNo: '2GIT-10', name: 'မမြတ်သင်းကြူ', marks: [25, 28, 30, 32, 20, 26, 29, 31] },
+  { no: 11, rollNo: '2GIT-11', name: 'မောင်မင်းထက်ခန့်ထွန်း', marks: [95, 98, 100, 92, 90, 96, 99, 97] },
+  { no: 12, rollNo: '2GIT-12', name: 'မောင်သော်ဒီမောင်', marks: [85, 88, 90, 82, 80, 86, 89, 87] },  
+{ no: 13, rollNo: '2GIT-13', name: 'မောင်ချစ်လင်းကို', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 14, rollNo: '2GIT-14', name: 'မသူဇာဝင်း', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 15, rollNo: '2GIT-15', name: 'မောင်စိုးမင်းအောင်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 16, rollNo: '2GIT-16', name: 'မဖြိုးသီရိကျော်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 17, rollNo: '2GIT-17', name: 'မအိပွင့်ဖြူ', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 18, rollNo: '2GIT-18', name: 'မောင်ဉာဏ်လင်းအောင်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 19, rollNo: '2GIT-19', name: 'မစိမ်းလဲ့စိုး', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 20, rollNo: '2GIT-20', name: 'မောင်ကျော်ဝဏ္ဏ', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 21, rollNo: '2GIT-21', name: 'မောင်နေသွင်ထူး', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 22, rollNo: '2GIT-22', name: 'မယုမြတ်မွန်', marks: [28, 30, 25, 32, 45, 40, 29,90]},
+{ no: 23, rollNo: '2GIT-23', name: 'မောင်ဝေဘုန်းလင်း', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 24, rollNo: '2GIT-24', name: 'မောင်ဇင်လင်းထွဋ်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 25, rollNo: '2GIT-25', name: 'မောင်မင်းပြည့်စုံ', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 26, rollNo: '2GIT-26', name: 'မအေးသီရိနိုင်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 27, rollNo: '2GIT-27', name: 'မောင်ကျော်ဇင်သိန်း', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 28, rollNo: '2GIT-28', name: 'မစုစုဝတီ', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 29, rollNo: '2GIT-29', name: 'မောင်ကျော်မျိုးသစ်', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+{ no: 30, rollNo: '2GIT-30', name: 'မောင်သူရထွန်း', marks: [28, 30, 25, 32, 45, 40, 29, 31] },
+
+
+
 ];
 
 // -----------------------------------------------------------------------------
@@ -29,7 +58,7 @@ const getGrade = (mark: number): string => {
   if (mark >= 95) return 'A+';
   if (mark >= 80) return 'A';
   if (mark >= 75) return 'A-';
-  if (mark >= 70) return 'B-';
+  if (mark >= 70) return 'B+';
   if (mark >= 65) return 'B';
   if (mark >= 55) return 'C';
   if (mark >= 40) return 'D';
@@ -187,14 +216,14 @@ export function ItYear2({ onBack }: ItYear2Props) {
                 <th style={{ padding: '12px' }}>No</th>
                 <th style={{ padding: '12px' }}>Roll No</th>
                 <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                <th style={{ padding: '12px' }}>Sub 1</th>
-                <th style={{ padding: '12px' }}>Sub 2</th>
-                <th style={{ padding: '12px' }}>Sub 3</th>
-                <th style={{ padding: '12px' }}>Sub 4</th>
-                <th style={{ padding: '12px' }}>Sub 5</th>
-                <th style={{ padding: '12px' }}>Sub 6</th>
-                <th style={{ padding: '12px' }}>Sub 7</th>
-                <th style={{ padding: '12px' }}>Sub 8</th>
+                <th style={{ padding: '12px' }}>Technical English</th>
+                <th style={{ padding: '12px' }}>Laws and Guidliness related to Technology</th>
+                <th style={{ padding: '12px' }}>Applied Mathematics 3</th>
+                <th style={{ padding: '12px' }}>Introduction to ICT</th>
+                <th style={{ padding: '12px' }}>Web Design 1</th>
+                <th style={{ padding: '12px' }}>Fundamental of Computer Networking</th>
+                <th style={{ padding: '12px' }}>Database Management System</th>
+                <th style={{ padding: '12px' }}>Principles of Data Structure using C</th>
                 <th style={{ padding: '12px' }}>Result</th>
                 {isAdmin && <th style={{ padding: '12px' }}>Action</th>}
               </tr>

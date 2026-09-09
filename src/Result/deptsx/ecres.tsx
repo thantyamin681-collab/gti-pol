@@ -6,8 +6,8 @@ import ecImg from '../../assets/ec.jpg';
 
 // years folder ထဲမှ Year Components များကို Import ပြုလုပ်ခြင်း
 import { EcYear1 } from '../years/ec1st';
-// import { EcYear2 } from '../years/ec2nd';
-// import { EcYear3 } from '../years/ec3rd';
+import { EcYear2 } from '../years/ec2nd';
+import { EcYear3 } from '../years/ec3rd';
 
 interface YearCard {
   id: string;
@@ -42,15 +42,15 @@ export function EcPage({ onBack, onSelectYear }: EcPageProps) {
     return <EcYear1 onBack={() => setSelectedYear(null)} />;
   }
 
-  // Year 2 နှိပ်ပါက EcYear2 ပြသမည်
-  // if (selectedYear === 'Year 2') {
-  //   return <EcYear2 onBack={() => setSelectedYear(null)} />;
-  // }
+ // Year 2 နှိပ်ပါက EcYear2 ပြသမည်
+  if (selectedYear === 'Year 2') {
+    return <EcYear2 onBack={() => setSelectedYear(null)} />;
+  }
 
-  // // Year 3 နှိပ်ပါက EcYear3 ပြသမည်
-  // if (selectedYear === 'Year 3') {
-  //   return <EcYear3 onBack={() => setSelectedYear(null)} />;
-  // }
+  // Year 3 နှိပ်ပါက EcYear3 ပြသမည်
+  if (selectedYear === 'Year 3') {
+    return <EcYear3 onBack={() => setSelectedYear(null)} />;
+  }
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

@@ -6,8 +6,8 @@ import mechImg from '../../assets/mech.jpg';
 
 // years folder ထဲမှ Year Components များကို Import ပြုလုပ်ခြင်း
 import { MechYear1 } from '../years/mech1st';
-// import { MechYear2 } from '../years/mech2nd';
-// import { MechYear3 } from '../years/mech3rd';
+import { MechYear2 } from '../years/mech2nd';
+import { MechYear3 } from '../years/mech3rd';
 
 interface YearCard {
   id: string;
@@ -43,14 +43,14 @@ export function MechPage({ onBack, onSelectYear }: MechPageProps) {
   }
 
 //   // Year 2 နှိပ်ပါက MechYear2 ပြသမည်
-//   if (selectedYear === 'Year 2') {
-//     return <MechYear2 onBack={() => setSelectedYear(null)} />;
-//   }
+  if (selectedYear === 'Year 2') {
+    return <MechYear2 onBack={() => setSelectedYear(null)} />;
+  }
 
 //   // Year 3 နှိပ်ပါက MechYear3 ပြသမည်
-//   if (selectedYear === 'Year 3') {
-//     return <MechYear3 onBack={() => setSelectedYear(null)} />;
-//   }
+  if (selectedYear === 'Year 3') {
+    return <MechYear3 onBack={() => setSelectedYear(null)} />;
+  }
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

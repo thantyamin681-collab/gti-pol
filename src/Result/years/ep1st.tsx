@@ -9,128 +9,64 @@ interface StudentResult {
   no: number;
   rollNo: string;
   name: string;
-  marks: number[];
+  marks: string[];
 }
 
-// -----------------------------------------------------------------------------
-// // Initial student data for First Year Electrical Power
-// -----------------------------------------------------------------------------
-const initialStudentResults: StudentResult[] = [
-  { no: 1, rollNo: 'EP-01', name: 'Kyaw Kyaw', marks: [82, 79, 88, 85, 76, 80, 85, 90] },
-  { no: 2, rollNo: 'EP-02', name: 'Nilar', marks: [91, 88, 84, 90, 82, 85, 89, 92] },
+const studentResults: StudentResult[] = [
+  { no: 1, rollNo: '1GEP-23', name: 'မစုပြည့်အိမ်', marks: ['A-', 'A-', 'A+', 'A+', 'A+', 'A', 'A-', 'A'] },
+  { no: 2, rollNo: '1GEP-14', name: 'မထက်ထက်နိုင်', marks: ['A-', 'A-', 'A-', 'A-', 'A', 'A-', 'A', 'A+'] },
+  { no: 3, rollNo: '1GEP-3', name: 'မောင်လားမွန့်စော', marks: ['B+', 'A-', 'A', 'A', 'A-', 'A-', 'A-', 'A'] },
+  { no: 4, rollNo: '1GEP-27', name: 'မအေးသဇင်နှင်း', marks: ['A-', 'A-', 'A', 'A-', 'A-', 'A', 'A-', 'A-'] },
+  { no: 5, rollNo: '1GEP-24', name: 'မနှင်းဆီအိမ်စင်', marks: ['A-', 'B+', 'B+', 'B+', 'A-', 'A', 'A', 'A'] },
+  { no: 6, rollNo: '1GEP-8', name: 'မဆုမြတ်စိုး', marks: ['B+', 'A-', 'A', 'A-', 'A-', 'A', 'B+', 'A'] },
+  { no: 7, rollNo: '1GEP-6', name: 'မောင်ကျော်စွာလင်း', marks: ['B+', 'B+', 'A-', 'A-', 'A-', 'A', 'B+', 'A'] },
+  { no: 8, rollNo: '1GEP-12', name: 'မအိမ့်ဇာဖြူ', marks: ['A-', 'B+', 'A', 'A-', 'A-', 'A', 'B+', 'A-'] },
+  { no: 9, rollNo: '1GEP-17', name: 'မောင်မင်းသုခ', marks: ['A-', 'A-', 'A-', 'B+', 'B+', 'A-', 'A-', 'A-'] },
+  { no: 10, rollNo: '1GEP-2', name: 'မောင်တင်ထွန်းဇော်အောင်', marks: ['B+', 'B+', 'A-', 'A-', 'A-', 'A', 'B', 'A-'] },
+  { no: 11, rollNo: '1GEP-9', name: 'မောင်လွင်စိုးအောင်', marks: ['B+', 'B+', 'A-', 'A-', 'A-', 'A-', 'B+', 'B+'] },
+  { no: 12, rollNo: '1GEP-21', name: 'မောင်နေထူးအောင်', marks: ['B+', 'B', 'A-', 'A-', 'B+', 'A-', 'B', 'A-'] },
+  { no: 13, rollNo: '1GEP-29', name: 'မောင်သန့်ဇင်အောင်', marks: ['B+', 'B+', 'B', 'B+', 'A-', 'B', 'A-', 'A-'] },
+  { no: 14, rollNo: '1GEP-20', name: 'မောင်မင်းသူဟိန်း', marks: ['B+', 'B+', 'A', 'B', 'B+', 'B+', 'B+', 'A-'] },
+  { no: 15, rollNo: '1GEP-18', name: 'မောင်အောင်ခန့်မွန့်မွန့်', marks: ['B+', 'B+', 'A-', 'B+', 'B+', 'A-', 'B+', 'B+'] },
+  { no: 16, rollNo: '1GEP-1', name: 'မောင်ဟိန်းထက်အောင်', marks: ['A-', 'B+', 'A-', 'D', 'D', 'A-', 'A-', 'A-'] },
+  { no: 17, rollNo: '1GEP-28', name: 'မောင်မင်းခန့်ကျော်', marks: ['B', 'B+', 'B+', 'B+', 'B-', 'B+', 'B-', 'A-'] },
+  { no: 18, rollNo: '1GEP-7', name: 'မောင်လရောင်ခဧ', marks: ['B+', 'B+', 'A-', 'Inc', 'A-', 'A', 'A', 'B+'] },
+  { no: 19, rollNo: '1GEP-22', name: 'မအိမ့်ရွှေစင်', marks: ['A-', 'B+', 'A', 'B+', 'A-', 'A', 'Inc', 'B+'] },
+  { no: 20, rollNo: '1GEP-13', name: 'မောင်လင်းလက်ယံ', marks: ['B+', 'B', 'B+', 'Inc', 'Inc', 'B+', 'B+', 'A-'] },
+  { no: 21, rollNo: '1GEP-15', name: 'မောင်ရာဇာဝင်းဖြိုး', marks: ['B', 'C', 'A-', 'B+', 'Inc', 'B', 'B-', 'B+'] },
+  { no: 22, rollNo: '1GEP-10', name: 'မောင်အောင်မျိုးထွဋ်', marks: ['B+', 'B-', 'A-', 'B', 'Inc', 'B+', 'Inc', 'B'] },
+  { no: 23, rollNo: '1GEP-11', name: 'မသုန္ဒရီဦး', marks: ['B+', 'B+', 'A-', 'B+', 'Inc', 'B-', 'D', 'Inc'] },
+  { no: 24, rollNo: '1GEP-25', name: 'မောင်ပိုင်ပိုင်ဖြိုး', marks: ['B+', 'C', 'A-', 'Inc', 'B-', 'A-', 'Inc', 'C'] },
+  { no: 25, rollNo: '1GEP-19', name: 'မောင်ဇေယျာထွဋ်', marks: ['B-', 'B+', 'A-', 'B', 'D', 'B', 'D', 'Inc'] },
+  { no: 26, rollNo: '1GEP-16', name: 'မောင်အာကာကျော်', marks: ['B', 'B', 'A-', 'B+', 'Inc', 'B+', 'Inc', 'B'] },
+  { no: 27, rollNo: '1GEP-4', name: 'မောင်ခန့်သူအောင်', marks: ['D', 'B', 'B', 'B-', 'Inc', 'B-', 'C', 'Inc'] },
+  { no: 28, rollNo: '1GEP-5', name: 'မောင်အောင်စိုးမိုးထက်စံ', marks: ['B-', 'B', 'B+', 'Inc', 'Inc', 'Inc', 'D', 'Inc'] },
+  { no: 29, rollNo: '1GEP-26', name: 'မောင်မျိုးဆက်ဟိန်း', marks: ['B+', 'B+', 'A-', 'Inc', 'Inc', 'B+', 'Inc', 'Inc'] }
 ];
 
-// -----------------------------------------------------------------------------
-// // Utility function to calculate letter grade based on marks
-// -----------------------------------------------------------------------------
-const getGrade = (mark: number): string => {
-  if (mark >= 95) return 'A+';
-  if (mark >= 80) return 'A';
-  if (mark >= 75) return 'A-';
-  if (mark >= 70) return 'B-';
-  if (mark >= 65) return 'B';
-  if (mark >= 55) return 'C';
-  if (mark >= 40) return 'D';
-  return 'Inc';
-};
-
-// -----------------------------------------------------------------------------
-// // Utility function to determine overall pass, fail, or re-exam status
-// -----------------------------------------------------------------------------
-const calculateResult = (marks: number[]): { status: string; incCount: number } => {
-  const incCount = marks.filter(m => m < 40).length;
-
-  if (incCount === 0) {
-    return { status: 'Pass', incCount };
-  } else if (incCount > 4) {
-    return { status: 'Fail', incCount };
-  } else {
-    return { status: 'Re-exam', incCount };
+const calculateResult = (marks: string[]): string => {
+  if (marks.includes('Inc')) {
+    return 'Re-exam';
   }
+  return 'Pass';
 };
 
 export function EpYear1({ onBack }: EpYear1Props) {
-  // ---------------------------------------------------------------------------
-  // // React state hooks for searching, editing, and admin management
-  // ---------------------------------------------------------------------------
   const [searchTerm, setSearchTerm] = useState('');
-  const [students, setStudents] = useState<StudentResult[]>(initialStudentResults);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [editingRollNo, setEditingRollNo] = useState<string | null>(null);
-  const [tempMarks, setTempMarks] = useState<number[]>([]);
 
-  // ---------------------------------------------------------------------------
-  // // Filter students dynamically by roll number or name
-  // ---------------------------------------------------------------------------
-  const filteredStudents = students.filter((student) => 
+  const filteredStudents = studentResults.filter((student) => 
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     student.rollNo.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  const handleStartEdit = (student: StudentResult) => {
-    setEditingRollNo(student.rollNo);
-    setTempMarks([...student.marks]);
-  };
-
-  const handleMarkChange = (index: number, value: string) => {
-    const numVal = parseInt(value) || 0;
-    const updated = [...tempMarks];
-    updated[index] = numVal > 100 ? 100 : numVal < 0 ? 0 : numVal;
-    setTempMarks(updated);
-  };
-
-  const handleSaveEdit = (rollNo: string) => {
-    setStudents(prev => 
-      prev.map(st => st.rollNo === rollNo ? { ...st, marks: tempMarks } : st)
-    );
-    setEditingRollNo(null);
-  };
 
   return (
     <div className="results-wrapper">
       <div className="results-container" style={{ maxWidth: '100%', padding: '2rem 3rem' }}>
         
-        {/* Top Bar with Back Button, Admin Toggle & Search Box */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          marginBottom: '1.5rem', 
-          width: '100%',
-          flexWrap: 'wrap',
-          gap: '1rem'
-        }}>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <button 
-              onClick={onBack}
-              style={{
-                padding: '0.6rem 1.2rem',
-                backgroundColor: '#ffffff',
-                border: '1px solid #cbd5e1',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontWeight: '600',
-                color: '#1e293b',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-              }}
-            >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <button onClick={onBack} style={{ padding: '0.6rem 1.2rem', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', color: '#1e293b', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
               ← Back to Years
-            </button>
-
-            <button 
-              onClick={() => setIsAdmin(!isAdmin)}
-              style={{
-                padding: '0.6rem 1rem',
-                backgroundColor: isAdmin ? '#dc2626' : '#475569',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontWeight: '600',
-                fontSize: '0.85rem'
-              }}
-            >
-              {isAdmin ? '🔒 Exit Admin Mode' : '🔑 Admin Login (Test)'}
             </button>
           </div>
 
@@ -140,176 +76,75 @@ export function EpYear1({ onBack }: EpYear1Props) {
               placeholder="Search by Roll No or Name..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '0.6rem 1rem 0.6rem 2.2rem',
-                borderRadius: '8px',
-                border: '1px solid #cbd5e1',
-                outline: 'none',
-                fontSize: '0.9rem',
-                backgroundColor: '#ffffff',
-                color: '#1e293b',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-              }}
+              style={{ width: '100%', padding: '0.6rem 1rem 0.6rem 2.2rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', fontSize: '0.9rem', backgroundColor: '#ffffff', color: '#1e293b', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}
             />
-            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
-              🔍
-            </span>
+            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>🔍</span>
           </div>
         </div>
 
         <div className="results-header">
-          <h2>Electrical Power (EP) - First Year Results</h2>
-          <p>Detailed subject grades and performance records.</p>
+          <h2>A.G.T.I. (Electrical Power) - First Year Results</h2>
+          <p>2025-2026 Academic Year, First Year, First Semester Re-exam Pass/Fail List.</p>
         </div>
 
-        {/* Table Container */}
-        <div style={{ 
-          background: '#ffffff', 
-          padding: '1.5rem', 
-          borderRadius: '12px', 
-          boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
-          width: '100%',
-          overflowX: 'auto'
-        }}>
+        <div style={{ background: '#ffffff', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', width: '100%', overflowX: 'auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <h3 style={{ color: '#1e293b', margin: 0 }}>Comprehensive Student Marksheet & Grades</h3>
-            <span style={{ fontSize: '0.8rem', color: isAdmin ? '#dc2626' : '#10b981', fontWeight: '600' }}>
-              {isAdmin ? '⚠️ Admin Mode Active: Marks and Fix options are visible.' : '👁️ Client View: Marks and Action buttons are hidden.'}
-            </span>
           </div>
           
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', minWidth: '900px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', minWidth: '1100px' }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', fontSize: '0.85rem' }}>
-                <th style={{ padding: '12px' }}>No</th>
-                <th style={{ padding: '12px' }}>Roll No</th>
-                <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                <th style={{ padding: '12px' }}>Sub 1</th>
-                <th style={{ padding: '12px' }}>Sub 2</th>
-                <th style={{ padding: '12px' }}>Sub 3</th>
-                <th style={{ padding: '12px' }}>Sub 4</th>
-                <th style={{ padding: '12px' }}>Sub 5</th>
-                <th style={{ padding: '12px' }}>Sub 6</th>
-                <th style={{ padding: '12px' }}>Sub 7</th>
-                <th style={{ padding: '12px' }}>Sub 8</th>
-                <th style={{ padding: '12px' }}>Result</th>
-                {isAdmin && <th style={{ padding: '12px' }}>Action</th>}
+              <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', fontSize: '0.8rem' }}>
+                <th style={{ padding: '10px' }} rowSpan={2}>No</th>
+                <th style={{ padding: '10px' }} rowSpan={2}>Roll No</th>
+                <th style={{ padding: '10px', textAlign: 'left' }} rowSpan={2}>Name</th>
+                <th style={{ padding: '10px' }}>Myanmar</th>
+                <th style={{ padding: '10px' }}>English for Communication I</th>
+                <th style={{ padding: '10px' }}>Introduction to ICT</th>
+                <th style={{ padding: '10px' }}>Applied Physics</th>
+                <th style={{ padding: '10px' }}>Applied Mathematics I</th>
+                <th style={{ padding: '10px' }}>Engineering Mechanics</th>
+                <th style={{ padding: '10px' }}>Basic Technical Drawing</th>
+                <th style={{ padding: '10px' }}>Basic Electricity</th>
+                <th style={{ padding: '10px' }} rowSpan={2}>Result</th>
               </tr>
             </thead>
             <tbody>
               {filteredStudents.length > 0 ? (
                 filteredStudents.map((student) => {
-                  const isEditing = editingRollNo === student.rollNo;
-                  const currentMarksToEvaluate = isEditing ? tempMarks : student.marks;
-                  const { status } = calculateResult(currentMarksToEvaluate);
+                  const status = calculateResult(student.marks);
 
                   return (
-                    <tr key={student.rollNo} style={{ borderBottom: '1px solid #f1f5f9', color: '#334155', fontSize: '0.9rem' }}>
-                      <td style={{ padding: '12px' }}>{student.no}</td>
-                      <td style={{ padding: '12px', fontWeight: '600' }}>{student.rollNo}</td>
-                      <td style={{ padding: '12px', textAlign: 'left', fontWeight: '500' }}>{student.name}</td>
+                    <tr key={student.rollNo} style={{ borderBottom: '1px solid #f1f5f9', color: '#334155', fontSize: '0.85rem' }}>
+                      <td style={{ padding: '10px' }}>{student.no}</td>
+                      <td style={{ padding: '10px', fontWeight: '600' }}>{student.rollNo}</td>
+                      <td style={{ padding: '10px', textAlign: 'left', fontWeight: '500' }}>{student.name}</td>
                       
-                      {student.marks.map((mark, idx) => {
-                        const activeMark = isEditing ? tempMarks[idx] : mark;
-                        const grade = getGrade(activeMark);
+                      {student.marks.map((grade, idx) => (
+                        <td key={idx} style={{ padding: '10px 4px' }}>
+                          <span style={{ fontWeight: grade === 'Inc' ? '700' : '600', color: grade === 'Inc' ? '#dc2626' : '#1e293b' }}>
+                            {grade}
+                          </span>
+                        </td>
+                      ))}
 
-                        return (
-                          <td key={idx} style={{ padding: '12px 4px' }}>
-                            {isAdmin && isEditing ? (
-                              <input 
-                                type="number" 
-                                value={activeMark} 
-                                onChange={(e) => handleMarkChange(idx, e.target.value)}
-                                style={{
-                                  width: '45px',
-                                  padding: '4px',
-                                  textAlign: 'center',
-                                  border: '1px solid #3b82f6',
-                                  borderRadius: '4px',
-                                  fontSize: '0.85rem',
-                                  outline: 'none'
-                                }}
-                              />
-                            ) : (
-                              <div>
-                                <span style={{ fontWeight: grade === 'Inc' ? '700' : '600', color: grade === 'Inc' ? '#dc2626' : '#1e293b' }}>
-                                  {grade}
-                                </span>
-                                {isAdmin && (
-                                  <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>({mark})</div>
-                                )}
-                              </div>
-                            )}
-                          </td>
-                        );
-                      })}
-
-                      <td style={{ padding: '12px' }}>
-                        <span style={{ 
-                          padding: '4px 10px', 
-                          borderRadius: '20px', 
-                          fontSize: '0.75rem', 
-                          fontWeight: '700',
-                          backgroundColor: status === 'Pass' ? '#dcfce7' : status === 'Re-exam' ? '#fef9c3' : '#fee2e2',
-                          color: status === 'Pass' ? '#15803d' : status === 'Re-exam' ? '#ca8a04' : '#b91c1c'
-                        }}>
+                      <td style={{ padding: '10px' }}>
+                        <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '700', backgroundColor: status === 'Pass' ? '#dcfce7' : '#fee2e2', color: status === 'Pass' ? '#15803d' : '#b91c1c' }}>
                           {status}
                         </span>
                       </td>
-
-                      {isAdmin && (
-                        <td style={{ padding: '12px' }}>
-                          {isEditing ? (
-                            <button 
-                              onClick={() => handleSaveEdit(student.rollNo)}
-                              style={{
-                                padding: '4px 10px',
-                                backgroundColor: '#10b981',
-                                color: '#fff',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer',
-                                fontSize: '0.75rem',
-                                fontWeight: '600'
-                              }}
-                            >
-                              Save
-                            </button>
-                          ) : (
-                            <button 
-                              onClick={() => handleStartEdit(student)}
-                              style={{
-                                padding: '4px 10px',
-                                backgroundColor: '#3b82f6',
-                                color: '#fff',
-                                border: 'none',
-                                borderRadius: '4px',
-                                cursor: 'pointer',
-                                fontSize: '0.75rem',
-                                fontWeight: '600'
-                              }}
-                            >
-                              Fix Marks
-                            </button>
-                          )}
-                        </td>
-                      )}
                     </tr>
                   );
                 })
               ) : (
                 <tr>
-                  <td colSpan={isAdmin ? 13 : 12} style={{ padding: '2rem', color: '#64748b', textAlign: 'center' }}>
-                    No student records found.
-                  </td>
+                  <td colSpan={12} style={{ padding: '2rem', color: '#64748b', textAlign: 'center' }}>No student records found.</td>
                 </tr>
               )}
             </tbody>
           </table>
         </div>
       </div>
-
       <footer className="results-footer">
         <p>© 2026 Departmental Results Portal. All rights reserved.</p>
       </footer>

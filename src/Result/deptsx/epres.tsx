@@ -6,8 +6,8 @@ import epImg from '../../assets/ep.jpg';
 
 // years folder ထဲမှ Year Components များကို Import ပြုလုပ်ခြင်း
 import { EpYear1 } from '../years/ep1st';
-// import { EpYear2 } from '../years/ep2nd';
-// import { EpYear3 } from '../years/ep3rd';
+  import { EpYear2 } from '../years/ep2nd';
+  import { EpYear3 } from '../years/ep3rd';
 
 interface YearCard {
   id: string;
@@ -42,15 +42,15 @@ export function EpPage({ onBack, onSelectYear }: EpPageProps) {
     return <EpYear1 onBack={() => setSelectedYear(null)} />;
   }
 
-  // // Year 2 နှိပ်ပါက EpYear2 ပြသမည်
-  // if (selectedYear === 'Year 2') {
-  //   return <EpYear2 onBack={() => setSelectedYear(null)} />;
-  // }
+  // Year 2 နှိပ်ပါက EpYear2 ပြသမည်
+  if (selectedYear === 'Year 2') {
+    return <EpYear2 onBack={() => setSelectedYear(null)} />;
+  }
 
-  // // Year 3 နှိပ်ပါက EpYear3 ပြသမည်
-  // if (selectedYear === 'Year 3') {
-  //   return <EpYear3 onBack={() => setSelectedYear(null)} />;
-  // }
+  // Year 3 နှိပ်ပါက EpYear3 ပြသမည်
+  if (selectedYear === 'Year 3') {
+    return <EpYear3 onBack={() => setSelectedYear(null)} />;
+  }
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

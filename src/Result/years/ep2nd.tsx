@@ -1,0 +1,154 @@
+import { useState } from 'react';
+import '../result.css';
+
+interface EpYear2Props {
+  onBack: () => void;
+}
+
+interface StudentResult {
+  no: number;
+  rollNo: string;
+  name: string;
+  marks: string[];
+}
+
+const studentResults: StudentResult[] = [
+  { no: 1, rollNo: '2GEP-1', name: 'မယုမင်းအိန္ဒြာ', marks: ['B+', 'A', 'A', 'A-', 'A-', 'A-', 'B+', 'B+'] },
+  { no: 2, rollNo: '2GEP-2', name: 'မခိုင်ရွှေဝါ', marks: ['A-', 'A+', 'A-', 'A', 'A-', 'A-', 'A-', 'B+'] },
+  { no: 3, rollNo: '2GEP-3', name: 'မောင်မင်းထက်အောင်', marks: ['B+', 'A', 'A-', 'A-', 'A-', 'A-', 'B+', 'B'] },
+  { no: 4, rollNo: '2GEP-4', name: 'မကေသွယ်', marks: ['B+', 'A-', 'A', 'A-', 'A-', 'B+', 'B+', 'B+'] },
+  { no: 5, rollNo: '2GEP-5', name: 'မဥ္ဇူစိုး', marks: ['B+', 'A', 'A-', 'A-', 'A-', 'B+', 'B+', 'B+'] },
+  { no: 6, rollNo: '2GEP-6', name: 'မဆုပြည့်ရတနာ', marks: ['B+', 'A+', 'B+', 'B+', 'B+', 'B+', 'A-', 'B+'] },
+  { no: 7, rollNo: '2GEP-7', name: 'မသာဇင်နွယ်', marks: ['B+', 'B-', 'A-', 'B+', 'B+', 'B+', 'B+', 'B+'] },
+  { no: 8, rollNo: '2GEP-9', name: 'မောင်ဇေယျာစိုးအောင်', marks: ['B', 'B+', 'B+', 'B+', 'B+', 'B+', 'B+', 'B+'] },
+  { no: 9, rollNo: '2GEP-10', name: 'မောင်ကောင်းကင်ထက်', marks: ['B', 'A-', 'B+', 'A-', 'B', 'B+', 'B+', 'B+'] },
+  { no: 10, rollNo: '2GEP-12', name: 'မောင်နိုင်ချမ်းအေး', marks: ['B', 'A-', 'B+', 'A-', 'B+', 'B+', 'B+', 'B'] },
+  { no: 11, rollNo: '2GEP-16', name: 'မစိုးလဲ့လဲ့ခိုင်', marks: ['D', 'C', 'D', 'B+', 'B', 'B+', 'B-', 'B'] },
+  { no: 12, rollNo: '2GEP-8', name: 'မောင်ငြိမ်းနိုင်ဝင်း', marks: ['B', 'A-', 'B+', 'B+', 'Inc', 'B+', 'B+', 'B+'] },
+  { no: 13, rollNo: '2GEP-11', name: 'မောင်မင်းခေါင်ထက်', marks: ['A-', 'B+', 'Inc', 'A-', 'B+', 'B+', 'B+', 'B-'] },
+  { no: 14, rollNo: '2GEP-13', name: 'မောင်သုခပိုင်စိုး', marks: ['B', 'B', 'B+', 'B+', 'Inc', 'B+', 'B+', 'B'] },
+  { no: 15, rollNo: '2GEP-14', name: 'မငြိမ်းချမ်းစိုး', marks: ['B-', 'B', 'Inc', 'B+', 'Inc', 'A-', 'Inc', 'B+'] },
+  { no: 16, rollNo: '2GEP-15', name: 'မောင်သော်ဇင်ထက်', marks: ['B', 'B', 'Inc', 'B+', 'B', 'B+', 'B+', 'B'] },
+  { no: 17, rollNo: '2GEP-17', name: 'မပန်းဆုဝေ', marks: ['D', 'B-', 'Inc', 'B+', 'B', 'B', 'Inc', 'B'] },
+  { no: 18, rollNo: '2GEP-18', name: 'မောင်မင်းခန့်', marks: ['D', 'B-', 'Inc', 'B+', 'B', 'B+', 'Inc', 'B-'] },
+  { no: 19, rollNo: '2GEP-19', name: 'မောင်အောင်လွင်ထွန်း', marks: ['D', 'B-', 'Inc', 'B+', 'B', 'B', 'Inc', 'C'] },
+  { no: 20, rollNo: '2GEP-20', name: 'မောင်ကောင်းမင်းသန့်', marks: ['B+', 'B', 'Inc', 'B', 'B', 'B+', 'B+', 'B-'] },
+  { no: 21, rollNo: '2GEP-21', name: 'မောင်ကျော်လှိုင်စိုး', marks: ['C', 'B', 'Inc', 'B', 'B-', 'B-', 'Inc', 'C'] },
+  { no: 22, rollNo: '2GEP-22', name: 'မောင်ဟက်', marks: ['B+', 'B-', 'Inc', 'Inc', 'B+', 'B+', 'Inc', 'B'] },
+  { no: 23, rollNo: '2GEP-25', name: 'မောင်ဟိန်းထက်', marks: ['B-', 'B-', 'Inc', 'Inc', 'Inc', 'B+', 'B-', 'C'] },
+  { no: 24, rollNo: '2GEP-27', name: 'မောင်နိုင်ရိုးလွန်း', marks: ['C', 'B-', 'Inc', 'Inc', 'B', 'B', 'Inc', 'B-'] },
+  { no: 25, rollNo: '2GEP-24', name: 'မောင်ဟိန်းထက်ထက်စံ', marks: ['D', 'C', 'Inc', 'Inc', 'Inc', 'B', 'Inc', 'C'] },
+  { no: 26, rollNo: '2GEP-26', name: 'မောင်စွမ်းထက်တိုင်းလင်း', marks: ['B-', 'D', 'Inc', 'Inc', 'Inc', 'B', 'Inc', 'C'] },
+  { no: 27, rollNo: '2GEP-28', name: 'မောင်ဇော်လင်းထွန်း', marks: ['C', 'C', 'Inc', 'Inc', 'Inc', 'B+', 'Inc', 'Inc'] },
+  { no: 28, rollNo: '2GEP-29', name: 'မောင်ရှိုင်းထက်ဦး', marks: ['Inc', 'Inc', 'Inc', 'Inc', 'Inc', 'Inc', 'Inc', 'Inc'] }
+];
+
+const calculateResult = (marks: string[]): string => {
+  if (marks.includes('Inc')) {
+    return 'Re-exam';
+  }
+  return 'Pass';
+};
+
+export function EpYear2({ onBack }: EpYear2Props) {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredStudents = studentResults.filter((student) => 
+    student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    student.rollNo.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="results-wrapper">
+      <div className="results-container" style={{ maxWidth: '100%', padding: '2rem 3rem' }}>
+        
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', width: '100%', flexWrap: 'wrap', gap: '1rem' }}>
+          <div>
+            <button onClick={onBack} style={{ padding: '0.6rem 1.2rem', backgroundColor: '#ffffff', border: '1px solid #cbd5e1', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', color: '#1e293b', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+              ← Back to Years
+            </button>
+          </div>
+
+          <div style={{ position: 'relative', width: '280px' }}>
+            <input 
+              type="text" 
+              placeholder="Search by Roll No or Name..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ width: '100%', padding: '0.6rem 1rem 0.6rem 2.2rem', borderRadius: '8px', border: '1px solid #cbd5e1', outline: 'none', fontSize: '0.9rem', backgroundColor: '#ffffff', color: '#1e293b', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}
+            />
+            <span style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>🔍</span>
+          </div>
+        </div>
+
+        <div className="results-header">
+          <h2>A.G.T.I. (Electrical Power) - Second Year Results</h2>
+          <p>2025-2026 Academic Year, Second Year, Third Semester Re-exam Pass/Fail List.</p>
+        </div>
+
+        <div style={{ background: '#ffffff', padding: '1.5rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)', width: '100%', overflowX: 'auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <h3 style={{ color: '#1e293b', margin: 0 }}>Comprehensive Student Marksheet & Grades</h3>
+          </div>
+          
+          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', minWidth: '1100px' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', fontSize: '0.8rem' }}>
+                <th style={{ padding: '10px' }} rowSpan={2}>No</th>
+                <th style={{ padding: '10px' }} rowSpan={2}>Roll No</th>
+                <th style={{ padding: '10px', textAlign: 'left' }} rowSpan={2}>Name</th>
+                <th style={{ padding: '10px' }}>Technical English</th>
+                <th style={{ padding: '10px' }}>Laws and Guidelines relating to Technology</th>
+                <th style={{ padding: '10px' }}>Applied Mathematics III</th>
+                <th style={{ padding: '10px' }}>Introduction to ICT</th>
+                <th style={{ padding: '10px' }}>Engineering Circuit Analysis</th>
+                <th style={{ padding: '10px' }}>Electrical Wiring Design and Illumination I</th>
+                <th style={{ padding: '10px' }}>Electrical Machines I</th>
+                <th style={{ padding: '10px' }}>Generation, Transmission and Distribution I</th>
+                <th style={{ padding: '10px' }} rowSpan={2}>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredStudents.length > 0 ? (
+                filteredStudents.map((student) => {
+                  const status = calculateResult(student.marks);
+
+                  return (
+                    <tr key={student.rollNo} style={{ borderBottom: '1px solid #f1f5f9', color: '#334155', fontSize: '0.85rem' }}>
+                      <td style={{ padding: '10px' }}>{student.no}</td>
+                      <td style={{ padding: '10px', fontWeight: '600' }}>{student.rollNo}</td>
+                      <td style={{ padding: '10px', textAlign: 'left', fontWeight: '500' }}>{student.name}</td>
+                      
+                      {student.marks.map((grade, idx) => (
+                        <td key={idx} style={{ padding: '10px 4px' }}>
+                          <span style={{ fontWeight: grade === 'Inc' ? '700' : '600', color: grade === 'Inc' ? '#dc2626' : '#1e293b' }}>
+                            {grade}
+                          </span>
+                        </td>
+                      ))}
+
+                      <td style={{ padding: '10px' }}>
+                        <span style={{ padding: '4px 10px', borderRadius: '20px', fontSize: '0.75rem', fontWeight: '700', backgroundColor: status === 'Pass' ? '#dcfce7' : '#fee2e2', color: status === 'Pass' ? '#15803d' : '#b91c1c' }}>
+                          {status}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  <td colSpan={12} style={{ padding: '2rem', color: '#64748b', textAlign: 'center' }}>No student records found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <footer className="results-footer">
+        <p>© 2026 Departmental Results Portal. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
+
+export default EpYear2;

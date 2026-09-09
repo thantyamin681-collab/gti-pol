@@ -6,8 +6,8 @@ import ieImg from '../../assets/ie.jpg';
 
 // years folder ထဲမှ Year Components များကို Import ပြုလုပ်ခြင်း
 import { IeYear1 } from '../years/ie1st';
-// import { IeYear2 } from '../years/ie2nd';
-// import { IeYear3 } from '../years/ie3rd';
+import { IeYear2 } from '../years/ie2nd';
+import { IeYear3 } from '../years/ie3rd';
 
 interface YearCard {
   id: string;
@@ -43,14 +43,14 @@ export function IePage({ onBack, onSelectYear }: IePageProps) {
   }
 
   // // Year 2 နှိပ်ပါက IeYear2 ပြသမည်
-  // if (selectedYear === 'Year 2') {
-  //   return <IeYear2 onBack={() => setSelectedYear(null)} />;
-  // }
+  if (selectedYear === 'Year 2') {
+    return <IeYear2 onBack={() => setSelectedYear(null)} />;
+  }
 
   // // Year 3 နှိပ်ပါက IeYear3 ပြသမည်
-  // if (selectedYear === 'Year 3') {
-  //   return <IeYear3 onBack={() => setSelectedYear(null)} />;
-  // }
+  if (selectedYear === 'Year 3') {
+    return <IeYear3 onBack={() => setSelectedYear(null)} />;
+  }
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

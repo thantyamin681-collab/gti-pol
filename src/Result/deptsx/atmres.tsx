@@ -6,8 +6,8 @@ import atmImg from '../../assets/atm.jpg';
 
 // years folder ထဲမှ Year Components များကို Import ပြုလုပ်ခြင်း
 import { AtmYear1 } from '../years/atm1st';
-// import { AtmYear2 } from '../years/atm2nd';
-// import { AtmYear3 } from '../years/atm3rd';
+import { AtmYear2 } from '../years/atm2nd';
+import { AtmYear3 } from '../years/atm3rd';
 
 interface YearCard {
   id: string;
@@ -43,14 +43,14 @@ export function AtmPage({ onBack, onSelectYear }: AtmPageProps) {
   }
 
   // Year 2 နှိပ်ပါက AtmYear2 ပြသမည်
-//   if (selectedYear === 'Year 2') {
-//     return <AtmYear2 onBack={() => setSelectedYear(null)} />;
-//   }
+  if (selectedYear === 'Year 2') {
+    return <AtmYear2 onBack={() => setSelectedYear(null)} />;
+  }
 
 //   // Year 3 နှိပ်ပါက AtmYear3 ပြသမည်
-//   if (selectedYear === 'Year 3') {
-//     return <AtmYear3 onBack={() => setSelectedYear(null)} />;
-//   }
+  if (selectedYear === 'Year 3') {
+    return <AtmYear3 onBack={() => setSelectedYear(null)} />;
+  }
 
   return (
     <div style={{ width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

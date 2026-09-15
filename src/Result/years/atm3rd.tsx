@@ -19,11 +19,11 @@ const studentResults: StudentResult[] = [
   { no: 4, rollNo: '3GATM-4', name: 'မောင်ဘုန်းပြည့်ကျော်', marks: ['A-', 'A-', 'C', 'A', 'B+', 'D'] },
   { no: 5, rollNo: '3GATM-6', name: 'မောင်ကျော်ထက်လင်း', marks: ['B+', 'B+', 'A-', 'A-', 'B+', 'B+'] },
   { no: 6, rollNo: '3GATM-7', name: 'မောင်မင်းမင်းစိုး', marks: ['B', 'B+', 'D', 'B+', 'B', 'D'] },
-  { no: 7, rollNo: '3GATM-9', name: 'မောင်ရွှေထိုက်', marks: ['B', 'B+', 'D', 'B+', 'B', 'D'] },
-  { no: 8, rollNo: '3GATM-5', name: 'မောင်ထွန်းလင်းဦးဖြိုး', marks: ['B+', 'B+', 'Inc', 'A-', 'B-', 'D'] },
-  { no: 9, rollNo: '3GATM-8', name: 'မောင်ဟိန်းစော်ထက်', marks: ['B', 'A-', 'D', 'B+', 'D', 'Inc'] },
-  { no: 10, rollNo: '3GATM-11', name: 'မောင်စိုင်းနော်ခ်ခမ်း', marks: ['Inc', 'B+', 'B+', 'B+', 'B-', 'Inc'] },
-  { no: 11, rollNo: '3GATM-12', name: 'မောင်ခိုင်မောင်ထူး', marks: ['Inc', 'Inc', 'Inc', 'B+', 'C', 'D'] }
+  { no: 7, rollNo: '3GATM-9', name: 'မောင်ဇွဲထိုက်', marks: ['B', 'B+', 'D', 'B+', 'B', 'D'] },
+  { no: 8, rollNo: '3GATM-5', name: 'မောင်ထွန်းလင်းဖြိုး', marks: ['B+', 'B+', 'Inc', 'A-', 'B-', 'D'] },
+  { no: 9, rollNo: '3GATM-8', name: 'မောင်ဟိန်းဇော်ထက်', marks: ['B', 'A-', 'D', 'B+', 'D', 'Inc'] },
+  { no: 10, rollNo: '3GATM-11', name: 'မောင်စိုင်းနော်ခမ်း', marks: ['Inc', 'B+', 'B+', 'B+', 'B-', 'Inc'] },
+  { no: 11, rollNo: '3GATM-12', name: 'မောင်ခိုင်မော်ထူး', marks: ['Inc', 'Inc', 'Inc', 'B+', 'C', 'D'] }
 ];
 
 const calculateResult = (marks: string[]): string => {

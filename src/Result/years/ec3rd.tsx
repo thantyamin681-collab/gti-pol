@@ -19,18 +19,18 @@ const studentResults: StudentResult[] = [
   { no: 4, rollNo: '3GEC-4', name: 'မောင်ပြည့်ဘုန်းပိုင်', marks: ['A-', 'A-', 'B+', 'A-', 'A-', 'B+'] },
   { no: 5, rollNo: '3GEC-5', name: 'မောင်ဟန်ထက်အောင်', marks: ['A-', 'A', 'A-', 'A-', 'A', 'A-'] },
   { no: 6, rollNo: '3GEC-6', name: 'မမေသီရိဇင်', marks: ['A-', 'A-', 'B+', 'A-', 'A-', 'B+'] },
-  { no: 7, rollNo: '3GEC-8', name: 'မောင်ကောင်းသန့်ဦးဟိန်း', marks: ['A-', 'A-', 'A-', 'A', 'A', 'A-'] },
+  { no: 7, rollNo: '3GEC-8', name: 'မောင်ကောင်းသန့်ဟိန်း', marks: ['A-', 'A-', 'A-', 'A', 'A', 'A-'] },
   { no: 8, rollNo: '3GEC-9', name: 'မောင်သော်တာလင်းထက်', marks: ['B+', 'B+', 'B+', 'B+', 'A-', 'B+'] },
   { no: 9, rollNo: '3GEC-11', name: 'မနှင်းဝေဖူး', marks: ['B+', 'A-', 'A-', 'A', 'A-', 'A'] },
-  { no: 10, rollNo: '3GEC-12', name: 'မောင်ဇော်ဇော်သီဟနိုင်', marks: ['B+', 'A-', 'A-', 'B+', 'A-', 'B+'] },
+  { no: 10, rollNo: '3GEC-12', name: 'မောင်ဇော်သီဟနိုင်', marks: ['B+', 'A-', 'A-', 'B+', 'A-', 'B+'] },
   { no: 11, rollNo: '3GEC-13', name: 'မဆုသီရိ', marks: ['B+', 'A-', 'B+', 'B+', 'A-', 'B+'] },
-  { no: 12, rollNo: '3GEC-15', name: 'မောင်အောင်မြင့်မြတ်မြတ်', marks: ['B+', 'A-', 'B+', 'B+', 'A-', 'B+'] },
-  { no: 13, rollNo: '3GEC-17', name: 'မောင်ကျော်သူရဦး', marks: ['B+', 'B+', 'B+', 'B+', 'B+', 'B+'] },
-  { no: 14, rollNo: '3GEC-18', name: 'မဆုထူးသန္ဒာ', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'B+'] },
+  { no: 12, rollNo: '3GEC-15', name: 'မောင်အောင်မြင့်မြတ်', marks: ['B+', 'A-', 'B+', 'B+', 'A-', 'B+'] },
+  { no: 13, rollNo: '3GEC-17', name: 'မောင်ကျော်သူရစိုး', marks: ['B+', 'B+', 'B+', 'B+', 'B+', 'B+'] },
+  { no: 14, rollNo: '3GEC-18', name: 'မဆုထူးသဒ္ဒာ', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'B+'] },
   { no: 15, rollNo: '3GEC-19', name: 'မောင်မြတ်ဘုန်းဝေ', marks: ['B+', 'A-', 'B+', 'B+', 'A-', 'B+'] },
-  { no: 16, rollNo: '3GEC-7', name: 'မောင်ကေီဆိုင်းနေ်', marks: ['B+', 'A-', 'Inc', 'A-', 'A-', 'A-'] },
+  { no: 16, rollNo: '3GEC-7', name: 'မောင်ကေဒီဆိုင်းနော်', marks: ['B+', 'A-', 'Inc', 'A-', 'A-', 'A-'] },
   { no: 17, rollNo: '3GEC-10', name: 'မောင်ဖြိုးမင်းသန်း', marks: ['B+', 'A-', 'B+', 'B+', 'A-', 'Inc'] },
-  { no: 18, rollNo: '3GEC-16', name: 'မောင်သိဟဇော်', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'Inc'] }
+  { no: 18, rollNo: '3GEC-16', name: 'မောင်သီဟဇော်', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'Inc'] }
 ];
 
 const calculateResult = (marks: string[]): string => {

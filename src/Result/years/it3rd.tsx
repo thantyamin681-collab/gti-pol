@@ -9,71 +9,56 @@ interface StudentResult {
   no: number;
   rollNo: string;
   name: string;
-  marks: number[];
+  grades: string[]; // Stores direct letter grades matching the official sheet
 }
 
 // -----------------------------------------------------------------------------
-// // Initial student data for Third Year Information Technology
+// // Initial student data mapped precisely from official mark sheets (Years 1 to 35)
 // -----------------------------------------------------------------------------
 const initialStudentResults: StudentResult[] = [
-  { no: 1, rollNo: '3GIT-01', name: 'မယမင်းသန့်', marks: [80, 98, 92, 95, 99, 80, 80, ] },
-  { no: 2, rollNo: '3GIT-02', name: 'မဇင်နှင်းမောင်', marks: [82, 88, 95, 88, 80, 83, 75, ] },
-  { no: 3, rollNo: '3GIT-03', name: 'မရွှေအိ', marks: [95, 95, 95, 95, 95, 85, 75 ] },
-  { no: 4, rollNo: '3GIT-04', name: 'မခင်ထိပ်ထားဦး', marks: [95, 95, 95, 95, 95, 80,80 ] },
-  { no: 5, rollNo: '3GIT-05', name: 'မယွန်းဒါလီဝင်းမောင်', marks: [70, 65, 75, 80, 72, 68, 74 ] },
-  { no: 6, rollNo: '3GIT-06', name: 'မရွှန်းလဲ့ဝေ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 7, rollNo: '3GIT-07', name: 'မထက်နန္ဒာလှိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 8, rollNo: '3GIT-08', name: 'မသျှားသက်ဟန်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 9, rollNo: '3GIT-09', name: 'မနွေနေနန်း', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 10, rollNo: '3GIT-10', name: 'မမင်းပပခိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 11, rollNo: '3GIT-11', name: 'မခိုင်ကြာဖြူစင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 12, rollNo: '3GIT-12', name: 'မယဉ်မင်းမြတ်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 13, rollNo: '3GIT-13', name: 'မပန်းအိသွယ်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 14, rollNo: '3GIT-14', name: 'မချောရတနာ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 15, rollNo: '3GIT-15', name: 'မစောကလျာထူး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 16, rollNo: '3GIT-16', name: 'မောင်အောင်မင်းသန့်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 17, rollNo: '3GIT-17', name: 'မသက်သက်ခင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 18, rollNo: '3GIT-18', name: 'မဖြိုးအိန္ဒြေအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 19, rollNo: '3GIT-19', name: 'မအေးငြိမ်းဖြိုး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 20, rollNo: '3GIT-20', name: 'မရွှန်းပြည့်ပြည့်အောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 21, rollNo: '3GIT-21', name: 'မသက်ထားခင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 22, rollNo: '3GIT-22', name: 'မမေဇူးဇူးအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 23, rollNo: '3GIT-23', name: 'မောင်ကောင်းခန့်ကျော်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 24, rollNo: '3GIT-24', name: 'မောင်စည်သူအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 25, rollNo: '3GIT-25', name: 'မောင်ကောင်းခန့်သူ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 26, rollNo: '3GIT-26', name: 'မအေးငြိမ်းထိုက်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 27, rollNo: '3GIT-27', name: 'မောင်သူရိန်စိုးစံ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 28, rollNo: '3GIT-28', name: 'မကြယ်စင်ဝန်း', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 29, rollNo: '3GIT-29', name: 'မောင်ထက်ယံအောင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  { no: 30, rollNo: '3GIT-30', name: 'မပန်းအိစံ', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-   { no: 31, rollNo: '3GIT-31', name: 'မဖူးမြတ်သွယ်ဇင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-   { no: 32, rollNo: '3GIT-32', name: 'မောင်ရဲရင့်ရန်နိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-   { no: 33, rollNo: '3GIT-33', name: 'မောင်စစ်အောင်မှူး', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-   { no: 34, rollNo: '3GIT-34', name: 'မောင်မျိုးသူရိန်ခန့်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-   { no: 35, rollNo: '3GIT-35R', name: 'မသက်မှူးခိုင်', marks: [25, 29, 30, 35, 48, 32, 27 ] },
-  
-  
+  { no: 1, rollNo: '3GIT-01', name: 'မယမင်းသန့်', grades: ['A', 'A+', 'A+', 'A+', 'A+', '-', 'A'] },
+  { no: 2, rollNo: '3GIT-02', name: 'မဇင်နှင်းမောင်', grades: ['A', 'A', 'A+', 'A', 'A', '-', 'A-'] },
+  { no: 3, rollNo: '3GIT-03', name: 'မရွှေအိ', grades: ['A+', 'A+', 'A+', 'A', 'A+', '-', 'A'] },
+  { no: 4, rollNo: '3GIT-04', name: 'မခင်ထိပ်ထားဦး', grades: ['A+', 'A+', 'A+', 'A', 'A+', 'A', '-'] },
+  { no: 5, rollNo: '3GIT-05', name: 'မယွန်းဒါလီဝင်းမောင်', grades: ['A', 'A', 'A+', 'A', 'A', '-', 'A'] },
+  { no: 6, rollNo: '3GIT-06', name: 'မရွှန်းလဲ့ဝေ', grades: ['A', 'A', 'A', 'A', 'A-', '-', 'A-'] },
+  { no: 7, rollNo: '3GIT-07', name: 'မထက်နန္ဒာလှိုင်', grades: ['A', 'A', 'A', 'A-', 'A', '-', 'A-'] },
+  { no: 8, rollNo: '3GIT-08', name: 'မသျှားသက်ဟန်', grades: ['A-', 'A+', 'A+', 'A+', 'A', '-', 'A'] },
+  { no: 9, rollNo: '3GIT-09', name: 'မနွေနေနန်း', grades: ['A', 'A', 'A', 'A-', 'B+', '-', 'A-'] },
+  { no: 10, rollNo: '3GIT-10', name: 'မမင်းပပခိုင်', grades: ['A', 'A-', 'A', 'A-', 'B+', '-', 'B+'] },
+  { no: 11, rollNo: '3GIT-11', name: 'မခိုင်ကြာဖြူစင်', grades: ['A-', 'A-', 'A-', 'B+', 'B+', 'B+', '-'] },
+  { no: 12, rollNo: '3GIT-12', name: 'မယဉ်မင်းမြတ်', grades: ['A-', 'A-', 'A-', 'B+', 'B+', '-', 'B+'] },
+  { no: 13, rollNo: '3GIT-13', name: 'မပန်းအိသွယ်', grades: ['A', 'A', 'A-', 'A-', 'B+', '-', 'A-'] },
+  { no: 14, rollNo: '3GIT-14', name: 'မချောရတနာ', grades: ['A-', 'A-', 'A-', 'A-', 'B+', '-', 'A-'] },
+  { no: 15, rollNo: '3GIT-15', name: 'မစောကလျာထူး', grades: ['A-', 'A-', 'A', 'A-', 'B+', 'A-', '-'] },
+  { no: 16, rollNo: '3GIT-16', name: 'မောင်အောင်မင်းသန့်', grades: ['A-', 'B+', 'A', 'A-', 'B+', '-', 'B+'] },
+  { no: 17, rollNo: '3GIT-17', name: 'မသက်သက်ခင်', grades: ['B+', 'B+', 'A-', 'B+', 'B', '-', 'B-'] },
+  { no: 18, rollNo: '3GIT-18', name: 'မဖြိုးအိန္ဒြေအောင်', grades: ['B+', 'A-', 'B+', 'A-', 'A-', '-', 'B+'] },
+  { no: 19, rollNo: '3GIT-19', name: 'မအေးငြိမ်းဖြိုး', grades: ['B+', 'B+', 'A-', 'B+', 'B+', '-', 'B+'] },
+  { no: 20, rollNo: '3GIT-20', name: 'မရွှန်းပြည့်ပြည့်အောင်', grades: ['B+', 'B+', 'A-', 'B+', 'B', 'A-', '-'] },
+  { no: 21, rollNo: '3GIT-21', name: 'မသက်ထားခင်', grades: ['B+', 'B+', 'A-', 'B+', 'B+', '-', 'B'] },
+  { no: 22, rollNo: '3GIT-22', name: 'မမေဇူးဇူးအောင်', grades: ['B+', 'B+', 'A-', 'B+', 'B', '-', 'B+'] },
+  { no: 23, rollNo: '3GIT-23', name: 'မောင်ကောင်းခန့်ကျော်', grades: ['B+', 'B+', 'B+', 'B', 'B+', 'B+', '-'] },
+  { no: 24, rollNo: '3GIT-24', name: 'မောင်စည်သူအောင်', grades: ['B+', 'B+', 'B+', 'B', 'B', 'B+', '-'] },
+  { no: 25, rollNo: '3GIT-25', name: 'မောင်ကောင်းခန့်သူ', grades: ['B+', 'B+', 'B+', 'B-', 'B+', '-', 'B+'] },
+  { no: 26, rollNo: '3GIT-26', name: 'မအေးငြိမ်းထိုက်', grades: ['B', 'B+', 'B+', 'B-', 'B', 'B+', '-'] },
+  { no: 27, rollNo: '3GIT-27', name: 'မောင်သူရိန်စိုးစံ', grades: ['B+', 'B+', 'B+', 'B', 'B', 'B+', '-'] },
+  { no: 28, rollNo: '3GIT-28', name: 'မကြယ်စင်ဝန်း', grades: ['B', 'B+', 'A-', 'B', 'B', 'B+', '-'] },
+  { no: 29, rollNo: '3GIT-29', name: 'မောင်ထက်ယံအောင်', grades: ['B', 'B', 'B', 'B-', 'B-', 'B+', '-'] },
+  { no: 30, rollNo: '3GIT-30', name: 'မပန်းအိစံ', grades: ['B+', 'A-', 'B+', 'B-', 'B', '-', 'B'] },
+  { no: 31, rollNo: '3GIT-31', name: 'မဖူးမြတ်သွယ်ဇင်', grades: ['B+', 'B+', 'B+', 'B', 'B', 'B+', '-'] },
+  { no: 32, rollNo: '3GIT-32', name: 'မောင်ရဲရင့်ရန်နိုင်', grades: ['B+', 'B+', 'B', 'B+', 'B', 'A-', '-'] },
+  { no: 33, rollNo: '3GIT-33', name: 'မောင်စစ်အောင်မှူး', grades: ['B+', 'B+', 'B+', 'B', 'B+', 'B+', '-'] },
+  { no: 34, rollNo: '3GIT-34', name: 'မောင်မျိုးသူရိန်ခန့်', grades: ['B+', 'B', 'B', 'B', 'B', 'B+', '-'] },
+  { no: 35, rollNo: '3GIT-35R', name: 'မသက်မှူးနိုင်', grades: ['Inc', 'B+', 'Inc', 'Inc', 'B', '-', 'Inc'] },
 ];
-
-// -----------------------------------------------------------------------------
-// // Utility function to calculate letter grade based on marks
-// -----------------------------------------------------------------------------
-const getGrade = (mark: number): string => {
-  if (mark >= 95) return 'A+';
-  if (mark >= 80) return 'A';
-  if (mark >= 75) return 'A-';
-  if (mark >= 70) return 'B-';
-  if (mark >= 65) return 'B';
-  if (mark >= 55) return 'C';
-  if (mark >= 40) return 'D';
-  return 'Inc';
-};
 
 // -----------------------------------------------------------------------------
 // // Utility function to determine overall pass, fail, or re-exam status
 // -----------------------------------------------------------------------------
-const calculateResult = (marks: number[]): { status: string; incCount: number } => {
-  const incCount = marks.filter(m => m < 40).length;
+const calculateResult = (grades: string[]): { status: string; incCount: number } => {
+  const activeGrades = grades.filter(g => g !== '-');
+  const incCount = activeGrades.filter(g => g === 'Inc').length;
 
   if (incCount === 0) {
     return { status: 'Pass', incCount };
@@ -85,18 +70,12 @@ const calculateResult = (marks: number[]): { status: string; incCount: number } 
 };
 
 export function ItYear3({ onBack }: ItYear3Props) {
-  // ---------------------------------------------------------------------------
-  // // React state hooks for searching, editing, and admin management
-  // ---------------------------------------------------------------------------
   const [searchTerm, setSearchTerm] = useState('');
   const [students, setStudents] = useState<StudentResult[]>(initialStudentResults);
   const [isAdmin, setIsAdmin] = useState(false);
   const [editingRollNo, setEditingRollNo] = useState<string | null>(null);
-  const [tempMarks, setTempMarks] = useState<number[]>([]);
+  const [tempGrades, setTempGrades] = useState<string[]>([]);
 
-  // ---------------------------------------------------------------------------
-  // // Filter students dynamically by roll number or name
-  // ---------------------------------------------------------------------------
   const filteredStudents = students.filter((student) => 
     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     student.rollNo.toLowerCase().includes(searchTerm.toLowerCase())
@@ -104,19 +83,18 @@ export function ItYear3({ onBack }: ItYear3Props) {
 
   const handleStartEdit = (student: StudentResult) => {
     setEditingRollNo(student.rollNo);
-    setTempMarks([...student.marks]);
+    setTempGrades([...student.grades]);
   };
 
-  const handleMarkChange = (index: number, value: string) => {
-    const numVal = parseInt(value) || 0;
-    const updated = [...tempMarks];
-    updated[index] = numVal > 100 ? 100 : numVal < 0 ? 0 : numVal;
-    setTempMarks(updated);
+  const handleGradeChange = (index: number, value: string) => {
+    const updated = [...tempGrades];
+    updated[index] = value;
+    setTempGrades(updated);
   };
 
   const handleSaveEdit = (rollNo: string) => {
     setStudents(prev => 
-      prev.map(st => st.rollNo === rollNo ? { ...st, marks: tempMarks } : st)
+      prev.map(st => st.rollNo === rollNo ? { ...st, grades: tempGrades } : st)
     );
     setEditingRollNo(null);
   };
@@ -125,7 +103,7 @@ export function ItYear3({ onBack }: ItYear3Props) {
     <div className="results-wrapper">
       <div className="results-container" style={{ maxWidth: '100%', padding: '2rem 3rem' }}>
         
-        {/* Top Bar with Back Button, Admin Toggle & Search Box */}
+        {/* Top Bar */}
         <div style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 
@@ -198,7 +176,7 @@ export function ItYear3({ onBack }: ItYear3Props) {
           <p>Detailed subject grades and performance records for Year 3.</p>
         </div>
 
-        {/* Table Container */}
+        {/* Table Container with Responsive View */}
         <div style={{ 
           background: '#ffffff', 
           padding: '1.5rem', 
@@ -210,7 +188,7 @@ export function ItYear3({ onBack }: ItYear3Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <h3 style={{ color: '#1e293b', margin: 0 }}>Comprehensive Student Marksheet & Grades</h3>
             <span style={{ fontSize: '0.8rem', color: isAdmin ? '#dc2626' : '#10b981', fontWeight: '600' }}>
-              {isAdmin ? '⚠️ Admin Mode Active: Marks and Fix options are visible.' : '👁️ Client View: Marks and Action buttons are hidden.'}
+              {isAdmin ? '⚠️ Admin Mode Active: Grades and Fix options are visible.' : '👁️ Client View: Action buttons are hidden.'}
             </span>
           </div>
           
@@ -227,7 +205,6 @@ export function ItYear3({ onBack }: ItYear3Props) {
                 <th style={{ padding: '12px' }}>Information Security</th>
                 <th style={{ padding: '12px' }}>Computer Network Administration (Elective)</th>
                 <th style={{ padding: '12px' }}>Mobile Application Development (Elective)</th>
-
                 <th style={{ padding: '12px' }}>Result</th>
                 {isAdmin && <th style={{ padding: '12px' }}>Action</th>}
               </tr>
@@ -236,8 +213,8 @@ export function ItYear3({ onBack }: ItYear3Props) {
               {filteredStudents.length > 0 ? (
                 filteredStudents.map((student) => {
                   const isEditing = editingRollNo === student.rollNo;
-                  const currentMarksToEvaluate = isEditing ? tempMarks : student.marks;
-                  const { status } = calculateResult(currentMarksToEvaluate);
+                  const currentGradesToEvaluate = isEditing ? tempGrades : student.grades;
+                  const { status } = calculateResult(currentGradesToEvaluate);
 
                   return (
                     <tr key={student.rollNo} style={{ borderBottom: '1px solid #f1f5f9', color: '#334155', fontSize: '0.9rem' }}>
@@ -245,19 +222,18 @@ export function ItYear3({ onBack }: ItYear3Props) {
                       <td style={{ padding: '12px', fontWeight: '600' }}>{student.rollNo}</td>
                       <td style={{ padding: '12px', textAlign: 'left', fontWeight: '500' }}>{student.name}</td>
                       
-                      {student.marks.map((mark, idx) => {
-                        const activeMark = isEditing ? tempMarks[idx] : mark;
-                        const grade = getGrade(activeMark);
+                      {student.grades.map((grade, idx) => {
+                        const activeGrade = isEditing ? tempGrades[idx] : grade;
 
                         return (
                           <td key={idx} style={{ padding: '12px 4px' }}>
                             {isAdmin && isEditing ? (
                               <input 
-                                type="number" 
-                                value={activeMark} 
-                                onChange={(e) => handleMarkChange(idx, e.target.value)}
+                                type="text" 
+                                value={activeGrade} 
+                                onChange={(e) => handleGradeChange(idx, e.target.value)}
                                 style={{
-                                  width: '45px',
+                                  width: '50px',
                                   padding: '4px',
                                   textAlign: 'center',
                                   border: '1px solid #3b82f6',
@@ -267,14 +243,12 @@ export function ItYear3({ onBack }: ItYear3Props) {
                                 }}
                               />
                             ) : (
-                              <div>
-                                <span style={{ fontWeight: grade === 'Inc' ? '700' : '600', color: grade === 'Inc' ? '#dc2626' : '#1e293b' }}>
-                                  {grade}
-                                </span>
-                                {isAdmin && (
-                                  <div style={{ fontSize: '0.7rem', color: '#94a3b8' }}>({mark})</div>
-                                )}
-                              </div>
+                              <span style={{ 
+                                fontWeight: activeGrade === 'Inc' ? '700' : '600', 
+                                color: activeGrade === 'Inc' ? '#dc2626' : activeGrade === '-' ? '#cbd5e1' : '#1e293b' 
+                              }}>
+                                {activeGrade}
+                              </span>
                             )}
                           </td>
                         );
@@ -325,7 +299,7 @@ export function ItYear3({ onBack }: ItYear3Props) {
                                 fontWeight: '600'
                               }}
                             >
-                              Fix Marks
+                              Fix Grades
                             </button>
                           )}
                         </td>

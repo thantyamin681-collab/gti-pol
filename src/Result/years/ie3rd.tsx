@@ -15,7 +15,7 @@ interface StudentResult {
 const studentResults: StudentResult[] = [
   { no: 1, rollNo: '3GIE-1', name: 'မလဲ့လဲ့နိုင်', marks: ['A+', 'A+', 'A+', 'A', 'A', 'A'] },
   { no: 2, rollNo: '3GIE-2', name: 'မောင်ဝင်းသူနိုင်', marks: ['A-', 'A-', 'A-', 'B', 'A-', 'A-'] },
-  { no: 3, rollNo: '3GIE-3', name: 'မောင်စိုးခန့်လွင်', marks: ['A-', 'A-', 'A-', 'B', 'B+', 'B+'] },
+  { no: 3, rollNo: '3GIE-3', name: 'မောင်စိုးခမ်းလှိုင်', marks: ['A-', 'A-', 'A-', 'B', 'B+', 'B+'] },
   { no: 4, rollNo: '3GIE-5', name: 'မောင်ကောင်းထက်ကျော်', marks: ['B', 'B+', 'B+', 'B-', 'B', 'C'] },
   { no: 5, rollNo: '3GIE-4', name: 'မောင်နေစိုးနိုင်', marks: ['Inc', 'B+', 'Inc', 'B', 'B', 'D'] }
 ];

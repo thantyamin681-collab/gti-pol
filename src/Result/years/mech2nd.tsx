@@ -20,7 +20,7 @@ const studentResults: StudentResult[] = [
   { no: 5, rollNo: '2GMech-5', name: 'မသက်မွန်ငြိမ်း', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'B+', 'B+', 'A-'] },
   { no: 6, rollNo: '2GMech-6', name: 'မနှင်းအိလွင်', marks: ['A-', 'A-', 'B+', 'A-', 'A-', 'A-', 'A-', 'A'] },
   { no: 7, rollNo: '2GMech-7', name: 'မောင်လျှံထက်', marks: ['B-', 'B+', 'B+', 'B+', 'A-', 'A-', 'B+', 'B+'] },
-  { no: 8, rollNo: '2GMech-9', name: 'မသွန်းသွေသက်', marks: ['B', 'A-', 'B+', 'A-', 'A-', 'B+', 'B+', 'A-'] },
+  { no: 8, rollNo: '2GMech-9', name: 'မသွန်းသွယ်သော်', marks: ['B', 'A-', 'B+', 'A-', 'A-', 'B+', 'B+', 'A-'] },
   { no: 9, rollNo: '2GMech-10', name: 'မောင်ကောင်းပြည့်စုံ', marks: ['B+', 'B+', 'D', 'A-', 'A-', 'A-', 'B+', 'B'] },
   { no: 10, rollNo: '2GMech-11', name: 'မောင်ဖြိုးသူရိန်ခန့်', marks: ['A-', 'A-', 'B', 'B+', 'A-', 'B+', 'A-', 'B+'] },
   { no: 11, rollNo: '2GMech-12', name: 'မောင်ချမ်းမြေ့ဟန်', marks: ['B', 'B-', 'C', 'B', 'B+', 'A-', 'A-', 'A-'] },

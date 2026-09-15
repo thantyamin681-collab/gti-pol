@@ -16,10 +16,10 @@ const studentResults: StudentResult[] = [
   { no: 1, rollNo: '2GATM-1', name: 'မောင်ထူးအောင်လင်း', marks: ['A-', 'B+', 'A-', 'A-', 'A-', 'A-', 'A', 'A-'] },
   { no: 2, rollNo: '2GATM-2', name: 'မောင်ဇင်ဖြိုးဦး', marks: ['B+', 'A-', 'B+', 'B+', 'B+', 'B+', 'A-', 'A-'] },
   { no: 3, rollNo: '2GATM-3', name: 'မောင်စွမ်းထက်နိုင်', marks: ['B', 'B-', 'B-', 'B', 'D', 'B+', 'B', 'B'] },
-  { no: 4, rollNo: '2GATM-5', name: 'မောင်ဇေယျထွန်း', marks: ['C', 'A-', 'D', 'B', 'B', 'B+', 'B', 'C'] },
+  { no: 4, rollNo: '2GATM-5', name: 'မောင်ဝေယံထွန်း', marks: ['C', 'A-', 'D', 'B', 'B', 'B+', 'B', 'C'] },
   { no: 5, rollNo: '2GATM-6', name: 'မောင်လင်းထက်ပိုင်', marks: ['B+', 'B-', 'Inc', 'B+', 'B-', 'B+', 'A-', 'B'] },
   { no: 6, rollNo: '2GATM-4', name: 'မောင်ပြည့်ဖြိုးအောင်', marks: ['B-', 'B', 'Inc', 'B+', 'D', 'D', 'C', 'F'] },
-  { no: 7, rollNo: '2GATM-7', name: 'မောင်ထက်စိန်စိန်ကျော်', marks: ['C', 'B-', 'Inc', 'B+', 'Inc', 'D', 'B-', 'F'] },
+  { no: 7, rollNo: '2GATM-7', name: 'မောင်ထက်အိန်ခန့်ကျော်', marks: ['C', 'B-', 'Inc', 'B+', 'Inc', 'D', 'B-', 'F'] },
   { no: 8, rollNo: '2GATM-8', name: 'မောင်ရဲမင်းနိုင်', marks: ['B', 'B-', 'Inc', 'B+', 'D', 'D', 'C', 'F'] }
 ];
 

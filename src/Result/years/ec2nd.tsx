@@ -15,18 +15,18 @@ interface StudentResult {
 const studentResults: StudentResult[] = [
   { no: 1, rollNo: '2GEC-1', name: 'မရွှန်းလဲ့ဆွေ', marks: ['B+', 'A', 'A', 'A-', 'A-', 'A-', 'A', 'A-'] },
   { no: 2, rollNo: '2GEC-2', name: 'မမျိုးသီရိဇော်', marks: ['B+', 'A', 'A', 'B+', 'B+', 'B+', 'A-', 'A-'] },
-  { no: 3, rollNo: '2GEC-3', name: 'မောင်စိုင်းချမ်းမြေ့နိုင်', marks: ['B-', 'A-', 'B+', 'A-', 'B+', 'A-', 'A-', 'A-'] },
+  { no: 3, rollNo: '2GEC-3', name: 'မောင်စိုင်းချမ်းမျိုးနိုင်', marks: ['B-', 'A-', 'B+', 'A-', 'B+', 'A-', 'A-', 'A-'] },
   { no: 4, rollNo: '2GEC-4', name: 'မောင်ကျော်မျိုးနိုင်', marks: ['B+', 'A', 'B+', 'A-', 'B+', 'B+', 'A-', 'B+'] },
-  { no: 5, rollNo: '2GEC-11', name: 'မဆုချိုသန္တာရွှယ်', marks: ['B-', 'A-', 'B+', 'B+', 'B+', 'A-', 'B+', 'A-'] },
+  { no: 5, rollNo: '2GEC-11', name: 'မအိမျိုးသန္တာနွယ်', marks: ['B-', 'A-', 'B+', 'B+', 'B+', 'A-', 'B+', 'A-'] },
   { no: 6, rollNo: '2GEC-15', name: 'မောင်ကျော်ဇေယျ', marks: ['B+', 'B', 'B', 'B+', 'B+', 'B+', 'B+', 'B+'] },
   { no: 7, rollNo: '2GEC-5', name: 'မောင်ဘုန်းပြည့်ဖြိုးလွင်', marks: ['B+', 'B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'A-'] },
-  { no: 8, rollNo: '2GEC-6', name: 'မောင်စေဖြိုးသာ', marks: ['B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'A-', 'B+'] },
+  { no: 8, rollNo: '2GEC-6', name: 'မောင်ဝေဖြိုးသာ', marks: ['B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'A-', 'B+'] },
   { no: 9, rollNo: '2GEC-7', name: 'မနှင်းယုလွင်', marks: ['B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'B+', 'A-'] },
   { no: 10, rollNo: '2GEC-8', name: 'မဝေဝေခိုင်', marks: ['B+', 'B-', 'B+', 'B+', 'B+', 'B+', 'B+', 'Inc'] },
   { no: 11, rollNo: '2GEC-9', name: 'မရှင်းမျက်သွယ်', marks: ['B', 'B-', 'Inc', 'B+', 'B+', 'B+', 'B+', 'Inc'] },
   { no: 12, rollNo: '2GEC-10', name: 'မောင်သိန်းသန်းဝင်း', marks: ['B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'B+', 'B+'] },
   { no: 13, rollNo: '2GEC-12', name: 'မောင်လျှံလွှမ်းအောင်', marks: ['B+', 'B+', 'Inc', 'B+', 'B+', 'B+', 'A-', 'A-'] },
-  { no: 14, rollNo: '2GEC-13', name: 'မရွှန်းနုဒီ', marks: ['B+', 'B', 'Inc', 'B+', 'B+', 'A-', 'A-', 'A-'] },
+  { no: 14, rollNo: '2GEC-13', name: 'မရွှန်းနဒီ', marks: ['B+', 'B', 'Inc', 'B+', 'B+', 'A-', 'A-', 'A-'] },
   { no: 15, rollNo: '2GEC-16', name: 'မောင်ကျော်ဇင်ဝင်း', marks: ['B+', 'B+', 'Inc', 'A-', 'B+', 'B+', 'B+', 'A-'] }
 ];
 

@@ -13,25 +13,25 @@ interface StudentResult {
 }
 
 const studentResults: StudentResult[] = [
-  { no: 1, rollNo: '3GMech-1', name: 'မစန့်ဇာနည်နွယ်', marks: ['A', 'A', 'A', 'A+', 'A', 'A+'] },
+  { no: 1, rollNo: '3GMech-1', name: 'မခန့်ဇာနည်နွယ်', marks: ['A', 'A', 'A', 'A+', 'A', 'A+'] },
   { no: 2, rollNo: '3GMech-2', name: 'မောင်နိုင်လင်းထက်', marks: ['A', 'A', 'A', 'A+', 'A-', 'A+'] },
   { no: 3, rollNo: '3GMech-3', name: 'မောင်အံ့အောင်ဦး', marks: ['A', 'A', 'A-', 'A', 'A-', 'A+'] },
   { no: 4, rollNo: '3GMech-4', name: 'မောင်အောင်ထက်မြတ်ကျော်', marks: ['A-', 'A-', 'B+', 'A-', 'A-', 'A+'] },
-  { no: 5, rollNo: '3GMech-5', name: 'မောင်အောင်စိုးမိုးခန့်', marks: ['A-', 'A-', 'A-', 'A', 'A-', 'A'] },
+  { no: 5, rollNo: '3GMech-5', name: 'မောင်အောင်မိုးခန့်', marks: ['A-', 'A-', 'A-', 'A', 'A-', 'A'] },
   { no: 6, rollNo: '3GMech-6', name: 'မောင်ရန်ငြိမ်းအောင်', marks: ['B+', 'A-', 'B+', 'A-', 'A-', 'A'] },
   { no: 7, rollNo: '3GMech-8', name: 'မောင်နေဇော်လတ်', marks: ['B+', 'A-', 'B+', 'A', 'A-', 'A'] },
   { no: 8, rollNo: '3GMech-9', name: 'မောင်ဝင်းသွင်', marks: ['B+', 'A-', 'D', 'B+', 'B', 'B+'] },
   { no: 10, rollNo: '3GMech-10', name: 'မောင်နေမင်းဟိန်း', marks: ['B+', 'B+', 'B', 'A-', 'B', 'B+'] },
   { no: 11, rollNo: '3GMech-11', name: 'မောင်အောင်ဖြိုးကျော်', marks: ['B+', 'B+', 'B', 'A-', 'B+', 'B'] },
   { no: 12, rollNo: '3GMech-12', name: 'မမျိုးအိမ့်ကဗျာထွန်း', marks: ['B+', 'B+', 'B', 'B+', 'B', 'B-'] },
-  { no: 13, rollNo: '3GMech-13', name: 'မောင်ပြည့်ဖြိုးဦးထွန်း', marks: ['B+', 'B+', 'B-', 'B+', 'B', 'B+'] },
+  { no: 13, rollNo: '3GMech-13', name: 'မောင်ပြည့်ဖြိုးထွန်း', marks: ['B+', 'B+', 'B-', 'B+', 'B', 'B+'] },
   { no: 14, rollNo: '3GMech-15', name: 'မောင်ကျောင်းခန့်သော်', marks: ['B+', 'B', 'C', 'B+', 'B', 'B-'] },
-  { no: 14, rollNo: '3GMech-16', name: 'မောင်မျိုးမျိုးကိုကို', marks: ['B+', 'B+', 'D', 'B+', 'B', 'B'] },
+  { no: 14, rollNo: '3GMech-16', name: 'မောင်မျိုးကိုကို', marks: ['B+', 'B+', 'D', 'B+', 'B', 'B'] },
   { no: 15, rollNo: '3GMech-17', name: 'မောင်ရွှေထက်တန်', marks: ['B+', 'B+', 'C', 'B+', 'B+', 'B'] },
   { no: 16, rollNo: '3GMech-18', name: 'မောင်အောင်အောင်ဦး', marks: ['B+', 'B+', 'C', 'B+', 'B+', 'B-'] },
-  { no: 17, rollNo: '3GMech-19', name: 'မောင်ပေါင်လျန်းထွန်း', marks: ['B+', 'B+', 'B-', 'B+', 'B', 'B+'] },
+  { no: 17, rollNo: '3GMech-19', name: 'မောင်ပေါင်လျန်းထန်', marks: ['B+', 'B+', 'B-', 'B+', 'B', 'B+'] },
   { no: 18, rollNo: '3GMech-20', name: 'မောင်ဘုန်းမြတ်မင်း', marks: ['B+', 'B+', 'B-', 'B+', 'B', 'A-'] },
-  { no: 19, rollNo: '3GMech-14', name: 'မောင်ခွန်းရည်လှိုင်', marks: ['B+', 'B+', 'B-', 'B+', 'B+', 'Inc'] }
+  { no: 19, rollNo: '3GMech-14', name: 'မောင်စွမ်းရည်လျှံ', marks: ['B+', 'B+', 'B-', 'B+', 'B+', 'Inc'] }
 ];
 
 const calculateResult = (marks: string[]): string => {
